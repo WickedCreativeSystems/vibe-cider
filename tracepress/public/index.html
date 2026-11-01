@@ -241,7 +241,7 @@ section.pages .watch { margin: 14px 0 0; font-size: 15px; }
 
 <div class="bands" id="holidays">
   <p class="band orange">For the holidays: a <a href="/thanksgiving-tracing-worksheets">Thanksgiving</a> or <a href="/christmas-tracing-worksheets">Christmas</a> tracing book, A to Z plus 20 words with pictures. Thanksgiving is Thursday 26 November. KDP says a new book takes 3 business days to go live, and longer for a first book. For Christmas, a book that goes through KDP&rsquo;s low-content review takes three to four weeks, so submit by about <strong>Friday 27 November</strong> to be on sale by 25 December: <a href="/christmas-tracing-worksheets#kdp">how that date is counted</a>.</p>
-  <p class="band blue">Teaching kindergarten? The <a href="/kindergarten-worksheets">kindergarten worksheets</a> are free to print: sight word flash cards to cut out, a <a href="/sight-word-flash-cards">short vowel matching game</a> with coloured backs, CVC words with pictures, count and trace 1 to 10, and name tracing. Children can also play the <a href="/sight-word-matching-game">matching game on screen</a>, on a tablet or full screen on the classroom board. The $19 licence adds a whole class of name sheets in one PDF.</p>
+  <p class="band blue">Teaching kindergarten? The <a href="/kindergarten-worksheets">kindergarten worksheets</a> are free to print: sight word flash cards to cut out, a <a href="/sight-word-flash-cards">short vowel matching game</a> with coloured backs, CVC words with pictures, count and trace 1 to 10, and name tracing. Children can also play the <a href="/sight-word-matching-game">matching game on screen</a>, on a tablet or full screen on the classroom board. The $19 licence adds a whole class of name sheets in one PDF. <span id="packs" hidden></span></p>
 </div>
 
 <section class="pages" aria-label="Sample pages">
@@ -305,6 +305,7 @@ section.pages .watch { margin: 14px 0 0; font-size: 15px; }
 </dialog>
 
 <script type="module" src="/js/main.js"></script>
+<script>/* The $3.50 holiday packs, named only while config.js has each one's link (it is emptied after the holiday). */(function(){var P=window.TRACE_PRESS_PACKS||{},L={thanksgiving:["Thanksgiving","until 26 November"],christmas:["Christmas","until 25 December"]},o=[];for(var k in L)if(P[k])o.push('<a href="/'+k+'-tracing-worksheets#pack">'+L[k][0]+'</a> ('+L[k][1]+')');var e=document.getElementById("packs");if(!e||!o.length)return;e.innerHTML="For the class at the holidays, a $3.50 pack of picture flash cards and four matching games with the same 20 words as the free worksheets: "+o.join(" and ")+".";e.hidden=false})()</script>
 <script>/* A beacon when a person (not a crawler) clicks a PDF link: /px/pdf.gif, nothing else sent. */addEventListener("click",function(e){var a=e.isTrusted&&e.target.closest&&e.target.closest('a[href$=".pdf"]');if(!a)return;var u="/px/pdf.gif?"+Date.now().toString(36);try{fetch(u,{keepalive:true,mode:"no-cors",cache:"no-store"}).catch(function(){})}catch(_){new Image().src=u}},true)</script>
 </body>
 </html>
