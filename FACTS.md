@@ -532,3 +532,5 @@ Asked whether her class works in French or English: "She's the English teacher".
 2026-11-01 — Boss, about 2:10 AM Central, approving the Trace Press Thanksgiving pack at $3.50 and its Stripe product and Payment Link: "yeah you do it". The Stripe key we hold is restricted to reads (product writes refused), so the link is made in the dashboard.
 
 2026-11-01 — Boss sent the second Free Homeschool Deals submission (the Thanksgiving tracing worksheets, marked time-sensitive, with the 1000x1500 pumpkin picture) from his own address: "sent".
+
+2026-11-01 — Boss, about 2:25 AM Central, asked "You can't make the link?" and then pasted a live Stripe secret key into chat for me to make it. It was used once for the approved product, $3.50 price and Payment Link ("Thanksgiving Tracing and Matching Pack", read back through the API: $3.50 one-time USD, automatic tax on, redirect to /thanksgiving-tracing-worksheets?pack=1#pack), and not stored.
