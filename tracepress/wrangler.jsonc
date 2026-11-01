@@ -41,7 +41,10 @@
     // An empty PACK_URL hides the offer (do that after 26 November).
     "PACK_URL": "https://buy.stripe.com/4gM3cx634h1b3kD0GXeIw06",
     // /api/pack only hands out the file for sessions made through this link.
-    "PACK_LINK_ID": "plink_1UWuK6Ro6ix1hE5vksXJY8uK"
+    "PACK_LINK_ID": "plink_1UWuK6Ro6ix1hE5vksXJY8uK",
+    // The Christmas pack's pair. Empty CHRISTMAS_PACK_URL after 25 December.
+    "CHRISTMAS_PACK_URL": "https://buy.stripe.com/28EeVf0IKaCN3kD89peIw07",
+    "CHRISTMAS_PACK_LINK_ID": "plink_1UX28jRo6ix1hE5vdbkFL9Lp"
   },
   // Paid pack PDFs, read only by /api/pack. Uploaded with the KV API from the
   // git-ignored etsy/ folder (scripts/etsy-pack.mjs builds them).
