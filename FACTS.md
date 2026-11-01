@@ -524,3 +524,5 @@ Asked whether her class works in French or English: "She's the English teacher".
 2026-10-31 — Boss, about 10:30 PM Central, asked whether he has an Etsy account that can open a shop and will pay Etsy's fees: "Have account, will pay". Asked whether Etsy can sell packs of what is free on the Trace Press site: "Whatever you want, if you think its a good idea".
 
 2026-10-31 — Boss's screenshots of Etsy shop signup, about 10:40 PM Central: Etsy charges a set-up fee of $29. Signup offers Etsy Plus at $10/month plus taxes, with "15 credits for listing items" ($3 value) and $5 of Etsy Ads credits; the set-up fee credit applies only after staying subscribed to Etsy Plus "for six consecutive months".
+
+2026-11-01 — Boss, about 1:50 AM Central, during Etsy shop setup: the SMS two-factor step kept saying "Too many failed attempts. Try again later", and then Etsy said the account is suspended and to check email for the reason; he has found no email from Etsy.
