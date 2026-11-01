@@ -518,3 +518,5 @@ Asked whether her class works in French or English: "She's the English teacher".
 - **2026-10-28, now.md carries every product (the boss, relayed by OptiServer):** now.md lists each product as its own block of `app:`, `status:`, `url:`, `blurb:` and optional `since:` lines. The first product is the headline: it becomes currentApp and titles the zoo card. A killed product stays in the list with a status starting "killed — <why>". This replaces the 09-30 decision to keep now.md to one product. Trace Press is listed first, as the current app, and Puzzle Press second.
 
 2026-10-30 — Boss, about 10:50 AM Central, emailed the free word and picture matching cards to Free Homeschool Deals (freehomeschooldeals.com) from his own address, using the drafted post and the 1000x1500 picture: "Done: Send the matching cards to Free Homeschool Deals". Their page says chosen submissions get a post, social shares and a newsletter mention, and that they may decline one.
+
+2026-10-31 — Boss, about 10:25 PM Central: "I think the etsy store might be a good idea". (Market-Nana had parked Etsy on 10-21 as something only the boss can open: his fee, his ID, about 3 of his hours.)
