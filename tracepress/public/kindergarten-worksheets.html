@@ -54,6 +54,8 @@
   .season p { margin: 0 0 12px; color: var(--muted); }
   .season .go { display: inline-block; margin: 0; }
   .season .packlink { margin: 12px 0 0; font-size: 15px; }
+  .season + .season { margin-top: 16px; }
+  .season.green { background: var(--green); }
   @media (max-width: 560px) { .season { padding: 16px; gap: 14px; align-items: flex-start; } .season .pic img { width: 72px; } .season h2 { font-size: 21px; } }
   .sheet { background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; }
   .sheet .pic { display: flex; align-items: center; justify-content: center; padding: 28px 28px 0; height: 320px; overflow: hidden; }
@@ -114,10 +116,21 @@
       <h2>Thanksgiving is Thursday 26 November</h2>
       <p>20 <a href="/thanksgiving-tracing-worksheets">Thanksgiving words</a> to trace, like pumpkin, apple and acorn, each with a picture to colour.</p>
       <a class="go" href="/samples/thanksgiving-tracing-worksheets.pdf" target="_blank" rel="noopener">Print all 20 (PDF)</a>
-      <p class="packlink">For the class: <a href="/thanksgiving-tracing-worksheets#pack">picture flash cards and four matching games</a> with the same 20 words, $3.50 until Thanksgiving.</p>
+      <p class="packlink" data-pack="thanksgiving" hidden>For the class: <a href="/thanksgiving-tracing-worksheets#pack">picture flash cards and four matching games</a> with the same 20 words, $3.50 until Thanksgiving.</p>
+    </div>
+  </div>
+  <div class="season green">
+    <a class="pic" href="/christmas-tracing-worksheets"><img src="/img/christmas-tracing-worksheet-snowman.png" width="720" height="932" loading="lazy" alt="A Christmas tracing worksheet for the word snowman, with a snowman outline to colour, start dots and stroke arrows, then dotted rows to trace"></a>
+    <div>
+      <h2>Then Christmas</h2>
+      <p>20 <a href="/christmas-tracing-worksheets">Christmas words</a> to trace, like star, sleigh and snowman, each with a picture to colour. The same words are a <a href="/sight-word-matching-game?set=christmas">matching game</a> to play on screen.</p>
+      <a class="go" href="/samples/christmas-tracing-worksheets.pdf" target="_blank" rel="noopener">Print all 20 (PDF)</a>
+      <p class="packlink" data-pack="christmas" hidden>For the class: <a href="/christmas-tracing-worksheets#pack">picture flash cards and four matching games</a> with the same 20 words, $3.50 until Christmas.</p>
     </div>
   </div>
 </section>
+<script src="/config.js"></script>
+<script>/* Each pack line shows only while config.js has that pack's link (emptied after the holiday). */(function(){var P=window.TRACE_PRESS_PACKS||{};document.querySelectorAll(".packlink[data-pack]").forEach(function(e){if(P[e.dataset.pack])e.hidden=false})})()</script>
 
 <section class="big" id="sheets">
   <article class="sheet blue">
