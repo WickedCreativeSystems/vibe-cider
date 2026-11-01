@@ -68,12 +68,17 @@ function say(word) {
 // Word and picture: each pair is the word on one card and its picture on the
 // other, so a child reads the word to find it. Short vowel words with a clear
 // outline picture (pdf/pictures.js); the picture is drawn in the word's ink.
-// Thanksgiving is the same game on the 20 words of the Thanksgiving tracing
-// page, offered until the day itself (Central time).
+// Thanksgiving and Christmas are the same game on the 20 words of each holiday
+// tracing page, offered until the day itself (Central time).
 const PIC_SETS = {
   pictures: { label: "Word and picture", words: PICTURE_SET.words, back: PICTURE_SET.back, px: "gamepics" },
   thanksgiving: { label: "Thanksgiving", words: "mug cake bowl home bread wheat maple glass apple acorn carrot cherry candle teapot pepper cookie feather pumpkin seedling mushroom".split(" "), back: [0.8, 0.4, 0.1], px: "gameholiday", until: "2026-11-26" },
+  christmas: { label: "Christmas", words: "mug ball star gift bell sock home book candy train robot cookie candle sleigh snowman reindeer ornament lollipop snowflake gingerbread".split(" "), back: [0.75, 0.12, 0.12], px: "gameholiday", until: "2026-12-25" },
 };
+// A holiday game's printed copy is that holiday's $3.50 pack, offered only
+// while the Worker's config.js names the pack's link.
+const PACK_LINES = { thanksgiving: "orange", christmas: "red" };
+const PACK_URLS = window.TRACE_PRESS_PACKS || {};
 const today = new Date().toLocaleDateString("en-CA", { timeZone: "America/Chicago" });
 for (const [k, p] of Object.entries(PIC_SETS)) if (p.until && today > p.until) delete PIC_SETS[k];
 const isPics = (s) => s in PIC_SETS;
@@ -119,9 +124,15 @@ function deal() {
   const own = set === OWN;
   el.ownRow.hidden = !own;
   remember();
-  // The card maker has no Thanksgiving list; that game's printed copy is the $3.50 pack.
-  el.print.parentElement.hidden = set === "thanksgiving";
-  $("packline").hidden = set !== "thanksgiving";
+  // The card maker has no holiday lists; a holiday game's printed copy is its pack.
+  const holiday = Object.hasOwn(PACK_LINES, set);
+  el.print.parentElement.hidden = holiday;
+  const packline = $("packline");
+  packline.hidden = !(holiday && PACK_URLS[set]);
+  if (!packline.hidden) {
+    const name = PIC_SETS[set].label;
+    packline.innerHTML = `To play on the table instead, the <a href="/${set}-tracing-worksheets#pack">${name} pack</a> has these 20 words as four printed matching games with ${PACK_LINES[set]} backs, plus flash cards and tracing worksheets: one PDF, $3.50.`;
+  }
   el.print.href = own ? `/sight-word-flash-cards?list=own&sheet=letter-game&pairs=1&backs=1${ownWords.length ? `&words=${encodeURIComponent(ownWords.join(","))}` : ""}` : `/sight-word-flash-cards?list=${set}&sheet=letter-game&pairs=1&backs=1`;
   for (const b of el.sets.querySelectorAll("button")) b.setAttribute("aria-pressed", String(b.dataset.set === set));
   if (own && ownWords.length < 2) {
