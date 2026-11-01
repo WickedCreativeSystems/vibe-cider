@@ -8,7 +8,7 @@
     "proof": "node scripts/proof.mjs",
     "sample": "node scripts/sample.mjs",
     "ink": "node test/inkcheck.mjs",
-    "build": "mkdir -p public/js && find public/js -name '*.js' -mtime +30 -delete && esbuild src/ui/main.js src/ui/paper-page.js src/ui/name-page.js src/ui/first-touch.js src/ui/cards-page.js src/ui/sheet-page.js src/ui/game-page.js --bundle --minify --format=esm --target=es2020 --splitting --outdir=public/js",
+    "build": "mkdir -p public/js && find public/js -name '*.js' -mtime +30 -delete && esbuild src/ui/main.js src/ui/paper-page.js src/ui/name-page.js src/ui/first-touch.js src/ui/cards-page.js src/ui/sheet-page.js src/ui/game-page.js src/ui/pack-page.js --bundle --minify --format=esm --target=es2020 --splitting --outdir=public/js",
     "deploy": "npm run build && wrangler deploy",
     "traffic": "node scripts/traffic.mjs",
     "indexnow": "node scripts/indexnow.mjs",

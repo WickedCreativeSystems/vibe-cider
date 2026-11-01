@@ -34,6 +34,14 @@
     // redirects to https://tracepress.bananafest-destiny.com/?paid=1.
     "PAY_URL": "https://buy.stripe.com/bJe14p0IKcKV2gzblBeIw01",
     // /api/verify only accepts sessions made through this link.
-    "PAY_LINK_ID": "plink_1UL3wZRo6ix1hE5vuzRD7tSY"
-  }
+    "PAY_LINK_ID": "plink_1UL3wZRo6ix1hE5vuzRD7tSY",
+    // The $3.50 Thanksgiving pack (boss approved 2026-11-01). Empty until the
+    // boss makes its Payment Link: an empty PACK_URL hides the offer, and an
+    // empty PACK_LINK_ID makes /api/pack refuse every request.
+    "PACK_URL": "",
+    "PACK_LINK_ID": ""
+  },
+  // Paid pack PDFs, read only by /api/pack. Uploaded with the KV API from the
+  // git-ignored etsy/ folder (scripts/etsy-pack.mjs builds them).
+  "kv_namespaces": [{ "binding": "PACKS", "id": "73b0b6c1eef64e5cb1ef86d564a6e8c0" }]
 }

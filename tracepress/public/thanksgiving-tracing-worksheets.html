@@ -35,9 +35,18 @@
   table.words { border-collapse: collapse; margin: 8px 0 0; }
   table.words th, table.words td { text-align: left; padding: 3px 18px 3px 0; border-bottom: 1px solid var(--line); }
   footer { text-align: center; color: var(--muted); font-size: 13px; padding: 24px; border-top: 1px solid var(--line); }
+  .pack { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px; margin: 24px 0; }
+  .pack h3 { margin-top: 0; }
+  .pack img { display: block; width: 100%; height: auto; border-radius: 6px; margin: 4px 0 12px; }
+  .pack .buybtn { display: inline-block; background: #b8561a; color: #fff; border-radius: 8px; font-weight: 600; padding: 12px 18px; text-decoration: none; margin: 4px 0 8px; }
+  .pack form { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 4px; }
+  .pack input { flex: 1 1 200px; min-width: 0; font: inherit; padding: 9px 10px; border: 1px solid var(--line); border-radius: 6px; }
+  .pack button { font: inherit; font-weight: 600; padding: 9px 14px; border: 1px solid var(--accent); background: #fff; color: var(--accent); border-radius: 6px; }
 </style>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "b7be686eebf64639b0e60d43860bbd54"}'></script>
 <script type="module" src="/js/first-touch.js"></script>
+<script src="/config.js"></script>
+<script type="module" src="/js/pack-page.js"></script>
 <script src="https://pulse.bananafest-destiny.com/p.js" data-site="tracepress.bananafest-destiny.com" defer></script>
 </head>
 <body>
@@ -52,6 +61,15 @@
   <a class="cta" href="/samples/thanksgiving-tracing-worksheets.pdf" target="_blank" rel="noopener">Download the worksheets (PDF, 20 worksheets)</a>
   <a href="/samples/thanksgiving-tracing-worksheets.pdf" target="_blank" rel="noopener"><img src="/img/thanksgiving-tracing-worksheet-pumpkin.png" width="720" height="932" alt="A Thanksgiving tracing worksheet for the word pumpkin, with a pumpkin outline to colour, start dots and stroke arrows, then dotted rows to trace" style="display:block;width:100%;max-width:340px;height:auto;margin:8px 0 4px;border:1px solid var(--line);border-radius:6px;box-shadow:0 4px 14px rgba(20,30,20,.08);background:#fff"></a>
   <p>8.5" × 11", no sign-up. The words, in order: mug, cake, bowl, home, bread, wheat, maple, glass, apple, acorn, carrot, cherry, candle, teapot, pepper, cookie, feather, pumpkin, seedling, mushroom. Every word is a thing a child can see in its picture. They run from three letters to eight, so the early pages suit a child just starting and the later ones a child who is writing words already.</p>
+
+  <section class="pack" id="pack" data-pack="thanksgiving" data-file="thanksgiving-tracing-and-matching-pack.pdf" hidden>
+    <h3>Want the flash cards and matching games too? $3.50</h3>
+    <img src="/img/thanksgiving-pack.jpg" width="900" height="675" alt="The Thanksgiving tracing and matching pack: a pumpkin tracing worksheet, picture flash cards for mug, cake, bowl and home, and a matching game sheet" loading="lazy">
+    <p>The same twenty words as a 34-page pack to print at home or in class: these 20 worksheets without the footer line, 20 picture flash cards at 3 × 5 inches, and 4 word-to-picture matching games of twelve cards, each with an orange back to print on the other side. One PDF, US Letter.</p>
+    <a class="buybtn" href="#pack" target="_blank" rel="noopener">Pay $3.50 with Stripe</a>
+    <p class="note packnote">Already paid? Enter the email you paid with to download the pack.</p>
+    <form><input type="email" required autocomplete="email" placeholder="Email you paid with" aria-label="Email you paid with"><button type="submit">Download the pack</button></form>
+  </section>
 
   <h3>Which letters the words practise</h3>
   <p>Between them, the twenty words use 21 of the 26 lowercase letters. The five they leave out are j, q, v, x and z. To practise every letter, add jacket, quilt, van, box and zeppelin to the words in the book maker: each has a picture, and each brings in one of the missing letters.</p>

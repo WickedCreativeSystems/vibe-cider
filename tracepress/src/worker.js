@@ -3,9 +3,14 @@
 //   GET  /config.js     -> window.TRACE_PRESS_PAY_URL from env (empty = no Buy button)
 //   POST /api/verify    -> { email } -> is there a paid Stripe Checkout Session
 //                          for it, made through the Trace Press Payment Link?
+//   POST /api/pack      -> { email, pack } -> the same check against a pack's
+//                          own Payment Link; paid -> the pack PDF itself
 //   everything else     -> static assets from public/
 //
 // Env: PAY_URL and PAY_LINK_ID (vars: the Payment Link and its plink_ id),
+// PACK_URL and PACK_LINK_ID (the same pair for the $3.50 Thanksgiving pack),
+// PACKS (a KV namespace holding the pack PDFs: they are paid files, so they
+// are never in public/ or the repo, and only this route reads them),
 // STRIPE_KEY (secret; the same restricted, read-only key Puzzle Press uses).
 //
 // /api/verify is Puzzle Press's, copied rather than imported: the two apps
@@ -22,7 +27,7 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === "/config.js") {
-      const body = `window.TRACE_PRESS_PAY_URL = ${JSON.stringify(env.PAY_URL || "")};\n`;
+      const body = `window.TRACE_PRESS_PAY_URL = ${JSON.stringify(env.PAY_URL || "")};\nwindow.TRACE_PRESS_PACK_URL = ${JSON.stringify(env.PACK_URL || "")};\n`;
       return new Response(body, {
         headers: { "content-type": "application/javascript; charset=utf-8", "cache-control": "no-store" },
       });
@@ -31,6 +36,11 @@ export default {
     if (url.pathname === "/api/verify") {
       if (request.method !== "POST") return json({ ok: false, error: "POST only" }, 405);
       return verify(request, env);
+    }
+
+    if (url.pathname === "/api/pack") {
+      if (request.method !== "POST") return json({ ok: false, error: "POST only" }, 405);
+      return pack(request, env);
     }
 
     return env.ASSETS.fetch(request);
@@ -42,6 +52,43 @@ function json(obj, status = 200) {
 }
 
 async function verify(request, env) {
+  const found = await findPaid(request, env, env.PAY_LINK_ID);
+  if (found instanceof Response) return found;
+  return json({ ok: true, email: found.email, token: `stripe:${found.paid.id}` });
+}
+
+// Packs sold on their own Payment Link. Only a payment through PACK_LINK_ID
+// hands out the file, so a $19 receipt does not download a pack and a pack
+// receipt does not unlock the book maker (verify checks PAY_LINK_ID only).
+const PACKS = {
+  thanksgiving: { key: "thanksgiving-tracing-and-matching-pack", file: "thanksgiving-tracing-and-matching-pack.pdf" },
+};
+
+async function pack(request, env) {
+  let name = "";
+  try {
+    name = String((await request.clone().json()).pack || "");
+  } catch {
+    return json({ ok: false, error: "Bad request." }, 400);
+  }
+  const p = Object.hasOwn(PACKS, name) ? PACKS[name] : null;
+  if (!p) return json({ ok: false, error: "No such pack." }, 404);
+  const found = await findPaid(request, env, env.PACK_LINK_ID);
+  if (found instanceof Response) return found;
+  const pdf = env.PACKS ? await env.PACKS.get(p.key, "arrayBuffer") : null;
+  if (!pdf) return json({ ok: false, error: "Your payment is there, but the file could not be fetched. Email support@bananafest-destiny.com and we will send it." }, 503);
+  return new Response(pdf, {
+    headers: {
+      "content-type": "application/pdf",
+      "content-disposition": `attachment; filename="${p.file}"`,
+      "cache-control": "no-store",
+    },
+  });
+}
+
+// Is there a paid session through `link` for the email in the request body?
+// Returns { email, paid } or an error Response.
+async function findPaid(request, env, link) {
   if (!env.STRIPE_KEY) return json({ ok: false, error: "Checkout is not set up yet." }, 503);
 
   // Ten tries a minute per address. A buyer fixing a typo needs three; a script
@@ -64,7 +111,7 @@ async function verify(request, env) {
       return json(
         {
           ok: false,
-          error: "Too many tries in a row. Wait a minute and press Unlock again — nothing is wrong with your payment.",
+          error: "Too many tries in a row. Wait a minute and press the button again — nothing is wrong with your payment.",
         },
         429,
       );
@@ -100,7 +147,6 @@ async function verify(request, env) {
   // refuses payment_link together with customer_details ("You may only specify
   // one of these parameters", checked live 2026-09-27), so only the scan can
   // ask for it. With no link configured, refuse rather than accept all.
-  const link = env.PAY_LINK_ID;
   if (!link) return json({ ok: false, error: "Unlocking is not available right now. Email support@bananafest-destiny.com and we will sort it out." }, 503);
   const sessions = async (params, startingAfter = null) => {
     const q = new URLSearchParams({ status: "complete", limit: "100", ...params });
@@ -171,5 +217,5 @@ async function verify(request, env) {
       404,
     );
   }
-  return json({ ok: true, email, token: `stripe:${paid.id}` });
+  return { email, paid };
 }
