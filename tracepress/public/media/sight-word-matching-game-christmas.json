@@ -1,0 +1,12 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Trace Press",
+  "slug": "sight-word-matching-game-christmas",
+  "shot": "2026-11-01",
+  "claim": "A free Christmas matching game in the browser: each pair is a word and its picture (sleigh, reindeer, snowflake, gingerbread, bell...), so a child reads the word to find its match. Trace Press's sight word matching game has a Christmas set of 20 words, the same words as its free Christmas tracing worksheets, dealt as 8, 12 or 16 cards. Free, no sign-up, works on a phone, and offered until Christmas Day, Friday 25 December.",
+  "backing": ["https://tracepress.bananafest-destiny.com/sight-word-matching-game", "https://tracepress.bananafest-destiny.com/christmas-tracing-worksheets"],
+  "cta": "tracepress.bananafest-destiny.com/sight-word-matching-game",
+  "spoken": false,
+  "notes": "Seasonal: the Christmas set leaves the game after 2026-12-25. Real-time capture of the live page at 360x640 CSS px, 3x device pixels, opened with the Christmas set and 12 cards by its URL. It opens on a board finished before the camera started ('You found all 6 pairs in 9 turns!'), then Play again deals a new game, played the way a child with a good memory would: new cards are turned, misses turn back, and each pair is made once both cards have been seen. Cards are turned by the page's own click handler from the script, so no tap ring or other mark is drawn in the frame. The read-aloud voice was switched off and the video is silent. CHANGED FOR THE SHOT: the page shows a one-line offer of a paid printable pack under the board; that line was hidden with a style rule for the capture, so the clip shows only the free game. Nothing else on the page was altered. The last few seconds hold the finished board still for the end card.",
+  "post_by": "2026-12-25"
+}
