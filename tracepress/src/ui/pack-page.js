@@ -23,6 +23,9 @@ if (box && PACK_URL) {
     note.textContent = "Thank you. Enter the email you paid with to download the pack.";
     form.scrollIntoView({ block: "center" });
     email.focus({ preventScroll: true });
+  } else if (location.hash === "#pack") {
+    // The box was hidden when the browser tried the #pack jump.
+    box.scrollIntoView();
   }
 
   form.addEventListener("submit", async (e) => {

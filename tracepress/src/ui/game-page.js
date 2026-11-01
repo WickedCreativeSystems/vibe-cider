@@ -119,8 +119,9 @@ function deal() {
   const own = set === OWN;
   el.ownRow.hidden = !own;
   remember();
-  // The card maker has no Thanksgiving list, so that game has nothing to print.
+  // The card maker has no Thanksgiving list; that game's printed copy is the $3.50 pack.
   el.print.parentElement.hidden = set === "thanksgiving";
+  $("packline").hidden = set !== "thanksgiving";
   el.print.href = own ? `/sight-word-flash-cards?list=own&sheet=letter-game&pairs=1&backs=1${ownWords.length ? `&words=${encodeURIComponent(ownWords.join(","))}` : ""}` : `/sight-word-flash-cards?list=${set}&sheet=letter-game&pairs=1&backs=1`;
   for (const b of el.sets.querySelectorAll("button")) b.setAttribute("aria-pressed", String(b.dataset.set === set));
   if (own && ownWords.length < 2) {
