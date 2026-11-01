@@ -6,7 +6,6 @@ import assert from "node:assert/strict";
 import worker from "../src/worker.js";
 
 const session = (id, email, link) => ({ id, payment_status: "paid", payment_link: link, customer_details: { email } });
-const PDF = new TextEncoder().encode("%PDF-1.7 pack").buffer;
 
 function stub(sessions) {
   globalThis.fetch = async (url) => {
@@ -22,7 +21,8 @@ const env = {
   STRIPE_KEY: "rk_test",
   PAY_LINK_ID: "plink_BOOK",
   PACK_LINK_ID: "plink_PACK",
-  PACKS: { get: async (key, type) => (key === "thanksgiving-tracing-and-matching-pack" && type === "arrayBuffer" ? PDF : null) },
+  CHRISTMAS_PACK_LINK_ID: "plink_XMAS",
+  PACKS: { get: async (key, type) => (type === "arrayBuffer" && key.endsWith("-tracing-and-matching-pack") ? new TextEncoder().encode(`%PDF-1.7 ${key}`).buffer : null) },
 };
 const post = (path, body, e = env) => worker.fetch(new Request(`https://x${path}`, { method: "POST", body: JSON.stringify(body) }), e);
 
@@ -32,7 +32,7 @@ test("a pack payment downloads the pack PDF", async () => {
   assert.equal(res.status, 200);
   assert.equal(res.headers.get("content-type"), "application/pdf");
   assert.match(res.headers.get("content-disposition"), /attachment; filename="thanksgiving-tracing-and-matching-pack\.pdf"/);
-  assert.equal(new TextDecoder().decode(await res.arrayBuffer()), "%PDF-1.7 pack");
+  assert.equal(new TextDecoder().decode(await res.arrayBuffer()), "%PDF-1.7 thanksgiving-tracing-and-matching-pack");
 });
 
 test("a $19 receipt does not download the pack", async () => {
@@ -83,4 +83,25 @@ test("config.js names both links, empty when unset", async () => {
   const body = await res.text();
   assert.match(body, /TRACE_PRESS_PAY_URL = "https:\/\/buy\.stripe\.com\/a"/);
   assert.match(body, /TRACE_PRESS_PACK_URL = ""/);
+});
+
+test("the Christmas pack downloads only with a Christmas pack payment", async () => {
+  stub([session("cs_7", "parent@example.com", "plink_XMAS")]);
+  const res = await post("/api/pack", { email: "parent@example.com", pack: "christmas" });
+  assert.equal(res.status, 200);
+  assert.match(res.headers.get("content-disposition"), /christmas-tracing-and-matching-pack\.pdf/);
+  assert.equal(new TextDecoder().decode(await res.arrayBuffer()), "%PDF-1.7 christmas-tracing-and-matching-pack");
+  const other = await post("/api/pack", { email: "parent@example.com", pack: "thanksgiving" });
+  assert.equal(other.status, 404);
+});
+
+test("a Thanksgiving pack receipt does not download the Christmas pack", async () => {
+  stub([session("cs_8", "parent@example.com", "plink_PACK")]);
+  const res = await post("/api/pack", { email: "parent@example.com", pack: "christmas" });
+  assert.equal(res.status, 404);
+});
+
+test("config.js lists each pack's link, empty until it is set", async () => {
+  const res = await worker.fetch(new Request("https://x/config.js"), { PACK_URL: "https://buy.stripe.com/t" });
+  assert.match(await res.text(), /TRACE_PRESS_PACKS = \{"thanksgiving":"https:\/\/buy\.stripe\.com\/t","christmas":""\}/);
 });

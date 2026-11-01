@@ -9,6 +9,7 @@
 //
 // Env: PAY_URL and PAY_LINK_ID (vars: the Payment Link and its plink_ id),
 // PACK_URL and PACK_LINK_ID (the same pair for the $3.50 Thanksgiving pack),
+// CHRISTMAS_PACK_URL and CHRISTMAS_PACK_LINK_ID (the Christmas pack's pair),
 // PACKS (a KV namespace holding the pack PDFs: they are paid files, so they
 // are never in public/ or the repo, and only this route reads them),
 // STRIPE_KEY (secret; the same restricted, read-only key Puzzle Press uses).
@@ -27,7 +28,7 @@ export default {
     const url = new URL(request.url);
 
     if (url.pathname === "/config.js") {
-      const body = `window.TRACE_PRESS_PAY_URL = ${JSON.stringify(env.PAY_URL || "")};\nwindow.TRACE_PRESS_PACK_URL = ${JSON.stringify(env.PACK_URL || "")};\n`;
+      const body = `window.TRACE_PRESS_PAY_URL = ${JSON.stringify(env.PAY_URL || "")};\nwindow.TRACE_PRESS_PACK_URL = ${JSON.stringify(env.PACK_URL || "")};\nwindow.TRACE_PRESS_PACKS = ${JSON.stringify(Object.fromEntries(Object.entries(PACKS).map(([k, p]) => [k, env[p.url] || ""])))};\n`;
       return new Response(body, {
         headers: { "content-type": "application/javascript; charset=utf-8", "cache-control": "no-store" },
       });
@@ -57,11 +58,12 @@ async function verify(request, env) {
   return json({ ok: true, email: found.email, token: `stripe:${found.paid.id}` });
 }
 
-// Packs sold on their own Payment Link. Only a payment through PACK_LINK_ID
-// hands out the file, so a $19 receipt does not download a pack and a pack
+// Packs sold on their own Payment Link each. Only a payment through that
+// pack's link hands out its file, so a $19 receipt does not download a pack and a pack
 // receipt does not unlock the book maker (verify checks PAY_LINK_ID only).
 const PACKS = {
-  thanksgiving: { key: "thanksgiving-tracing-and-matching-pack", file: "thanksgiving-tracing-and-matching-pack.pdf" },
+  thanksgiving: { key: "thanksgiving-tracing-and-matching-pack", file: "thanksgiving-tracing-and-matching-pack.pdf", url: "PACK_URL", link: "PACK_LINK_ID" },
+  christmas: { key: "christmas-tracing-and-matching-pack", file: "christmas-tracing-and-matching-pack.pdf", url: "CHRISTMAS_PACK_URL", link: "CHRISTMAS_PACK_LINK_ID" },
 };
 
 async function pack(request, env) {
@@ -73,7 +75,7 @@ async function pack(request, env) {
   }
   const p = Object.hasOwn(PACKS, name) ? PACKS[name] : null;
   if (!p) return json({ ok: false, error: "No such pack." }, 404);
-  const found = await findPaid(request, env, env.PACK_LINK_ID);
+  const found = await findPaid(request, env, env[p.link]);
   if (found instanceof Response) return found;
   const pdf = env.PACKS ? await env.PACKS.get(p.key, "arrayBuffer") : null;
   if (!pdf) return json({ ok: false, error: "Your payment is there, but the file could not be fetched. Email support@bananafest-destiny.com and we will send it." }, 503);

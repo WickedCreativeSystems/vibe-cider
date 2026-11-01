@@ -23,6 +23,9 @@ mkdirSync(out, { recursive: true });
 // The 20 words of /thanksgiving-tracing-worksheets, in the same order.
 const THANKSGIVING = "mug cake bowl home bread wheat maple glass apple acorn carrot cherry candle teapot pepper cookie feather pumpkin seedling mushroom".split(" ");
 const ORANGE = [0.8, 0.4, 0.1];
+// The 20 words of /christmas-tracing-worksheets, in the same order as its sample.
+const CHRISTMAS = "mug ball star gift bell sock home book candy train robot cookie candle sleigh snowman reindeer ornament lollipop snowflake gingerbread".split(" ");
+const RED = [0.75, 0.12, 0.12];
 
 async function pack({ file, title, words, back, sections, cover }) {
   const doc = await PDFDocument.create();
@@ -37,7 +40,7 @@ async function pack({ file, title, words, back, sections, cover }) {
   // Page 1: what is in the pack and how to print it.
   const W = 8.5 * PT, H = 11 * PT, cx = W / 2;
   const p = doc.addPage([W, H]);
-  const ink = rgb(0.1, 0.1, 0.1), soft = rgb(0.35, 0.35, 0.35), accent = rgb(...ORANGE);
+  const ink = rgb(0.1, 0.1, 0.1), soft = rgb(0.35, 0.35, 0.35), accent = rgb(...(cover.color || ORANGE));
   const centre = (t, font, size, y, color = ink) => p.drawText(t, { x: cx - font.widthOfTextAtSize(t, size) / 2, y, size, font, color });
   centre(cover.title, bold, 30, H - 110, accent);
   centre(cover.sub, regular, 15, H - 140, soft);
@@ -77,50 +80,56 @@ async function pack({ file, title, words, back, sections, cover }) {
 
 // Matching cards, six pairs to a sheet. 20 words do not split into sixes, so
 // the fourth game is the last six words: every sheet is a full game of 12.
-const games = [0, 6, 12, 14].map((i) => THANKSGIVING.slice(i, i + 6));
-
-await pack({
-  file: "thanksgiving-tracing-and-matching-pack.pdf",
-  title: "Thanksgiving Tracing and Matching Pack",
-  sections: [
-    {
-      name: "20 tracing worksheets", pages: 20,
-      about: ["One Thanksgiving word a page, from mug to mushroom: a picture to colour,", "numbered start dots, stroke arrows, then dotted rows to trace."],
-      render: async () => {
-        const whole = await PDFDocument.load(await renderBook({ trim: "8.5x11", guideIn: 0.75, words: THANKSGIVING, licensed: true }, fonts));
-        const doc = await PDFDocument.create();
-        for (const pg of await doc.copyPages(whole, whole.getPageIndices().slice(26))) doc.addPage(pg);
-        return doc.save();
+function holiday({ slug, label, words, back, backName, pictures, first, last }) {
+  const games = [0, 6, 12, 14].map((i) => words.slice(i, i + 6));
+  return pack({
+    file: `${slug}-tracing-and-matching-pack.pdf`,
+    title: `${label} Tracing and Matching Pack`,
+    sections: [
+      {
+        name: "20 tracing worksheets", pages: 20,
+        about: [`One ${label} word a page, from ${first} to ${last}: a picture to colour,`, "numbered start dots, stroke arrows, then dotted rows to trace."],
+        render: async () => {
+          const whole = await PDFDocument.load(await renderBook({ trim: "8.5x11", guideIn: 0.75, words, licensed: true }, fonts));
+          const doc = await PDFDocument.create();
+          for (const pg of await doc.copyPages(whole, whole.getPageIndices().slice(26))) doc.addPage(pg);
+          return doc.save();
+        },
       },
-    },
-    {
-      name: "20 picture flash cards", pages: 5,
-      about: ["Each word under its picture on a 3 x 5 inch card,", "four to a sheet, with lines to cut along."],
-      render: () => renderCards({ sheet: "letter-3x5", words: THANKSGIVING, pictures: true, tag: "Thanksgiving", licensed: true }, fonts),
-    },
-    {
-      name: "4 word-to-picture matching games", pages: 8,
-      about: ["Twelve 2.5 inch cards a sheet: six words and their six pictures.", "Each sheet is followed by an orange back for double-sided printing."],
-      render: async () => {
-        const doc = await PDFDocument.create();
-        for (const words of games) {
-          const src = await PDFDocument.load(await renderCards({ sheet: "letter-game", words, pairs: true, pictures: true, back: ORANGE, tag: "Thanksgiving", licensed: true }, fonts));
-          for (const pg of await doc.copyPages(src, src.getPageIndices())) doc.addPage(pg);
-        }
-        return doc.save();
+      {
+        name: "20 picture flash cards", pages: 5,
+        about: ["Each word under its picture on a 3 x 5 inch card,", "four to a sheet, with lines to cut along."],
+        render: () => renderCards({ sheet: "letter-3x5", words, pictures: true, tag: label, licensed: true }, fonts),
       },
-    },
-  ],
-  cover: {
-    title: "Thanksgiving Tracing and Matching",
-    sub: "20 words to trace, read and match · 34 pages · US Letter",
-    pictures: ["pumpkin", "acorn", "apple", "feather", "teapot"],
-    print: [
-      "Print at 100% (Actual size), not Fit to page, so the cards measure true.",
-      "Matching games: print each sheet and the page after it double-sided,",
-      "    flipping on the long edge, so every card has an orange back.",
-      "Or print the fronts only, on card stock, and play face down.",
+      {
+        name: "4 word-to-picture matching games", pages: 8,
+        about: ["Twelve 2.5 inch cards a sheet: six words and their six pictures.", `Each sheet is followed by ${backName} back for double-sided printing.`],
+        render: async () => {
+          const doc = await PDFDocument.create();
+          for (const g of games) {
+            const src = await PDFDocument.load(await renderCards({ sheet: "letter-game", words: g, pairs: true, pictures: true, back, tag: label, licensed: true }, fonts));
+            for (const pg of await doc.copyPages(src, src.getPageIndices())) doc.addPage(pg);
+          }
+          return doc.save();
+        },
+      },
     ],
-    licence: "For use in your own home or classroom. Please do not resell or share the file.",
-  },
-});
+    cover: {
+      title: `${label} Tracing and Matching`,
+      sub: "20 words to trace, read and match · 34 pages · US Letter",
+      color: back,
+      pictures,
+      print: [
+        "Print at 100% (Actual size), not Fit to page, so the cards measure true.",
+        "Matching games: print each sheet and the page after it double-sided,",
+        `    flipping on the long edge, so every card has ${backName} back.`,
+        "Or print the fronts only, on card stock, and play face down.",
+      ],
+      licence: "For use in your own home or classroom. Please do not resell or share the file.",
+    },
+  });
+}
+
+const only = process.argv[2];
+if (!only || only === "thanksgiving") await holiday({ slug: "thanksgiving", label: "Thanksgiving", words: THANKSGIVING, back: ORANGE, backName: "an orange", pictures: ["pumpkin", "acorn", "apple", "feather", "teapot"], first: "mug", last: "mushroom" });
+if (!only || only === "christmas") await holiday({ slug: "christmas", label: "Christmas", words: CHRISTMAS, back: RED, backName: "a red", pictures: ["star", "gift", "bell", "snowman", "reindeer"], first: "mug", last: "gingerbread" });

@@ -6,7 +6,7 @@ import { px } from "./px.js";
 import { payHref } from "./source.js";
 
 const box = document.getElementById("pack");
-const PACK_URL = window.TRACE_PRESS_PACK_URL || "";
+const PACK_URL = box ? (window.TRACE_PRESS_PACKS || {})[box.dataset.pack] || "" : "";
 
 if (box && PACK_URL) {
   const name = box.dataset.pack;
