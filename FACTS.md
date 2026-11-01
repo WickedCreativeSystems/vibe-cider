@@ -530,3 +530,5 @@ Asked whether her class works in French or English: "She's the English teacher".
 2026-11-01 — Boss's screenshot of Etsy, about 2:00 AM Central: "Your account has been suspended and can't be reopened. We let you know on Feb 17, 2023 that your account was suspended. It looks like you didn't appeal your suspension within six months of this date, so your account is now permanently suspended." and "You can't sell or shop on Etsy anymore using this account, or any other account you create." Boss: "This was so long ago, and I never saw this email". He thinks he may have owed Etsy $0.20 from the past. Etsy is closed to us.
 
 2026-11-01 — Boss, about 2:10 AM Central, approving the Trace Press Thanksgiving pack at $3.50 and its Stripe product and Payment Link: "yeah you do it". The Stripe key we hold is restricted to reads (product writes refused), so the link is made in the dashboard.
+
+2026-11-01 — Boss sent the second Free Homeschool Deals submission (the Thanksgiving tracing worksheets, marked time-sensitive, with the 1000x1500 pumpkin picture) from his own address: "sent".
