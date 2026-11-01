@@ -520,3 +520,5 @@ Asked whether her class works in French or English: "She's the English teacher".
 2026-10-30 — Boss, about 10:50 AM Central, emailed the free word and picture matching cards to Free Homeschool Deals (freehomeschooldeals.com) from his own address, using the drafted post and the 1000x1500 picture: "Done: Send the matching cards to Free Homeschool Deals". Their page says chosen submissions get a post, social shares and a newsletter mention, and that they may decline one.
 
 2026-10-31 — Boss, about 10:25 PM Central: "I think the etsy store might be a good idea". (Market-Nana had parked Etsy on 10-21 as something only the boss can open: his fee, his ID, about 3 of his hours.)
+
+2026-10-31 — Boss, about 10:30 PM Central, asked whether he has an Etsy account that can open a shop and will pay Etsy's fees: "Have account, will pay". Asked whether Etsy can sell packs of what is free on the Trace Press site: "Whatever you want, if you think its a good idea".
