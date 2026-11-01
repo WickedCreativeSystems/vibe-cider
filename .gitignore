@@ -16,3 +16,6 @@ node_modules/
 # bot mail — between bots, via the host mailroom; never pushed
 mail/
 forboss/
+
+# Etsy pack PDFs: paid files, never public
+etsy/
