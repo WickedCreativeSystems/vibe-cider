@@ -1,11 +1,12 @@
-// Free, publishable interiors for Gumroad $0 listings (boss, 2026-11-02:
+// Free sample interiors for Gumroad $0 listings and /free/ (boss, 2026-11-02:
 // "Yes, I'll open one"). KDP sellers search "free word search KDP interior"
 // and Gumroad's $0+ listings answer it; this site sits at position 30–90.
 //
 // These are not the public samples. A sample says "Sample book, made free
 // with Puzzle Press" and "Copyright © Puzzle Press, all rights reserved" on
 // its first two pages, which nobody may publish. These carry no author, no
-// stamp and no promo page: the file is the book. The way back to the tool
+// stamp and no promo page. Since 11-02 they are offered as samples, not books to
+// publish: KDP refuses content freely available on the web (see setSubject). The way back to the tool
 // lives in the listing text and in START-HERE.txt beside the PDF.
 //
 // Writes to forboss/files/gumroad/ (git-ignored). Run: node scripts/gumroad.mjs
@@ -33,7 +34,7 @@ const site = new URL("../public/free/", import.meta.url);
 mkdirSync(site, { recursive: true });
 
 const SEARCH_TITLE = {
-  "word-search-100-6x9": "Free KDP word search interior: 100 puzzles, 6x9, publish it",
+  "word-search-100-6x9": "Free KDP word search interior sample: 100 puzzles, 6x9",
   "large-print-word-search-100-8.5x11": "Free large print word search KDP interior: 100 puzzles, 8.5x11",
   "sudoku-100-6x9": "Free sudoku KDP interior: 100 puzzles, easy to expert, 6x9",
   "mazes-100-6x9": "Free maze book KDP interior: 100 mazes, easy to expert, 6x9",
@@ -87,7 +88,10 @@ for (const [file, title, subtitle, trim, largePrint, make] of BOOKS) {
   const book = make();
   const doc = await PDFDocument.load(await renderBook(book, { title, subtitle, author: "", trim, licensed: true, largePrint, fonts }));
   doc.setTitle(SEARCH_TITLE[file]);
-  doc.setSubject("Free to publish and sell. Made with Puzzle Press: https://puzzlepress.bananafest-destiny.com/");
+  // KDP will not accept content that is freely available on the web unless
+  // the copyright owner uploads it (Content Guidelines, read 2026-11-02), so
+  // these files are samples to print, not books to publish as they are.
+  doc.setSubject("Free sample to print. To publish on KDP, make your own book (KDP refuses content that is free on the web): https://puzzlepress.bananafest-destiny.com/");
   const bytes = await doc.save();
   writeFileSync(new URL(`${file}.pdf`, out), bytes);
   writeFileSync(new URL(`${file}.pdf`, site), bytes);

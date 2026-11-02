@@ -39,8 +39,12 @@ Also free: [word search word lists](https://puzzlepress.bananafest-destiny.com/w
 [comparison of 8 KDP puzzle book makers](https://puzzlepress.bananafest-destiny.com/compare),
 each tried without an account.
 
-Free puzzle book interiors you can publish and sell as they are (no credit, no
-royalty, solutions at the back, fonts embedded, made by the same code):
+Whole puzzle book interiors, free to download, print and look through
+(solutions at the back, fonts embedded, made by the same code). Don't upload
+them to KDP as they are: KDP's content guidelines say "We will not accept
+content under copyright that is freely available on the web unless it's
+provided by the owner of the copyright." To publish, make your own book in the
+tool; every book it makes is new, and it is yours.
 [100 word searches, 6x9](https://puzzlepress.bananafest-destiny.com/free/word-search-100-6x9.pdf),
 [100 large print word searches, 8.5x11](https://puzzlepress.bananafest-destiny.com/free/large-print-word-search-100-8.5x11.pdf),
 [100 sudoku](https://puzzlepress.bananafest-destiny.com/free/sudoku-100-6x9.pdf),
