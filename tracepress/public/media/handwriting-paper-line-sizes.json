@@ -1,0 +1,11 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Trace Press",
+  "slug": "handwriting-paper-line-sizes",
+  "shot": "2026-11-02",
+  "claim": "An 8.5 x 11 inch page of four-line handwriting paper holds 5 writing lines at 1 inch (ages 4-5), 7 at 0.75 inch, 9 at 0.6 inch and 12 at 0.45 inch for older children. The line size is the height from the top line to the baseline. Trace Press makes the paper as a free PDF, 24 to 300 pages, in six KDP trim sizes with KDP's margins, for printing at home or as a blank handwriting notebook interior. No sign-up, no footer.",
+  "backing": ["https://tracepress.bananafest-destiny.com/handwriting-paper"],
+  "cta": "tracepress.bananafest-destiny.com/handwriting-paper",
+  "spoken": false,
+  "notes": "Real-time capture of the live handwriting paper page at 360x640 CSS px, 3x device pixels, 8.5x11 trim, 100 pages, no bleed. The line size menu is stepped 1, 0.75, 0.6, 0.45 inch, holding on the page preview after each; the caption under the preview reads 5, 7, 9 and 12 rows, matching the page's own table. Then Download the PDF is pressed and page 1 of the downloaded PDF is shown at 150 DPI. Controls are changed by the script, so no tap mark is drawn. Nothing on the page was altered. The paper is free; no price or checkout appears. The final 2 s hold still for the end card."
+}
