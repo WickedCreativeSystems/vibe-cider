@@ -538,3 +538,5 @@ Asked whether her class works in French or English: "She's the English teacher".
 2026-11-01 — Boss, about 10:30 AM Central, pasted the live Stripe secret key again and said: "JUST SAVE IT SO I DON"T HAVE TO DO IT MYSELF ANYMORE". It is saved as STRIPE_WRITE_KEY in the git-ignored credentials file, and used for creating Stripe products, prices and Payment Links. The read-only key stays the one the Workers use. Made with it the same day: "Christmas Tracing and Matching Pack", $3.50 one-time, tax excluded, automatic tax on, redirect to /christmas-tracing-worksheets?pack=1#pack.
 
 2026-11-02 — Boss, about 3:25 AM Central, asked whether he would post our free sheets in KDP or teacher Facebook groups: "They all have a no promotions rule". Facebook groups are closed as a channel.
+
+2026-11-02 — Boss, about 4:05 AM Central, asked whether Puzzle Press may list its free 33-page KDP interiors on Gumroad as $0 products: "Yes, I'll open one". The boss opens the Gumroad account. I write the listings.
