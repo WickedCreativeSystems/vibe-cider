@@ -47,6 +47,13 @@ royalty, solutions at the back, fonts embedded, made by the same code):
 [100 mazes](https://puzzlepress.bananafest-destiny.com/free/mazes-100-6x9.pdf),
 [50 criss-cross puzzles](https://puzzlepress.bananafest-destiny.com/free/criss-cross-50-6x9.pdf) and
 [50 crosswords](https://puzzlepress.bananafest-destiny.com/free/crosswords-50-6x9.pdf).
+The same six are also listed free on Gumroad:
+[word search](https://bananafestdestiny.gumroad.com/l/free-kdp-word-search-interior),
+[large print word search](https://bananafestdestiny.gumroad.com/l/free-large-print-word-search-kdp-interior),
+[sudoku](https://bananafestdestiny.gumroad.com/l/free-sudoku-kdp-interior),
+[mazes](https://bananafestdestiny.gumroad.com/l/free-maze-book-kdp-interior),
+[criss-cross](https://bananafestdestiny.gumroad.com/l/free-criss-cross-kdp-interior) and
+[crossword](https://bananafestdestiny.gumroad.com/l/free-crossword-kdp-interior).
 
 **[Trace Press](https://tracepress.bananafest-destiny.com/)** (the second app,
 live since 2026-09-29) makes an A–Z letter tracing workbook for Amazon KDP, both
