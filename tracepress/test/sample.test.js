@@ -193,3 +193,15 @@ test("every SAMPLES key in scripts/sample.mjs is used once", () => {
   assert.ok(keys.length >= 25, `${keys.length}`);
   assert.deepEqual(keys.filter((k, i) => keys.indexOf(k) !== i), []);
 });
+
+test("the holiday worksheets end on the matching game with the same words", async () => {
+  for (const set of ["christmas", "thanksgiving"]) {
+    const f = path(`${set}-tracing-worksheets.pdf`);
+    const doc = await PDFDocument.load(readFileSync(f));
+    assert.equal(doc.getPageCount(), 21);
+    for (let i = 0; i < 20; i++) assert.ok(links(doc, doc.getPage(i)).some((x) => x.uri === SITE), `${set} page ${i + 1} has no link to the site`);
+    const { width, height } = doc.getPage(20).getSize();
+    assert.deepEqual(links(doc, doc.getPage(20)), [{ rect: [0, 0, width, height], uri: `${SITE}sight-word-matching-game?set=${set}` }]);
+    assert.match(execFileSync("pdftotext", ["-f", "21", "-l", "21", f, "-"], { encoding: "utf8" }), /free matching game/);
+  }
+});

@@ -188,8 +188,8 @@ export const PRE_PRIMER = decodeURIComponent(sightPage.match(/href="\/\?words=([
 if (PRE_PRIMER.length !== 40) throw new Error(`pre-primer list has ${PRE_PRIMER.length} words, expected 40`);
 const KEYWORDS = ["letter tracing", "handwriting workbook", "alphabet tracing", "KDP", "printable", "PDF", "Trace Press"];
 
-function link(doc, page, rect) {
-  const annot = doc.context.obj({ Type: "Annot", Subtype: "Link", Rect: rect, Border: [0, 0, 0], A: { Type: "Action", S: "URI", URI: PDFString.of(SITE) } });
+function link(doc, page, rect, uri = SITE) {
+  const annot = doc.context.obj({ Type: "Annot", Subtype: "Link", Rect: rect, Border: [0, 0, 0], A: { Type: "Action", S: "URI", URI: PDFString.of(uri) } });
   const ref = doc.context.register(annot);
   const existing = page.node.lookup(PDFName.of("Annots"));
   if (existing) existing.push(ref);
@@ -210,7 +210,7 @@ function meta(doc, { title, subject }) {
 // `from` keeps only the pages from that index on (the number worksheets are
 // the digit pages of a book with numbers on, without A–Z in front), and `to`
 // stops before that index (the line worksheets are the four pages before A).
-async function book(sample, { words = [], numbers = false, lines = false, shapes = false, cases = "both", guideIn = GUIDE_IN, from = 0, to, script = "print", abc = false } = {}) {
+async function book(sample, { words = [], numbers = false, lines = false, shapes = false, cases = "both", guideIn = GUIDE_IN, from = 0, to, script = "print", abc = false, game } = {}) {
   const opts = { trim: TRIM, guideIn, words, numbers, lines, shapes, cases, script, measure, abc };
   let doc = await PDFDocument.load(await renderBook(opts, fonts));
   if (from || to) {
@@ -233,12 +233,23 @@ async function book(sample, { words = [], numbers = false, lines = false, shapes
   const w = geom.width, h = geom.height, cx = w / 2;
   const page = doc.addPage([w, h]);
   const line = (t, font, size, y, color) => page.drawText(t, { x: cx - font.widthOfTextAtSize(t, size) / 2, y, size, font, color });
-  line("Made with Trace Press", bold, 24, h / 2 + 60, rgb(0.1, 0.1, 0.1));
-  line("Make your own A–Z tracing workbook and its cover for Amazon KDP,", regular, 13, h / 2 + 26, rgb(0.35, 0.35, 0.35));
-  line("in your browser. Free to try.", regular, 13, h / 2 + 8, rgb(0.35, 0.35, 0.35));
-  line("tracepress.bananafest-destiny.com", bold, 16, h / 2 - 22, rgb(0.137, 0.306, 0.227));
-  line("Tap anywhere on this page to make your own.", regular, 11, h / 2 - 50, rgb(0.5, 0.5, 0.5));
-  link(doc, page, [0, 0, w, h]);
+  if (game) {
+    // A holiday set is printed for a class, so its last page is the free
+    // matching game with the same 20 words, not the KDP workbook.
+    line("Made with Trace Press", bold, 24, h / 2 + 60, rgb(0.1, 0.1, 0.1));
+    line(`Play the same 20 ${game} words as a free matching game:`, regular, 13, h / 2 + 26, rgb(0.35, 0.35, 0.35));
+    line("word to picture, on a phone, a tablet or the class board.", regular, 13, h / 2 + 8, rgb(0.35, 0.35, 0.35));
+    line("tracepress.bananafest-destiny.com/sight-word-matching-game", bold, 14, h / 2 - 22, rgb(0.137, 0.306, 0.227));
+    line("Tap anywhere on this page to play.", regular, 11, h / 2 - 50, rgb(0.5, 0.5, 0.5));
+    link(doc, page, [0, 0, w, h], `${SITE}sight-word-matching-game?set=${game.toLowerCase()}`);
+  } else {
+    line("Made with Trace Press", bold, 24, h / 2 + 60, rgb(0.1, 0.1, 0.1));
+    line("Make your own A–Z tracing workbook and its cover for Amazon KDP,", regular, 13, h / 2 + 26, rgb(0.35, 0.35, 0.35));
+    line("in your browser. Free to try.", regular, 13, h / 2 + 8, rgb(0.35, 0.35, 0.35));
+    line("tracepress.bananafest-destiny.com", bold, 16, h / 2 - 22, rgb(0.137, 0.306, 0.227));
+    line("Tap anywhere on this page to make your own.", regular, 11, h / 2 - 50, rgb(0.5, 0.5, 0.5));
+    link(doc, page, [0, 0, w, h]);
+  }
   const bytes = await doc.save();
   writeFileSync(new URL(sample.file, out), bytes);
   console.log(`wrote public/samples/${sample.file}: ${pages.length} book pages + 1, ${bytes.length} bytes`);
@@ -264,8 +275,8 @@ const holidayWords = (slug, label, count = 20) => {
   return words;
 };
 await book(SAMPLES.halloween, { words: holidayWords("halloween", "Halloween"), from: 26 });
-await book(SAMPLES.thanksgiving, { words: holidayWords("thanksgiving", "Thanksgiving"), from: 26 });
-await book(SAMPLES.christmas, { words: holidayWords("christmas", "Christmas"), from: 26 });
+await book(SAMPLES.thanksgiving, { words: holidayWords("thanksgiving", "Thanksgiving"), from: 26, game: "Thanksgiving" });
+await book(SAMPLES.christmas, { words: holidayWords("christmas", "Christmas"), from: 26, game: "Christmas" });
 await book(SAMPLES.pictureWords, { words: holidayWords("picture-word", "picture word"), from: 26 });
 await book(SAMPLES.transportation, { words: holidayWords("transportation", "transportation"), from: 26 });
 await book(SAMPLES.animals, { words: holidayWords("animal", "animal"), from: 26 });
