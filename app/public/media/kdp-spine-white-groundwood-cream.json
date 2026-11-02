@@ -1,0 +1,14 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Puzzle Press",
+  "slug": "kdp-spine-white-groundwood-cream",
+  "shot": "2026-11-02",
+  "claim": "The same 300-page 6 x 9 KDP paperback has three different spines depending on the paper: 0.676 inch on white, 0.705 inch on groundwood and 0.750 inch on cream, so the full cover PDF is 12.926, 12.955 or 13.000 inches wide by 9.25. Switch paper after the cover is made and the cover no longer fits. KDP's help gives white and cream thicknesses but not groundwood; KDP's own cover calculator gives 0.00235 inch a page for groundwood. The free Puzzle Press spine calculator does all three.",
+  "backing": [
+    "https://kdp.amazon.com/en_US/help/topic/G201953020",
+    "https://puzzlepress.bananafest-destiny.com/spine-calculator"
+  ],
+  "cta": "puzzlepress.bananafest-destiny.com/spine-calculator",
+  "spoken": false,
+  "notes": "Real-time capture of the live spine calculator at 360x640 CSS px, 3x device pixels, 6x9 trim at 300 pages. The paper menu is switched white, groundwood, cream, holding on the spine width and the full cover size after each (white 0.676 / 12.926 x 9.250; groundwood 0.705 / 12.955 x 9.250; cream 0.750 / 13.000 x 9.250), then the page scrolls to its paragraph on groundwood thickness and KDP's warning that a cream book over 350 pages or a white one over 525 needs a new cover if the paper is switched. White x 0.002252 and cream x 0.0025 are KDP help G201953020; groundwood 0.00235 is from KDP's cover calculator (0.235 inch at 100 pages, 1.946 at 828), checked September 2026. The menu is changed by the script, so no tap mark is drawn. Nothing on the page was altered. The final 2 s hold still for the end card."
+}
