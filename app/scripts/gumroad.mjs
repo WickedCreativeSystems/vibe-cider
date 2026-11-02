@@ -10,6 +10,7 @@
 //
 // Writes to forboss/files/gumroad/ (git-ignored). Run: node scripts/gumroad.mjs
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { PDFDocument } from "pdf-lib";
 import { generateBook } from "../src/generator/book.js";
 import { THEMES } from "../src/generator/wordlists.js";
 import { renderBook } from "../src/pdf/render.js";
@@ -25,7 +26,20 @@ const fonts = {
 };
 const out = new URL("../../forboss/files/gumroad/", import.meta.url);
 mkdirSync(out, { recursive: true });
+// The same files are served from the site at /free/<name>.pdf (linked from
+// the README and the home page). A PDF's Title is its Google headline, so it
+// says what the file is for a searcher, under 70 characters.
+const site = new URL("../public/free/", import.meta.url);
+mkdirSync(site, { recursive: true });
 
+const SEARCH_TITLE = {
+  "word-search-100-6x9": "Free KDP word search interior: 100 puzzles, 6x9, publish it",
+  "large-print-word-search-100-8.5x11": "Free large print word search KDP interior: 100 puzzles, 8.5x11",
+  "sudoku-100-6x9": "Free sudoku KDP interior: 100 puzzles, easy to expert, 6x9",
+  "mazes-100-6x9": "Free maze book KDP interior: 100 mazes, easy to expert, 6x9",
+  "criss-cross-50-6x9": "Free criss-cross puzzle KDP interior: 50 fill-in puzzles, 6x9",
+  "crosswords-50-6x9": "Free crossword KDP interior: 50 garden crosswords, 6x9",
+};
 const BOOKS = [
   ["word-search-100-6x9", "Garden & Kitchen Word Search", "100 puzzles with solutions", "6x9", false,
     () => generateBook({ pools: [THEMES.garden, THEMES.kitchen], count: 100, wordsPerPuzzle: 16, difficulty: "medium", seed: "gumroad-ws-1" })],
@@ -43,7 +57,11 @@ const BOOKS = [
 
 for (const [file, title, subtitle, trim, largePrint, make] of BOOKS) {
   const book = make();
-  const bytes = await renderBook(book, { title, subtitle, author: "", trim, licensed: true, largePrint, fonts });
+  const doc = await PDFDocument.load(await renderBook(book, { title, subtitle, author: "", trim, licensed: true, largePrint, fonts }));
+  doc.setTitle(SEARCH_TITLE[file]);
+  doc.setSubject("Free to publish and sell. Made with Puzzle Press: https://puzzlepress.bananafest-destiny.com/");
+  const bytes = await doc.save();
   writeFileSync(new URL(`${file}.pdf`, out), bytes);
+  writeFileSync(new URL(`${file}.pdf`, site), bytes);
   console.log(file, book.puzzles.length, "puzzles", bytes.length, "bytes", book.warnings?.length ? book.warnings : "");
 }

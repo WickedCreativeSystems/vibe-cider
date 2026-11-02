@@ -39,6 +39,15 @@ Also free: [word search word lists](https://puzzlepress.bananafest-destiny.com/w
 [comparison of 8 KDP puzzle book makers](https://puzzlepress.bananafest-destiny.com/compare),
 each tried without an account.
 
+Free puzzle book interiors you can publish and sell as they are (no credit, no
+royalty, solutions at the back, fonts embedded, made by the same code):
+[100 word searches, 6x9](https://puzzlepress.bananafest-destiny.com/free/word-search-100-6x9.pdf),
+[100 large print word searches, 8.5x11](https://puzzlepress.bananafest-destiny.com/free/large-print-word-search-100-8.5x11.pdf),
+[100 sudoku](https://puzzlepress.bananafest-destiny.com/free/sudoku-100-6x9.pdf),
+[100 mazes](https://puzzlepress.bananafest-destiny.com/free/mazes-100-6x9.pdf),
+[50 criss-cross puzzles](https://puzzlepress.bananafest-destiny.com/free/criss-cross-50-6x9.pdf) and
+[50 crosswords](https://puzzlepress.bananafest-destiny.com/free/crosswords-50-6x9.pdf).
+
 **[Trace Press](https://tracepress.bananafest-destiny.com/)** (the second app,
 live since 2026-09-29) makes an A–Z letter tracing workbook for Amazon KDP, both
 the interior and the full-wrap cover, in the browser. Each page has a
