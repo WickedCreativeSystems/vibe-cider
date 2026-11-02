@@ -39,6 +39,15 @@ const SEARCH_TITLE = {
   "mazes-100-6x9": "Free maze book KDP interior: 100 mazes, easy to expert, 6x9",
   "criss-cross-50-6x9": "Free criss-cross puzzle KDP interior: 50 fill-in puzzles, 6x9",
   "crosswords-50-6x9": "Free crossword KDP interior: 50 garden crosswords, 6x9",
+  // Second batch, 2026-11-02: what KDP sellers publish in November.
+  "christmas-word-search-100-6x9": "Free Christmas word search KDP interior: 100 puzzles, 6x9",
+  "large-print-christmas-word-search-100-8.5x11": "Free large print Christmas word search KDP interior, 8.5x11",
+  "christmas-crosswords-50-6x9": "Free Christmas crossword KDP interior: 50 puzzles, 6x9",
+  "christmas-criss-cross-50-6x9": "Free Christmas fill-in puzzle KDP interior: 50 criss-cross, 6x9",
+  "large-print-sudoku-100-8.5x11": "Free large print sudoku KDP interior: 100 puzzles, 8.5x11",
+  "kids-word-search-100-8.5x11": "Free kids word search KDP interior: 100 easy animal puzzles, 8.5x11",
+  "large-print-bible-word-search-100-8.5x11": "Free large print Bible word search KDP interior: 100 puzzles",
+  "nurse-word-search-100-6x9": "Free nurse word search KDP interior: 100 puzzles, 6x9",
 };
 const BOOKS = [
   ["word-search-100-6x9", "Garden & Kitchen Word Search", "100 puzzles with solutions", "6x9", false,
@@ -53,9 +62,28 @@ const BOOKS = [
     () => generateCrissCrossBook({ pools: [THEMES.halloween], count: 50, difficulty: "graded", seed: "gumroad-crisscross-1" })],
   ["crosswords-50-6x9", "Garden Crosswords", "50 themed crosswords, easy to expert", "6x9", false,
     () => generateCrosswordBook({ pools: [THEMES.garden], builtinClues: CLUES, count: 50, difficulty: "graded", seed: "gumroad-crossword-1" })],
+  ["christmas-word-search-100-6x9", "Christmas Word Search", "100 puzzles with solutions", "6x9", false,
+    () => generateBook({ pools: [THEMES.christmas], count: 100, wordsPerPuzzle: 15, difficulty: "medium", seed: "gumroad-xmas-ws-1" })],
+  ["large-print-christmas-word-search-100-8.5x11", "Large Print Christmas Word Search", "100 puzzles with solutions", "8.5x11", true,
+    () => generateBook({ pools: [THEMES.christmas], count: 100, wordsPerPuzzle: 14, difficulty: "easy", trim: "8.5x11", seed: "gumroad-xmas-lp-1" })],
+  ["christmas-crosswords-50-6x9", "Christmas Crosswords", "50 crosswords, easy to expert", "6x9", false,
+    () => generateCrosswordBook({ pools: [THEMES.christmas], builtinClues: CLUES, count: 50, difficulty: "graded", seed: "gumroad-xmas-xw-1" })],
+  ["christmas-criss-cross-50-6x9", "Christmas Fill-In Puzzles", "50 criss-cross puzzles, easy to expert", "6x9", false,
+    () => generateCrissCrossBook({ pools: [THEMES.christmas], count: 50, difficulty: "graded", seed: "gumroad-xmas-cc-1" })],
+  ["large-print-sudoku-100-8.5x11", "Large Print Sudoku", "100 puzzles, easy to expert", "8.5x11", true,
+    () => generateSudokuBook({ count: 100, difficulty: "graded", seed: "gumroad-lp-sudoku-1" })],
+  ["kids-word-search-100-8.5x11", "Animal Word Search for Kids", "100 easy puzzles with solutions", "8.5x11", true,
+    () => generateBook({ pools: [THEMES.animals, THEMES.farm], count: 100, wordsPerPuzzle: 10, difficulty: "easy", trim: "8.5x11", seed: "gumroad-kids-ws-1" })],
+  ["large-print-bible-word-search-100-8.5x11", "Large Print Bible Word Search", "100 puzzles with solutions", "8.5x11", true,
+    () => generateBook({ pools: [THEMES.faith], count: 100, wordsPerPuzzle: 14, difficulty: "easy", trim: "8.5x11", seed: "gumroad-faith-lp-1" })],
+  ["nurse-word-search-100-6x9", "Nurse Word Search", "100 puzzles with solutions", "6x9", false,
+    () => generateBook({ pools: [THEMES.nursing], count: 100, wordsPerPuzzle: 15, difficulty: "medium", seed: "gumroad-nurse-ws-1" })],
 ];
+// `node scripts/gumroad.mjs name …` makes only those; no names makes all.
+const only = process.argv.slice(2);
 
 for (const [file, title, subtitle, trim, largePrint, make] of BOOKS) {
+  if (only.length && !only.includes(file)) continue;
   const book = make();
   const doc = await PDFDocument.load(await renderBook(book, { title, subtitle, author: "", trim, licensed: true, largePrint, fonts }));
   doc.setTitle(SEARCH_TITLE[file]);

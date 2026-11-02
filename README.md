@@ -54,6 +54,15 @@ The same six are also listed free on Gumroad:
 [mazes](https://bananafestdestiny.gumroad.com/l/free-maze-book-kdp-interior),
 [criss-cross](https://bananafestdestiny.gumroad.com/l/free-criss-cross-kdp-interior) and
 [crossword](https://bananafestdestiny.gumroad.com/l/free-crossword-kdp-interior).
+For the season and a few steady niches, eight more:
+[100 Christmas word searches, 6x9](https://puzzlepress.bananafest-destiny.com/free/christmas-word-search-100-6x9.pdf),
+[100 large print Christmas word searches](https://puzzlepress.bananafest-destiny.com/free/large-print-christmas-word-search-100-8.5x11.pdf),
+[50 Christmas crosswords](https://puzzlepress.bananafest-destiny.com/free/christmas-crosswords-50-6x9.pdf),
+[50 Christmas fill-in puzzles](https://puzzlepress.bananafest-destiny.com/free/christmas-criss-cross-50-6x9.pdf),
+[100 large print sudoku](https://puzzlepress.bananafest-destiny.com/free/large-print-sudoku-100-8.5x11.pdf),
+[100 easy animal word searches for kids](https://puzzlepress.bananafest-destiny.com/free/kids-word-search-100-8.5x11.pdf),
+[100 large print Bible word searches](https://puzzlepress.bananafest-destiny.com/free/large-print-bible-word-search-100-8.5x11.pdf) and
+[100 nurse word searches](https://puzzlepress.bananafest-destiny.com/free/nurse-word-search-100-6x9.pdf).
 
 **[Trace Press](https://tracepress.bananafest-destiny.com/)** (the second app,
 live since 2026-09-29) makes an A–Z letter tracing workbook for Amazon KDP, both
