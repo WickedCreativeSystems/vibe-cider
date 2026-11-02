@@ -543,3 +543,5 @@ Asked whether her class works in French or English: "She's the English teacher".
 
 2026-11-02 — Boss, about 9:10 AM Central, connected the Gumroad MCP (store bananafestdestiny.gumroad.com) and answered "Publish all six (Recommended)" for the six free $0+ Puzzle Press interiors. Published 15:09Z.
 2026-11-02 — Boss, about 9:20 AM Central: "Yes, list TP free sheets" (free Trace Press listings on the same Gumroad store, pointing back to the app, nothing sold there); about 9:25 AM: "Publish all four". Published 15:25Z.
+2026-11-02 — Boss, about 9:45 AM Central, asked whether they would open a free Tes (tes.com) account for free Trace Press sheets pointing back to the app: "Yes, I'll open one".
+2026-11-02 — Same morning, before any account was opened: I withdrew the Tes request. Tes rules (Author Code; "Using URLs in resource descriptions") bar external URLs in descriptions, and links inside files may not be for commercial gain, so a Tes listing could not point back to Trace Press.
