@@ -69,11 +69,12 @@ function say(word) {
 // other, so a child reads the word to find it. Short vowel words with a clear
 // outline picture (pdf/pictures.js); the picture is drawn in the word's ink.
 // Thanksgiving and Christmas are the same game on the 20 words of each holiday
-// tracing page, offered until the day itself (Central time).
+// tracing page, kept all year like the worksheets (the $3.50 packs end on
+// the day, through config.js).
 const PIC_SETS = {
   pictures: { label: "Word and picture", words: PICTURE_SET.words, back: PICTURE_SET.back, px: "gamepics" },
-  thanksgiving: { label: "Thanksgiving", words: "mug cake bowl home bread wheat maple glass apple acorn carrot cherry candle teapot pepper cookie feather pumpkin seedling mushroom".split(" "), back: [0.8, 0.4, 0.1], px: "gameholiday", until: "2026-11-26" },
-  christmas: { label: "Christmas", words: "mug ball star gift bell sock home book candy train robot cookie candle sleigh snowman reindeer ornament lollipop snowflake gingerbread".split(" "), back: [0.75, 0.12, 0.12], px: "gameholiday", until: "2026-12-25" },
+  thanksgiving: { label: "Thanksgiving", words: "mug cake bowl home bread wheat maple glass apple acorn carrot cherry candle teapot pepper cookie feather pumpkin seedling mushroom".split(" "), back: [0.8, 0.4, 0.1], px: "gameholiday" },
+  christmas: { label: "Christmas", words: "mug ball star gift bell sock home book candy train robot cookie candle sleigh snowman reindeer ornament lollipop snowflake gingerbread".split(" "), back: [0.75, 0.12, 0.12], px: "gameholiday" },
 };
 // A holiday game's printed copy is that holiday's $3.50 pack, offered only
 // while the Worker's config.js names the pack's link.

@@ -128,7 +128,7 @@ cut lines), and a
 children play on screen, each card read aloud as it turns. It also has a word-and-picture set
 (cat and a picture of a cat, 29 short vowel words that also print as
 [matching cards](https://tracepress.bananafest-destiny.com/samples/word-picture-matching-cards.pdf)),
-and until Thanksgiving a set of the 20 Thanksgiving words, pumpkin to feather. All of them, with name tracing for a whole class, are on one
+and sets of the 20 Thanksgiving words, like pumpkin and feather, and the 20 Christmas words, like star and gingerbread. All of them, with name tracing for a whole class, are on one
 [kindergarten worksheets](https://tracepress.bananafest-destiny.com/kindergarten-worksheets) page.
 
 [![A Trace Press page: the letter A with numbered start dots and arrows, then rows of dotted letters](tracepress/public/social-card.png)](https://tracepress.bananafest-destiny.com/)
