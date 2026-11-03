@@ -68,11 +68,13 @@ Made by this code with the free version, footer line and PREVIEW mark included:
 
 ## Free on Gumroad
 
-Four of the free sheets are also listed free on Gumroad:
+Six of the free sheets are also listed free on Gumroad:
 [alphabet tracing with pictures](https://bananafestdestiny.gumroad.com/l/free-alphabet-tracing-worksheets),
 [number tracing 0–9](https://bananafestdestiny.gumroad.com/l/free-number-tracing-worksheets),
-[CVC word worksheets](https://bananafestdestiny.gumroad.com/l/free-cvc-word-worksheets) and
-[Dolch pre-primer flash cards](https://bananafestdestiny.gumroad.com/l/free-sight-word-flash-cards).
+[CVC word worksheets](https://bananafestdestiny.gumroad.com/l/free-cvc-word-worksheets),
+[Dolch pre-primer flash cards](https://bananafestdestiny.gumroad.com/l/free-sight-word-flash-cards),
+[cursive letter tracing A–Z](https://bananafestdestiny.gumroad.com/l/free-cursive-letter-tracing-worksheets) and
+[Christmas tracing with pictures](https://bananafestdestiny.gumroad.com/l/free-christmas-tracing-worksheets).
 
 ## Free pages
 

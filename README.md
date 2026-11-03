@@ -67,6 +67,15 @@ For the season and a few steady niches, eight more:
 [100 easy animal word searches for kids](https://puzzlepress.bananafest-destiny.com/free/kids-word-search-100-8.5x11.pdf),
 [100 large print Bible word searches](https://puzzlepress.bananafest-destiny.com/free/large-print-bible-word-search-100-8.5x11.pdf) and
 [100 nurse word searches](https://puzzlepress.bananafest-destiny.com/free/nurse-word-search-100-6x9.pdf).
+The eight are on Gumroad too:
+[Christmas word search](https://bananafestdestiny.gumroad.com/l/free-christmas-word-search-kdp-interior),
+[large print Christmas](https://bananafestdestiny.gumroad.com/l/free-large-print-christmas-word-search-kdp-interior),
+[Christmas crossword](https://bananafestdestiny.gumroad.com/l/free-christmas-crossword-kdp-interior),
+[Christmas fill-in](https://bananafestdestiny.gumroad.com/l/free-christmas-fill-in-puzzle-kdp-interior),
+[large print sudoku](https://bananafestdestiny.gumroad.com/l/free-large-print-sudoku-kdp-interior),
+[kids word search](https://bananafestdestiny.gumroad.com/l/free-kids-word-search-kdp-interior),
+[large print Bible](https://bananafestdestiny.gumroad.com/l/free-large-print-bible-word-search-kdp-interior) and
+[nurse word search](https://bananafestdestiny.gumroad.com/l/free-nurse-word-search-kdp-interior).
 
 **[Trace Press](https://tracepress.bananafest-destiny.com/)** (the second app,
 live since 2026-09-29) makes an A–Z letter tracing workbook for Amazon KDP, both
