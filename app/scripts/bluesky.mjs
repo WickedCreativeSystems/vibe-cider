@@ -1,22 +1,35 @@
 // Post to Bluesky through its own API (atproto XRPC), with a link card.
 //
-//   node app/scripts/bluesky.mjs "<text>" <url>          dry run: prints the record
-//   node app/scripts/bluesky.mjs "<text>" <url> --post   posts it
+//   node app/scripts/bluesky.mjs "<text>" <url> [--post]   one post (dry run without --post)
+//   node app/scripts/bluesky.mjs --next [--post]          the next unposted entry in bluesky-queue.json;
+//                                                         a real post is recorded in bluesky-posted.json
 //
 // Credentials: BSKY_HANDLE and BSKY_APP_PASSWORD in .git-credentials (an app
 // password, never the account password). Read one var at a time; never print them.
 // The card's title, description and image come from the page's og: tags.
 // Every URL written in the text becomes a clickable link (a facet).
 
-import { readFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 
 const PDS = 'https://bsky.social/xrpc';
-const [text, url, flag] = process.argv.slice(2);
-if (!text || !url) {
-  console.error('usage: bluesky.mjs "<text>" <url> [--post]');
+const QUEUE = new URL('./bluesky-queue.json', import.meta.url);
+const POSTED = new URL('./bluesky-posted.json', import.meta.url);
+const args = process.argv.slice(2);
+const post = args.includes('--post');
+const posted = existsSync(POSTED) ? JSON.parse(readFileSync(POSTED, 'utf8')) : [];
+let text, url;
+if (args[0] === '--next') {
+  // The first queue entry whose url has not been posted yet.
+  const next = JSON.parse(readFileSync(QUEUE, 'utf8')).find((q) => !posted.some((p) => p.url === q.url));
+  if (!next) { console.log('Queue empty: every entry is posted.'); process.exit(0); }
+  ({ text, url } = next);
+} else {
+  [text, url] = args;
+}
+if (!text || !url || url.startsWith('--')) {
+  console.error('usage: bluesky.mjs "<text>" <url> [--post]  |  bluesky.mjs --next [--post]');
   process.exit(2);
 }
-const post = flag === '--post';
 
 function cred(name) {
   const line = readFileSync(new URL('../../.git-credentials', import.meta.url), 'utf8')
@@ -107,3 +120,5 @@ if (!r.ok) throw new Error(`post failed: ${r.status} ${await r.text()}`);
 const { uri } = await r.json();
 const rkey = uri.split('/').pop();
 console.log(`posted https://bsky.app/profile/${did}/post/${rkey}`);
+posted.push({ url, at: record.createdAt, post: `https://bsky.app/profile/${did}/post/${rkey}` });
+writeFileSync(POSTED, JSON.stringify(posted, null, 2) + '\n');
