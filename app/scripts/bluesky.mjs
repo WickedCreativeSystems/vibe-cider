@@ -3,11 +3,14 @@
 //   node app/scripts/bluesky.mjs "<text>" <url> [--post]   one post (dry run without --post)
 //   node app/scripts/bluesky.mjs --next [--post]          the next unposted entry in bluesky-queue.json;
 //                                                         a real post is recorded in bluesky-posted.json
+//   node app/scripts/bluesky.mjs --tag <tag> [<tag>...]   how many posts each #tag got in the last 7 days
+//                                                         (needs the login: public search answers 403)
 //
 // Credentials: BSKY_HANDLE and BSKY_APP_PASSWORD in .git-credentials (an app
 // password, never the account password). Read one var at a time; never print them.
 // The card's title, description and image come from the page's og: tags.
-// Every URL written in the text becomes a clickable link (a facet).
+// Every URL written in the text becomes a clickable link (a facet), and every
+// #hashtag a tag facet, so the post shows up in that tag's feed.
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 
@@ -18,6 +21,26 @@ const args = process.argv.slice(2);
 const post = args.includes('--post');
 const posted = existsSync(POSTED) ? JSON.parse(readFileSync(POSTED, 'utf8')) : [];
 let text, url;
+if (args[0] === '--tag') {
+  const { accessJwt } = await login();
+  const week = Date.now() - 7 * 864e5;
+  for (const t of args.slice(1)) {
+    let n = 0, cursor = '', authors = new Set();
+    for (let page = 0; page < 10; page++) {
+      const q = new URLSearchParams({ q: '#' + t.replace(/^#/, ''), sort: 'latest', limit: '100' });
+      if (cursor) q.set('cursor', cursor);
+      const r = await fetch(`${PDS}/app.bsky.feed.searchPosts?${q}`, { headers: { authorization: `Bearer ${accessJwt}` } });
+      if (!r.ok) throw new Error(`search ${t}: ${r.status}`);
+      const d = await r.json();
+      const recent = d.posts.filter((p) => Date.parse(p.indexedAt) >= week);
+      n += recent.length; recent.forEach((p) => authors.add(p.author.did));
+      if (recent.length < d.posts.length || !d.cursor) break;
+      cursor = d.cursor;
+    }
+    console.log(`#${t.replace(/^#/, '')}: ${n}${n >= 1000 ? '+' : ''} posts by ${authors.size} accounts in 7 days`);
+  }
+  process.exit(0);
+}
 if (args[0] === '--next') {
   // The first queue entry whose url has not been posted yet.
   const next = JSON.parse(readFileSync(QUEUE, 'utf8')).find((q) => !posted.some((p) => p.url === q.url));
@@ -29,6 +52,16 @@ if (args[0] === '--next') {
 if (!text || !url || url.startsWith('--')) {
   console.error('usage: bluesky.mjs "<text>" <url> [--post]  |  bluesky.mjs --next [--post]');
   process.exit(2);
+}
+
+async function login() {
+  const s = await fetch(`${PDS}/com.atproto.server.createSession`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ identifier: cred('BSKY_HANDLE'), password: cred('BSKY_APP_PASSWORD') }),
+  });
+  if (!s.ok) throw new Error(`login failed: ${s.status}`);
+  return s.json();
 }
 
 function cred(name) {
@@ -51,6 +84,13 @@ function linkFacets(s) {
     out.push({
       index: { byteStart: start, byteEnd: start + enc.encode(m[0]).length },
       features: [{ $type: 'app.bsky.richtext.facet#link', uri: m[0] }],
+    });
+  }
+  for (const m of s.matchAll(/(^|\s)#([A-Za-z][A-Za-z0-9_]{1,63})\b/g)) {
+    const start = enc.encode(s.slice(0, m.index + m[1].length)).length;
+    out.push({
+      index: { byteStart: start, byteEnd: start + enc.encode('#' + m[2]).length },
+      features: [{ $type: 'app.bsky.richtext.facet#tag', tag: m[2] }],
     });
   }
   return out;
@@ -86,13 +126,7 @@ if (!post) {
   process.exit(0);
 }
 
-const s = await fetch(`${PDS}/com.atproto.server.createSession`, {
-  method: 'POST',
-  headers: { 'content-type': 'application/json' },
-  body: JSON.stringify({ identifier: cred('BSKY_HANDLE'), password: cred('BSKY_APP_PASSWORD') }),
-});
-if (!s.ok) throw new Error(`login failed: ${s.status}`);
-const { accessJwt, did } = await s.json();
+const { accessJwt, did } = await login();
 const auth = { authorization: `Bearer ${accessJwt}` };
 
 if (image) {
