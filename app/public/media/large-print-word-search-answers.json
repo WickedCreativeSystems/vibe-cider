@@ -1,0 +1,14 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Puzzle Press",
+  "slug": "large-print-word-search-answers",
+  "shot": "2026-11-09",
+  "claim": "In a large print word search book, the answer key should be large print too. KDP says large print books usually use 16 points or higher. The free Puzzle Press large print generator gives every answer grid a whole 8.5 x 11 page, with every word a reader has to read at 16pt or larger, instead of packing six answer grids to a page, which prints the answer letters at about 8pt.",
+  "backing": [
+    "https://puzzlepress.bananafest-destiny.com/large-print-word-search-generator",
+    "https://puzzlepress.bananafest-destiny.com/samples/sample-large-print-8.5x11.pdf"
+  ],
+  "cta": "puzzlepress.bananafest-destiny.com/large-print-word-search-generator",
+  "spoken": false,
+  "notes": "Real-time capture of the live /large-print-word-search-generator page at 360x640 CSS px, 3x device pixels, then three pages of the live 20-puzzle sample PDF at 150 DPI, rendered from the file itself: page 3 (Puzzle 1, Garden & Nature), page 24 (Puzzle 1's answer grid, alone on its page) and page 25 (Puzzle 2's answers). The six-to-a-page answer packing at about 8pt is what the same tool does for a regular (not large print) book at 8.5 x 11, as the page says; it is not shown in the clip. KDP's 16-point line is quoted on the generator page. Search Console, 10-12 to 11-08: 'large print word search books for seniors free' had 11 impressions for that page. The final 2.2 s hold still for the end card."
+}

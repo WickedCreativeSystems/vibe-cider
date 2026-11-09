@@ -1,0 +1,14 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Trace Press",
+  "slug": "number-tracing-0-9",
+  "shot": "2026-11-09",
+  "claim": "Trace Press has free printable number tracing worksheets for 0 to 9: ten US Letter pages, one per digit, each with the number drawn large with a numbered green start dot and red arrows for each stroke, then rows of dotted numbers to trace and rows to write it alone. One PDF, no sign-up.",
+  "backing": [
+    "https://tracepress.bananafest-destiny.com/number-tracing",
+    "https://tracepress.bananafest-destiny.com/samples/number-tracing-worksheets-0-9.pdf"
+  ],
+  "cta": "tracepress.bananafest-destiny.com/number-tracing",
+  "spoken": false,
+  "notes": "Real-time capture of the live /number-tracing page at 360x640 CSS px, 3x device pixels, then pages 1, 4, 6 and 9 (digits 0, 3, 5, 8) of the live PDF at 150 DPI, rendered from the file itself, 2.2 s each. The PDF has 11 pages: 10 worksheets plus a last page about making your own book; each worksheet carries a small 'Made with Trace Press, free preview' footer line. The tap on the download button is shown, but the browser's PDF viewer is not. The grey ring marks the tap. The final 2.2 s hold still for the end card."
+}

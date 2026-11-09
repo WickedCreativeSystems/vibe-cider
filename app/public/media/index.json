@@ -72,6 +72,13 @@
     },
     {
       "product": "Puzzle Press",
+      "slug": "kdp-barcode-box-back-cover",
+      "shot": "2026-11-09",
+      "mp4": "https://puzzlepress.bananafest-destiny.com/media/kdp-barcode-box-back-cover.mp4",
+      "json": "https://puzzlepress.bananafest-destiny.com/media/kdp-barcode-box-back-cover.json"
+    },
+    {
+      "product": "Puzzle Press",
       "slug": "kdp-cover-template-300dpi",
       "shot": "2026-10-17",
       "mp4": "https://puzzlepress.bananafest-destiny.com/media/kdp-cover-template-300dpi.mp4",
@@ -125,6 +132,13 @@
       "shot": "2026-11-02",
       "mp4": "https://puzzlepress.bananafest-destiny.com/media/kdp-spine-white-groundwood-cream.mp4",
       "json": "https://puzzlepress.bananafest-destiny.com/media/kdp-spine-white-groundwood-cream.json"
+    },
+    {
+      "product": "Puzzle Press",
+      "slug": "large-print-word-search-answers",
+      "shot": "2026-11-09",
+      "mp4": "https://puzzlepress.bananafest-destiny.com/media/large-print-word-search-answers.mp4",
+      "json": "https://puzzlepress.bananafest-destiny.com/media/large-print-word-search-answers.json"
     },
     {
       "product": "Puzzle Press",
@@ -209,6 +223,13 @@
       "shot": "2026-10-17",
       "mp4": "https://tracepress.bananafest-destiny.com/media/name-tracing-worksheet.mp4",
       "json": "https://tracepress.bananafest-destiny.com/media/name-tracing-worksheet.json"
+    },
+    {
+      "product": "Trace Press",
+      "slug": "number-tracing-0-9",
+      "shot": "2026-11-09",
+      "mp4": "https://tracepress.bananafest-destiny.com/media/number-tracing-0-9.mp4",
+      "json": "https://tracepress.bananafest-destiny.com/media/number-tracing-0-9.json"
     },
     {
       "product": "Trace Press",

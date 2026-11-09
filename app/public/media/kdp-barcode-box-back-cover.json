@@ -1,0 +1,14 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Puzzle Press",
+  "slug": "kdp-barcode-box-back-cover",
+  "shot": "2026-11-09",
+  "claim": "If you don't put a barcode on your KDP paperback cover, Amazon places one on the back cover for you, so leave its space clear: KDP's own downloadable cover templates reserve a 2 x 1.2 inch box in the lower right of the back cover, 0.25 inch in from the trim. The free Puzzle Press spine calculator draws that box on a 300 DPI cover template sized to your book.",
+  "backing": [
+    "https://kdp.amazon.com/en_US/help/topic/G201953020",
+    "https://puzzlepress.bananafest-destiny.com/spine-calculator"
+  ],
+  "cta": "puzzlepress.bananafest-destiny.com/spine-calculator",
+  "spoken": false,
+  "notes": "Real-time capture of the live spine calculator at 360x640 CSS px, 3x device pixels, 6x9, 120 pages, white paper. It opens on the Barcode line ('Leave 2\" x 1.2\" clear in the lower right of the back cover'), taps Download this cover template, then shows the downloaded 3756 x 2775 px PNG itself: the whole back cover, then a 3.2 s zoom into the barcode box. KDP help G201953020 (re-read 2026-11-09): 'You can upload a cover with or without a barcode. If you choose not to provide your own barcode, we'll automatically place one on your back cover.' That page gives no size; the 2 x 1.2 inch box and 0.25 inch margin are the clear area in KDP's downloadable cover templates. The zoom is a CSS transform of the PNG, nothing drawn on it. The grey ring marks the tap. The final 2.2 s hold still for the end card."
+}
