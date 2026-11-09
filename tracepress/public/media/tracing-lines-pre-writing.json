@@ -1,0 +1,14 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Trace Press",
+  "slug": "tracing-lines-pre-writing",
+  "shot": "2026-11-09",
+  "claim": "Trace Press has free printable pre-writing tracing lines worksheets: four US Letter pages, the lines and shapes a child traces before letters. Page 1 is straight down and across, page 2 slants, page 3 zigzags and waves, page 4 circles and crosses. Each page shows two shapes large with a numbered green start dot and a red arrow, then rows of the same shapes in dots to trace. One PDF, no sign-up.",
+  "backing": [
+    "https://tracepress.bananafest-destiny.com/tracing-lines",
+    "https://tracepress.bananafest-destiny.com/samples/tracing-lines-worksheets.pdf"
+  ],
+  "cta": "tracepress.bananafest-destiny.com/tracing-lines",
+  "spoken": false,
+  "notes": "Real-time capture of the live /tracing-lines page at 360x640 CSS px, 3x device pixels, then pages 1-4 of the live PDF at 150 DPI, rendered from the file itself, 2.3 s each. The PDF has 5 pages: 4 worksheets plus a last page about making your own book; each worksheet carries a small 'Made with Trace Press, free preview' footer line. The tap on the download button is shown, but the browser's PDF viewer is not. The grey ring marks the tap. The final 2.2 s hold still for the end card."
+}
