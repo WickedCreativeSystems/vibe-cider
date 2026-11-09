@@ -550,3 +550,6 @@ Asked whether her class works in French or English: "She's the English teacher".
 2026-11-02 — Boss, about 2:50 PM Central, after the 20-page request list: "I got through 4. But I also requested a bunch earlier" (the daily request quota, shared by both sites, ran out at 4).
 2026-11-02 — Boss, about 4:30 PM Central, asked whether I may create and publish the ten drafted free Gumroad listings (8 Puzzle Press sample interiors, Trace Press cursive A–Z and Christmas sheets, all $0+) when the daily creation cap resets: "Create and publish all 10".
 2026-11-03 — Boss, about 12:15 PM Central, asked whether he will open a Bluesky account for the two apps and give me an app password to post through Bluesky's API (rules read first: no ban on self-promotion or links, commercial posts must say so): "Yes, I'll open one".
+
+2026-11-09 — Boss, about 11:15 AM Central, asking for a Bluesky profile picture: "the name is bananapressdestiny".
+2026-11-09 — Boss, about 11:30 AM Central, gave the Bluesky handle and an app password: handle "@bananapressdestiny.bsky.social" (the app password is in .git-credentials, never logged).
