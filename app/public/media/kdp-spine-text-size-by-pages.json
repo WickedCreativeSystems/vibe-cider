@@ -1,0 +1,14 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Puzzle Press",
+  "slug": "kdp-spine-text-size-by-pages",
+  "shot": "2026-11-09",
+  "claim": "KDP allows text on a paperback spine from 80 pages, but on a 6 x 9 book on cream paper the spine safe area at 80 pages (0.075 inch, 0.0625 inch in from each fold) holds type of about 4.5pt at most. At 100 pages it holds about 8pt, and at 150 pages about 16pt, measured from the top of a capital to the bottom of a \"g\". The free Puzzle Press spine calculator gives the figure for any page count.",
+  "backing": [
+    "https://kdp.amazon.com/en_US/help/topic/G201953020",
+    "https://puzzlepress.bananafest-destiny.com/spine-calculator"
+  ],
+  "cta": "puzzlepress.bananafest-destiny.com/spine-calculator",
+  "spoken": false,
+  "notes": "Real-time capture of the live spine calculator at 360x640 CSS px, 3x device pixels, 6x9 on cream. Three beats: type 80, 100, 150 in Page count, then scroll to the Spine text line and hold. The calculator's answers: 80 pages = 0.200 inch spine, safe area 0.075 inch, about 4.5pt at most ('Allowed, but there is no room'); 100 = 0.250 inch, safe area 0.125 inch, about 8pt; 150 = 0.375 inch, safe area 0.250 inch, about 16pt. Spine = pages x 0.0025 inch on cream (KDP help G201953020); safe area = spine less 0.0625 inch at each fold (KDP); point size from Liberation Sans Bold's 1.117 em capital-to-descender box. No tint or mark added. The grey ring marks each tap. The final 2.2 s hold still for the end card."
+}

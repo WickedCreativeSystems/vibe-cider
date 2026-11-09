@@ -95,7 +95,10 @@ export async function shoot(slug, script, { outDir = new URL("../public/media/",
 
   // Frames → constant 30 fps H.264, with a silent stereo track so every
   // platform treats it as an ordinary video.
-  const list = frames.map((f, i) => `file '${f.file}'\nduration ${((frames[i + 1]?.t ?? end) - f.t).toFixed(3)}`).join("\n")
+  // Chrome can hand two frames over a few ms out of order (11-09); a negative
+  // duration makes ffmpeg reject the whole list.
+  frames.sort((a, b) => a.t - b.t);
+  const list = frames.map((f, i) => `file '${f.file}'\nduration ${Math.max(0, (frames[i + 1]?.t ?? end) - f.t).toFixed(3)}`).join("\n")
     + `\nfile '${frames.at(-1).file}'\n`;
   writeFileSync(join(tmp, "list.txt"), list);
   execFileSync(FFMPEG, ["-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", join(tmp, "list.txt"),
