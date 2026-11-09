@@ -53,6 +53,25 @@ export function spineWidthInches(pageCount, paper = "cream") {
   return pageCount * t;
 }
 
+// KDP's "Create a Paperback Cover" page (G201953020, re-read 2026-11-09):
+// "Text should be at least 7-point font so it's large enough for customers to
+// read." Spine text is allowed from 80 pages but cannot reach 7pt until the
+// safe area is 7pt x SPINE_TYPE_BOX_EM tall.
+export const KDP_COVER_TYPE_MIN_PT = 7;
+
+// The largest spine type, to the half point, that fits KDP's spine safe area.
+export function spineMaxPt(pageCount, paper = "cream") {
+  const safe = spineWidthInches(pageCount, paper) - 2 * SPINE_FOLD_IN;
+  return Math.max(0, Math.floor((safe * PT) / SPINE_TYPE_BOX_EM * 2) / 2);
+}
+
+// The fewest pages (from SPINE_TEXT_MIN_PAGES) whose spine holds type of pt.
+export function pagesForSpinePt(pt, paper = "cream") {
+  let n = SPINE_TEXT_MIN_PAGES;
+  while (spineMaxPt(n, paper) < pt && n < 828) n++;
+  return n;
+}
+
 // trim is a TRIMS key, or a custom { w, h } in inches (the spine calculator's
 // "Custom size", see customTrim in kdp.js).
 export function coverGeometry({ trim = "6x9", pageCount = 24, paper = "cream" }) {
