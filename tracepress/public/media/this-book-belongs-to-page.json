@@ -1,0 +1,16 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Trace Press",
+  "slug": "this-book-belongs-to-page",
+  "shot": "2026-11-09",
+  "claim": "Trace Press has a free printable \"This book belongs to\" page for the front of a children's book or workbook: the words \"This book belongs to\" over a big four-line writing guide for the child's name. One PDF per KDP paperback trim (5x8, 5.5x8.5, 6x9, 7x10, 8x10, 8.5x11), each the exact trim size with no bleed, black on white, no logo, footer or watermark, heading font embedded. No sign-up.",
+  "backing": [
+    "https://tracepress.bananafest-destiny.com/this-book-belongs-to-page",
+    "https://tracepress.bananafest-destiny.com/samples/this-book-belongs-to-page-8.5x11.pdf",
+    "https://tracepress.bananafest-destiny.com/samples/this-book-belongs-to-page-6x9.pdf",
+    "https://tracepress.bananafest-destiny.com/samples/this-book-belongs-to-page-5x8.pdf"
+  ],
+  "cta": "tracepress.bananafest-destiny.com/this-book-belongs-to-page",
+  "spoken": false,
+  "notes": "Real-time capture of the live /this-book-belongs-to-page at 360x640 CSS px, 3x device pixels, then the live 8.5x11, 6x9 and 5x8 PDFs at 150 DPI, rendered from the files themselves, 2.6 s each, drawn at widths in proportion to their trims (94%, 66%, 55% of the frame). The tap on the download button is shown, but the browser's PDF viewer is not. The grey ring marks the tap. Each PDF is one page; pdffonts shows LiberationSans-Bold embedded."
+}

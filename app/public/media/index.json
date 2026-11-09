@@ -268,6 +268,13 @@
     },
     {
       "product": "Trace Press",
+      "slug": "this-book-belongs-to-page",
+      "shot": "2026-11-09",
+      "mp4": "https://tracepress.bananafest-destiny.com/media/this-book-belongs-to-page.mp4",
+      "json": "https://tracepress.bananafest-destiny.com/media/this-book-belongs-to-page.json"
+    },
+    {
+      "product": "Trace Press",
       "slug": "tracing-book-cover-size",
       "shot": "2026-10-18",
       "mp4": "https://tracepress.bananafest-destiny.com/media/tracing-book-cover-size.mp4",
