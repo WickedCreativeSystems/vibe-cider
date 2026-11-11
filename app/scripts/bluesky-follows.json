@@ -16,5 +16,17 @@
     "did": "did:plc:h2cde5finb2nwx6fxq2lapdv",
     "at": "2026-11-11T15:18:07.184Z",
     "uri": "at://did:plc:4uh6hpma6xqptgdfeaq4wxe7/app.bsky.graph.follow/3n22atw34cu24"
+  },
+  {
+    "handle": "mikecook-author.bsky.social",
+    "did": "did:plc:ki5cusabaf7xdkfxf74gbu2x",
+    "at": "2026-11-11T18:07:36.933Z",
+    "uri": "at://did:plc:4uh6hpma6xqptgdfeaq4wxe7/app.bsky.graph.follow/3n22kcypc3q2a"
+  },
+  {
+    "handle": "silentsword1010.bsky.social",
+    "did": "did:plc:rokxese3p3cbpk4dhkqgmst4",
+    "at": "2026-11-11T18:07:37.726Z",
+    "uri": "at://did:plc:4uh6hpma6xqptgdfeaq4wxe7/app.bsky.graph.follow/3n22kczhihb2k"
   }
 ]
