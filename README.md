@@ -150,7 +150,7 @@ with the Dolch pre-primer and primer lists typed in for you, and a
 [guide to making a handwriting workbook for KDP](https://tracepress.bananafest-destiny.com/how-to-make-a-handwriting-workbook)
 with the printing cost and royalty worked out, and the
 [tracing book cover size](https://tracepress.bananafest-destiny.com/tracing-book-cover-size)
-for every trim and page count, and a note on
+for six trims and 26 to 78 pages, and a note on
 [tracing fonts and KDP](https://tracepress.bananafest-destiny.com/tracing-font-for-kdp)
 (the print letters are drawn as strokes, so there is no dotted font to license).
 

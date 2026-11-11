@@ -8,13 +8,17 @@
 //
 // Run: node scripts/social-card.mjs [baseUrl]  (writes public/social-card.png
 // and public/img/card-*.png)
+// ONLY=slug,slug redraws just those page cards (no home card, no game board),
+// so a wording fix on one card does not rewrite every PNG.
 
 import { readFileSync } from "node:fs";
 import * as playwright from "playwright";
 const base = process.argv[2] || "https://tracepress.bananafest-destiny.com";
+const only = process.env.ONLY ? new Set(process.env.ONLY.split(",")) : null;
 const browser = await playwright.chromium.launch();
 try {
   const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, userAgent: "trace-press-test/card" });
+  if (!only) {
   await page.goto(`${base}/`);
   await page.waitForSelector("#preview svg");
   const svg = await page.$eval("#preview svg", (s) => s.outerHTML);
@@ -51,6 +55,7 @@ try {
   await game.waitForTimeout(1200);
   await game.locator("#board").screenshot({ path: new URL("../public/img/sight-word-matching-game-board.png", import.meta.url).pathname });
   await game.close();
+  }
 
   const CARDS = [
     ["letter-tracing", "letter-tracing-worksheet-a", "Free letter tracing worksheets, A to Z", "26 pages, capital and lowercase, with start dots and stroke arrows."],
@@ -65,9 +70,9 @@ try {
     ["cursive-name-tracing", "cursive-name-tracing-worksheet-maya", "Free cursive name tracing worksheet", "Type a name, print it in joined cursive to trace."],
     ["name-tracing", "name-tracing-worksheet-maya", "Free name tracing worksheet generator", "Type a name, print a page: start dots, stroke arrows, rows to trace."],
     ["tracing-worksheet-generator", "tracing-worksheet-cat-sun-dog", "Free tracing worksheet generator", "Type words, print a page on handwriting lines, with start dots and arrows."],
-    ["this-book-belongs-to-page", "this-book-belongs-to-page", "Free “This book belongs to” page", "A name page for the front of a children’s book, in every KDP size."],
+    ["this-book-belongs-to-page", "this-book-belongs-to-page", "Free “This book belongs to” page", "A name page for the front of a children’s book, in six KDP trim sizes."],
     ["preschool-tracing-worksheets", "preschool-tracing-worksheet-a", "Free preschool tracing worksheets", "Lines, shapes, capital letters A to Z and numbers 0 to 9, on big lines."],
-    ["tracing-book-cover-size", "tracing-book-cover-sample", "Tracing book cover size for KDP", "Cover width, height and spine for 26 to 78 pages, every trim.", "Checked against KDP’s calculator"],
+    ["tracing-book-cover-size", "tracing-book-cover-sample", "Tracing book cover size for KDP", "Cover width, height and spine for 26 to 78 pages, six trims.", "Checked against KDP’s calculator"],
     ["tracing-font-for-kdp", "letter-tracing-worksheet-a", "Tracing fonts and KDP", "Print letters drawn as pencil strokes: no dotted font to license.", "For KDP sellers"],
     ["christmas-tracing-worksheets", "christmas-tracing-worksheet-snowman", "Free Christmas tracing worksheets", "Twenty Christmas words to trace, each with a picture to colour."],
     ["halloween-tracing-worksheets", "halloween-tracing-worksheet-bat", "Free Halloween tracing worksheets", "Twenty Halloween words to trace, each with a picture to colour."],
@@ -92,6 +97,7 @@ try {
     ["kindergarten-worksheets", "count-and-trace-worksheet", "Free kindergarten worksheets", "Class name sheets, sight word cards, CVC words, count and trace."],
   ];
   for (const [slug, img, title, line, pill = "Printable PDF · no sign-up"] of CARDS) {
+    if (only && !only.has(slug)) continue;
     const src = `data:image/png;base64,${readFileSync(new URL(`../public/img/${img}.png`, import.meta.url)).toString("base64")}`;
     await page.setContent(`<!doctype html><html><head><style>
       html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; background: #234e3a; font-family: "Liberation Sans", Arial, sans-serif; }

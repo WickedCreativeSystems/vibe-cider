@@ -115,7 +115,7 @@ Six of the free sheets are also listed free on Gumroad:
 - [Handwriting practice paper](https://tracepress.bananafest-destiny.com/handwriting-paper): blank four-line guides
 - [How to make a tracing book (handwriting workbook) for KDP](https://tracepress.bananafest-destiny.com/how-to-make-a-handwriting-workbook), step by step
 - [Cursive handwriting workbook for KDP](https://tracepress.bananafest-destiny.com/cursive-handwriting-workbook)
-- [Tracing book cover size for KDP](https://tracepress.bananafest-destiny.com/tracing-book-cover-size): every trim and page count
+- [Tracing book cover size for KDP](https://tracepress.bananafest-destiny.com/tracing-book-cover-size): six trims, 26 to 78 pages
 - [Tracing fonts and KDP](https://tracepress.bananafest-destiny.com/tracing-font-for-kdp): why there is no dotted font to license
 
 ## KDP's rules, and where the code keeps them
