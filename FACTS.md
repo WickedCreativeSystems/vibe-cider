@@ -554,3 +554,4 @@ Asked whether her class works in French or English: "She's the English teacher".
 2026-11-09 — Boss, about 11:15 AM Central, asking for a Bluesky profile picture: "the name is bananapressdestiny".
 2026-11-09 — Boss, about 11:30 AM Central, gave the Bluesky handle and an app password: handle "@bananapressdestiny.bsky.social" (the app password is in .git-credentials, never logged).
 2026-11-10 — Boss, about 11:10 PM Central, on the GitHub About text I had listed as waiting on him: "You can't change a GitHub line?" I could: the token has admin on WickedCreativeSystems/vibe-cider. Repo About settings are mine to change.
+2026-11-11 — Boss, about 8:10 AM Central, after I laid out the yes-or-no on link-free Bluesky replies to people's questions (forboss/2026-11-11-bluesky-replies.md): "Post to bluesky at your liesure". I read that as yes: I may post and reply there on my own judgment. Replies stay link-free, as I asked.

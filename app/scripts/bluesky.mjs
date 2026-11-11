@@ -7,6 +7,11 @@
 //                                                         (needs the login: public search answers 403)
 //   node app/scripts/bluesky.mjs --search "<words>" [days] recent posts matching the words (default 14 days),
 //                                                         read-only: handle, followers, likes, replies, text
+//   node app/scripts/bluesky.mjs --reply <at:// uri> "<text>" [--post]
+//                                                         answer someone's question (dry run without --post).
+//                                                         No links allowed in a reply (the boss's yes of 11-11
+//                                                         covers link-free answers only); a real reply is
+//                                                         recorded in bluesky-replies.json
 //
 // Credentials: BSKY_HANDLE and BSKY_APP_PASSWORD in .git-credentials (an app
 // password, never the account password). Read one var at a time; never print them.
@@ -65,6 +70,42 @@ if (args[0] === '--search') {
     console.log('  ' + p.record.text.replace(/\s+/g, ' ').slice(0, 280));
     if (link) console.log('  link: ' + link);
   }
+  process.exit(0);
+}
+if (args[0] === '--reply') {
+  const [, parentUri, body] = args;
+  if (!parentUri?.startsWith('at://') || !body || body.startsWith('--')) { console.error('usage: bluesky.mjs --reply <at:// uri> "<text>" [--post]'); process.exit(2); }
+  if (/https?:\/\/|\bwww\.|\.com\b/i.test(body)) throw new Error('a reply carries no link');
+  if ([...body].length > 300) throw new Error(`text is ${[...body].length} chars, max 300`);
+  const REPLIES = new URL('./bluesky-replies.json', import.meta.url);
+  const replies = existsSync(REPLIES) ? JSON.parse(readFileSync(REPLIES, 'utf8')) : [];
+  if (replies.some((x) => x.parent === parentUri)) throw new Error('already replied to that post');
+  const { accessJwt, did } = await login();
+  const auth = { authorization: `Bearer ${accessJwt}` };
+  const g = await fetch(`${PDS}/app.bsky.feed.getPosts?${new URLSearchParams({ uris: parentUri })}`, { headers: auth });
+  if (!g.ok) throw new Error(`getPosts: ${g.status}`);
+  const parent = (await g.json()).posts[0];
+  if (!parent) throw new Error('that post is gone');
+  const ref = { uri: parent.uri, cid: parent.cid };
+  const record = {
+    $type: 'app.bsky.feed.post',
+    text: body,
+    createdAt: new Date().toISOString(),
+    langs: ['en'],
+    reply: { root: parent.record.reply?.root ?? ref, parent: ref },
+  };
+  console.log(`to @${parent.author.handle} (${parent.indexedAt.slice(0, 10)}, ${parent.replyCount} replies so far): ${parent.record.text.replace(/\s+/g, ' ').slice(0, 300)}`);
+  if (!post) { console.log(JSON.stringify(record, null, 2)); console.log('(dry run; add --post to send)'); process.exit(0); }
+  const r = await fetch(`${PDS}/com.atproto.repo.createRecord`, {
+    method: 'POST',
+    headers: { ...auth, 'content-type': 'application/json' },
+    body: JSON.stringify({ repo: did, collection: 'app.bsky.feed.post', record }),
+  });
+  if (!r.ok) throw new Error(`reply failed: ${r.status} ${await r.text()}`);
+  const rkey = (await r.json()).uri.split('/').pop();
+  console.log(`replied https://bsky.app/profile/${did}/post/${rkey}`);
+  replies.push({ parent: parentUri, to: parent.author.handle, text: body, at: record.createdAt, post: `https://bsky.app/profile/${did}/post/${rkey}` });
+  writeFileSync(REPLIES, JSON.stringify(replies, null, 2) + '\n');
   process.exit(0);
 }
 if (args[0] === '--next') {
