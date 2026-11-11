@@ -12,6 +12,8 @@
 //                                                         No links allowed in a reply (the boss's yes of 11-11
 //                                                         covers link-free answers only); a real reply is
 //                                                         recorded in bluesky-replies.json
+//   node app/scripts/bluesky.mjs --bio "<text>" [--post]   replace the profile text (max 256), keeping the
+//                                                         name, picture and banner; dry run shows the old one
 //
 // Credentials: BSKY_HANDLE and BSKY_APP_PASSWORD in .git-credentials (an app
 // password, never the account password). Read one var at a time; never print them.
@@ -70,6 +72,28 @@ if (args[0] === '--search') {
     console.log('  ' + p.record.text.replace(/\s+/g, ' ').slice(0, 280));
     if (link) console.log('  link: ' + link);
   }
+  process.exit(0);
+}
+if (args[0] === '--bio') {
+  const bio = args[1];
+  if (!bio || bio.startsWith('--')) { console.error('usage: bluesky.mjs --bio "<text>" [--post]'); process.exit(2); }
+  if ([...bio].length > 256) throw new Error(`bio is ${[...bio].length} chars, max 256`);
+  const { accessJwt, did } = await login();
+  const auth = { authorization: `Bearer ${accessJwt}` };
+  const q = new URLSearchParams({ repo: did, collection: 'app.bsky.actor.profile', rkey: 'self' });
+  const g = await fetch(`${PDS}/com.atproto.repo.getRecord?${q}`, { headers: auth });
+  if (!g.ok) throw new Error(`getRecord: ${g.status}`);
+  const cur = await g.json();
+  console.log(`old (${[...(cur.value.description || '')].length}): ${cur.value.description}`);
+  console.log(`new (${[...bio].length}): ${bio}`);
+  if (!post) { console.log('(dry run; add --post to save)'); process.exit(0); }
+  const r = await fetch(`${PDS}/com.atproto.repo.putRecord`, {
+    method: 'POST',
+    headers: { ...auth, 'content-type': 'application/json' },
+    body: JSON.stringify({ repo: did, collection: 'app.bsky.actor.profile', rkey: 'self', swapRecord: cur.cid, record: { ...cur.value, description: bio } }),
+  });
+  if (!r.ok) throw new Error(`putRecord: ${r.status} ${await r.text()}`);
+  console.log('saved');
   process.exit(0);
 }
 if (args[0] === '--reply') {
