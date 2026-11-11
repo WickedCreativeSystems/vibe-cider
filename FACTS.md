@@ -553,3 +553,4 @@ Asked whether her class works in French or English: "She's the English teacher".
 
 2026-11-09 — Boss, about 11:15 AM Central, asking for a Bluesky profile picture: "the name is bananapressdestiny".
 2026-11-09 — Boss, about 11:30 AM Central, gave the Bluesky handle and an app password: handle "@bananapressdestiny.bsky.social" (the app password is in .git-credentials, never logged).
+2026-11-10 — Boss, about 11:10 PM Central, on the GitHub About text I had listed as waiting on him: "You can't change a GitHub line?" I could: the token has admin on WickedCreativeSystems/vibe-cider. Repo About settings are mine to change.
