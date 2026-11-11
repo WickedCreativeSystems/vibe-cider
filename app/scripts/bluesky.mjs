@@ -5,6 +5,8 @@
 //                                                         a real post is recorded in bluesky-posted.json
 //   node app/scripts/bluesky.mjs --tag <tag> [<tag>...]   how many posts each #tag got in the last 7 days
 //                                                         (needs the login: public search answers 403)
+//   node app/scripts/bluesky.mjs --search "<words>" [days] recent posts matching the words (default 14 days),
+//                                                         read-only: handle, followers, likes, replies, text
 //
 // Credentials: BSKY_HANDLE and BSKY_APP_PASSWORD in .git-credentials (an app
 // password, never the account password). Read one var at a time; never print them.
@@ -41,9 +43,35 @@ if (args[0] === '--tag') {
   }
   process.exit(0);
 }
+if (args[0] === '--search') {
+  const { accessJwt } = await login();
+  const auth = { authorization: `Bearer ${accessJwt}` };
+  const since = Date.now() - (Number(args[2]) || 14) * 864e5;
+  const q = new URLSearchParams({ q: args[1], sort: 'latest', limit: '100', lang: 'en' });
+  const r = await fetch(`${PDS}/app.bsky.feed.searchPosts?${q}`, { headers: auth });
+  if (!r.ok) throw new Error(`search: ${r.status}`);
+  const posts = (await r.json()).posts.filter((p) => Date.parse(p.indexedAt) >= since);
+  const followers = new Map();
+  const dids = [...new Set(posts.map((p) => p.author.did))];
+  for (let i = 0; i < dids.length; i += 25) {
+    const a = new URLSearchParams(dids.slice(i, i + 25).map((d) => ['actors', d]));
+    const pr = await fetch(`${PDS}/app.bsky.actor.getProfiles?${a}`, { headers: auth });
+    if (pr.ok) for (const x of (await pr.json()).profiles) followers.set(x.did, x.followersCount);
+  }
+  console.log(`"${args[1]}": ${posts.length} posts by ${dids.length} accounts since ${new Date(since).toISOString().slice(0, 10)}`);
+  for (const p of posts) {
+    const link = p.embed?.external?.uri || p.record.embed?.external?.uri || '';
+    console.log(`\n${p.indexedAt.slice(0, 16)}Z  @${p.author.handle} (${followers.get(p.author.did) ?? '?'} followers)  likes ${p.likeCount} replies ${p.replyCount} reposts ${p.repostCount}${p.record.reply ? '  [a reply]' : ''}`);
+    console.log('  ' + p.record.text.replace(/\s+/g, ' ').slice(0, 280));
+    if (link) console.log('  link: ' + link);
+  }
+  process.exit(0);
+}
 if (args[0] === '--next') {
-  // The first queue entry whose url has not been posted yet.
-  const next = JSON.parse(readFileSync(QUEUE, 'utf8')).find((q) => !posted.some((p) => p.url === q.url));
+  // The first queue entry not posted yet. Several entries share a URL (three point at the
+  // spine calculator), so a post is matched on its URL and the start of its text.
+  const same = (p, q) => p.url === q.url && (!p.text || p.text.slice(0, 40) === q.text.slice(0, 40));
+  const next = JSON.parse(readFileSync(QUEUE, 'utf8')).find((q) => !posted.some((p) => same(p, q)));
   if (!next) { console.log('Queue empty: every entry is posted.'); process.exit(0); }
   ({ text, url } = next);
 } else {
@@ -154,5 +182,5 @@ if (!r.ok) throw new Error(`post failed: ${r.status} ${await r.text()}`);
 const { uri } = await r.json();
 const rkey = uri.split('/').pop();
 console.log(`posted https://bsky.app/profile/${did}/post/${rkey}`);
-posted.push({ url, at: record.createdAt, post: `https://bsky.app/profile/${did}/post/${rkey}` });
+posted.push({ url, text, at: record.createdAt, post: `https://bsky.app/profile/${did}/post/${rkey}` });
 writeFileSync(POSTED, JSON.stringify(posted, null, 2) + '\n');
