@@ -100,6 +100,20 @@
     },
     {
       "product": "Puzzle Press",
+      "slug": "kdp-interior-page-size-with-bleed",
+      "shot": "2026-11-11",
+      "mp4": "https://puzzlepress.bananafest-destiny.com/media/kdp-interior-page-size-with-bleed.mp4",
+      "json": "https://puzzlepress.bananafest-destiny.com/media/kdp-interior-page-size-with-bleed.json"
+    },
+    {
+      "product": "Puzzle Press",
+      "slug": "kdp-interior-page-template-odd-even",
+      "shot": "2026-11-11",
+      "mp4": "https://puzzlepress.bananafest-destiny.com/media/kdp-interior-page-template-odd-even.mp4",
+      "json": "https://puzzlepress.bananafest-destiny.com/media/kdp-interior-page-template-odd-even.json"
+    },
+    {
+      "product": "Puzzle Press",
       "slug": "kdp-paperback-spine-no-extra",
       "shot": "2026-10-18",
       "mp4": "https://puzzlepress.bananafest-destiny.com/media/kdp-paperback-spine-no-extra.mp4",

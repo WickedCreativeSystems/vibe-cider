@@ -12,6 +12,12 @@
 //                                                         No links allowed in a reply (the boss's yes of 11-11
 //                                                         covers link-free answers only); a real reply is
 //                                                         recorded in bluesky-replies.json
+//   node app/scripts/bluesky.mjs --follow <handle> [--post] look at an account (bio, counts, last 6 posts), and with
+//                                                         --post follow it. Five a day at most, real people only
+//                                                         (no sellers, no robots); recorded in bluesky-follows.json
+//   node app/scripts/bluesky.mjs --follows                 who of those follows us back
+//   node app/scripts/bluesky.mjs --people "<words>" [n]    accounts whose name or bio match (default 25), read-only.
+//                                                         Skip any whose bio says no AI: this account is run by one
 //   node app/scripts/bluesky.mjs --bio "<text>" [--post]   replace the profile text (max 256), keeping the
 //                                                         name, picture and banner; dry run shows the old one
 //
@@ -72,6 +78,56 @@ if (args[0] === '--search') {
     console.log('  ' + p.record.text.replace(/\s+/g, ' ').slice(0, 280));
     if (link) console.log('  link: ' + link);
   }
+  process.exit(0);
+}
+if (args[0] === '--people') {
+  const { accessJwt } = await login();
+  const r = await fetch(`${PDS}/app.bsky.actor.searchActors?${new URLSearchParams({ q: args[1], limit: String(Number(args[2]) || 25) })}`, { headers: { authorization: `Bearer ${accessJwt}` } });
+  if (!r.ok) throw new Error(`searchActors: ${r.status}`);
+  for (const a of (await r.json()).actors) {
+    const bio = (a.description ?? '').replace(/\s+/g, ' ');
+    console.log(`@${a.handle}${a.viewer?.following ? ' [followed]' : ''}${/\bno (gen)?\s?ai\b|anti[- ]ai/i.test(bio) ? ' [NO AI: skip]' : ''}\n  ${bio.slice(0, 220)}`);
+  }
+  process.exit(0);
+}
+if (args[0] === '--follow' || args[0] === '--follows') {
+  const FOLLOWS = new URL('./bluesky-follows.json', import.meta.url);
+  const follows = existsSync(FOLLOWS) ? JSON.parse(readFileSync(FOLLOWS, 'utf8')) : [];
+  const { accessJwt, did } = await login();
+  const auth = { authorization: `Bearer ${accessJwt}` };
+  const profile = async (actor) => {
+    const r = await fetch(`${PDS}/app.bsky.actor.getProfile?${new URLSearchParams({ actor })}`, { headers: auth });
+    if (!r.ok) throw new Error(`getProfile ${actor}: ${r.status}`);
+    return r.json();
+  };
+  if (args[0] === '--follows') {
+    let back = 0;
+    for (const f of follows) {
+      const p = await profile(f.did);
+      if (p.viewer?.followedBy) back++;
+      console.log(`${f.at.slice(0, 10)}  @${p.handle}  ${p.viewer?.followedBy ? 'FOLLOWS BACK' : '-'}${p.viewer?.following ? '' : '  (we no longer follow)'}`);
+    }
+    console.log(`${back} of ${follows.length} follow back`);
+    process.exit(0);
+  }
+  const handle = (args[1] || '').replace(/^@/, '');
+  if (!handle || handle.startsWith('--')) { console.error('usage: bluesky.mjs --follow <handle> [--post]'); process.exit(2); }
+  const p = await profile(handle);
+  console.log(`@${p.handle}  "${p.displayName ?? ''}"  followers ${p.followersCount}  follows ${p.followsCount}  posts ${p.postsCount}  joined ${(p.createdAt ?? '').slice(0, 10)}`);
+  console.log('  bio: ' + (p.description ?? '').replace(/\s+/g, ' ').slice(0, 300));
+  const fr = await fetch(`${PDS}/app.bsky.feed.getAuthorFeed?${new URLSearchParams({ actor: p.did, limit: '6', filter: 'posts_no_replies' })}`, { headers: auth });
+  if (fr.ok) for (const i of (await fr.json()).feed) console.log(`  ${i.post.indexedAt.slice(0, 10)}  ${i.reason ? '[repost] ' : ''}${i.post.record.text.replace(/\s+/g, ' ').slice(0, 150)}`);
+  if (p.viewer?.following || follows.some((f) => f.did === p.did)) { console.log('already followed'); process.exit(0); }
+  if (!post) { console.log('(dry run; add --post to follow)'); process.exit(0); }
+  const day = new Date().toISOString().slice(0, 10);
+  if (follows.filter((f) => f.at.startsWith(day)).length >= 5) throw new Error('five follows already today');
+  const now = new Date().toISOString();
+  const r = await fetch(`${PDS}/com.atproto.repo.createRecord`, { method: 'POST', headers: { ...auth, 'content-type': 'application/json' },
+    body: JSON.stringify({ repo: did, collection: 'app.bsky.graph.follow', record: { $type: 'app.bsky.graph.follow', subject: p.did, createdAt: now } }) });
+  if (!r.ok) throw new Error(`follow: ${r.status} ${await r.text()}`);
+  follows.push({ handle: p.handle, did: p.did, at: now, uri: (await r.json()).uri });
+  writeFileSync(FOLLOWS, JSON.stringify(follows, null, 2) + '\n');
+  console.log('followed');
   process.exit(0);
 }
 if (args[0] === '--bio') {

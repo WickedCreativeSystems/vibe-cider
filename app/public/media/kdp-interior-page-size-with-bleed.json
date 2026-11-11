@@ -1,0 +1,14 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Puzzle Press",
+  "slug": "kdp-interior-page-size-with-bleed",
+  "shot": "2026-11-11",
+  "claim": "With bleed on, KDP wants the interior PDF page 0.125 inch wider and 0.25 inch taller than the trim size. A 6 x 9 book needs pages of 6.125 x 9.25 inches, an 8.5 x 11 book 8.625 x 11.25, and an 8.25 x 8.25 book 8.375 x 8.5. The free Puzzle Press margin calculator gives the page size for any KDP trim.",
+  "backing": [
+    "https://kdp.amazon.com/en_US/help/topic/GVBQ3CMEQW3W2VL6",
+    "https://puzzlepress.bananafest-destiny.com/margin-calculator"
+  ],
+  "cta": "puzzlepress.bananafest-destiny.com/margin-calculator",
+  "spoken": false,
+  "notes": "Real-time capture of the live margin calculator at 360x640 CSS px, 3x device pixels, 120 pages. Four beats, all read from the 'PDF page size' card: 6 x 9 with the Bleed box empty (6 x 9); the box ticked (6.125 x 9.25); trim changed to 8.5 x 11 (8.625 x 11.25); trim changed to Custom size and 8.25 x 8.25 typed (8.375 x 8.5). Custom size opens at 8 x 10, so the frames before the typing finishes show 8.125 x 10.25, a dash while a box is empty, and other part-typed sizes; each is the right figure for what is in the boxes at that moment. The bleed is added to the outside edge only in width (0.125 inch) and to top and bottom in height (0.125 inch each). The card below, 'Inside margin (gutter) 0.375 inch', is KDP's minimum for up to 150 pages, not a measurement of a Puzzle Press book: the books keep their content 1/32 inch inside KDP's minimums. Puzzle Press itself makes books in six trims (5 x 8, 5.5 x 8.5, 6 x 9, 7 x 10, 8 x 10, 8.5 x 11); Custom size is in the calculator only. No tint or mark added. The grey ring marks each tap. The final 2.2 s hold still for the end card."
+}

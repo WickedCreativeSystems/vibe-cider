@@ -1,0 +1,14 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Puzzle Press",
+  "slug": "kdp-interior-page-template-odd-even",
+  "shot": "2026-11-11",
+  "claim": "0.625 inch is KDP's minimum inside margin (gutter) for a 320-page paperback, and it changes sides on every page: left on odd pages, right on even pages. The free Puzzle Press margin calculator hands out a 300 DPI PNG template for each, 1800 x 2700 px for a 6 x 9 book, with the margins drawn on it to put under your page as a guide layer.",
+  "backing": [
+    "https://kdp.amazon.com/en_US/help/topic/GVBQ3CMEQW3W2VL6",
+    "https://puzzlepress.bananafest-destiny.com/margin-calculator"
+  ],
+  "cta": "puzzlepress.bananafest-destiny.com/margin-calculator",
+  "spoken": false,
+  "notes": "Real-time capture of the live margin calculator at 360x640 CSS px, 3x device pixels, 6 x 9, no bleed. Beats: page count typed as 320; scroll to the drawn facing pages and the two template buttons; 'Odd-page template (PNG)' tapped, then 'Even-page template (PNG)', each a real download (kdp-interior-template-6x9-320-pages-odd.png and -even.png). Everything after that is the two downloaded files shown from the files themselves on a plain grey ground, not the site: the odd page whole; a move in on its printed text ('KDP interior template, 6 x 9 trim, 320 pages. PDF page 6 x 9 = 1800 x 2700 px at 300 DPI. Blue dashes: KDP's minimum margins. Keep all text inside. Inside 0.625, outside 0.25, top and bottom 0.25, from the page edge. Hide or delete this layer before you export your PDF.'); the even page whole; then both side by side, even on the left and odd on the right as they face in an open book, so the two shaded gutter strips meet in the middle. The side-by-side arrangement is mine; nothing is drawn on either file. The margins on the templates are KDP's minimums, not a measurement of a Puzzle Press book: the books keep their content 1/32 inch inside them. 320 pages was chosen because 0.625 inch against a 0.25 inch outside margin is wide enough to see on a phone; at 120 pages the gutter is 0.375 inch. With bleed ticked the template also carries the bleed area; this clip does not show that. The grey ring marks each tap. The final 2.2 s hold still for the end card."
+}
