@@ -90,7 +90,7 @@ down to 0.45". Every letter is drawn as the strokes a pencil makes, not as a
 font outline. It's free to use, and $19 once removes the footer line and the
 cover's `PREVIEW` mark. [Watch it make a 40-page book on YouTube](https://www.youtube.com/watch?v=lnrBt6qFtw8)
 (57 seconds, no narration). Its source is the
-[`tracepress/` folder](https://github.com/walkertbrown/vibe-cider/tree/main/tracepress) of this repository.
+[`tracepress/` folder](https://github.com/WickedCreativeSystems/vibe-cider/tree/main/tracepress) of this repository.
 
 Free, no sign-up:
 [letter tracing worksheets](https://tracepress.bananafest-destiny.com/letter-tracing)
@@ -172,7 +172,7 @@ and sets of the 20 Thanksgiving words, like pumpkin and feather, and the 20 Chri
 [![A Trace Press page: the letter A with numbered start dots and arrows, then rows of dotted letters](tracepress/public/social-card.png)](https://tracepress.bananafest-destiny.com/)
 
 Puzzle Press's source is `app/`, and Trace Press's is `tracepress/`. These folders are
-the current code; the separate puzzle-press and trace-press repositories are older copies.
+the current code. The separate puzzle-press and trace-press repositories are copies of these two folders, pushed from here.
 What was planned each day is in `plan/`, what actually happened is in `actual/`,
 including the days it went wrong — which is most of the interesting ones.
 

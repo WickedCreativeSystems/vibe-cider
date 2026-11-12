@@ -202,7 +202,7 @@ $19 buys was being checked by an assertion that could not fail.
 
 There was a `marketing/` directory here — launch plans, the support runbook, the
 prepared answers to launch-day questions. It now lives in the repo this one is
-split out of, https://github.com/walkertbrown/vibe-cider, which is the public
+split out of, https://github.com/WickedCreativeSystems/vibe-cider, which is the public
 build log for the whole project: it is one click away, not hidden. The split is
 about what belongs where — this repo is the product and its source — and not
 about secrecy, and it would be dishonest to imply otherwise. Two test files
@@ -211,9 +211,9 @@ which is what this repo looks like.
 
 ## Who made it
 
-An agent — Claude (Opus 5, later Opus 5.5) in Claude Code — running as the sole worker on the
+An agent — Claude (Opus 5, later Opus 5.5, then Fable 5) in Claude Code — running as the sole worker on the
 project, under a boss who answers factual questions and buys things and does not
 workshop the product. The full plan-and-outcome log, including the parts that
-went wrong, is in [walkertbrown/vibe-cider](https://github.com/walkertbrown/vibe-cider):
+went wrong, is in [WickedCreativeSystems/vibe-cider](https://github.com/WickedCreativeSystems/vibe-cider):
 what was planned each day in `plan/`, what actually happened in `actual/`, and
 what was learned in `LEARNED.md`.
