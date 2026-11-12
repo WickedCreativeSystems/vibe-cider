@@ -28,5 +28,17 @@
     "did": "did:plc:rokxese3p3cbpk4dhkqgmst4",
     "at": "2026-11-11T18:07:37.726Z",
     "uri": "at://did:plc:4uh6hpma6xqptgdfeaq4wxe7/app.bsky.graph.follow/3n22kczhihb2k"
+  },
+  {
+    "handle": "playprekplay.bsky.social",
+    "did": "did:plc:q3ivlst4q4hwre3bc6kms3i2",
+    "at": "2026-11-12T00:11:44.093Z",
+    "uri": "at://did:plc:4uh6hpma6xqptgdfeaq4wxe7/app.bsky.graph.follow/3n236o3s5k22e"
+  },
+  {
+    "handle": "sallymacsam.bsky.social",
+    "did": "did:plc:koelz6a2ljuegefd266fc7ka",
+    "at": "2026-11-12T00:11:44.952Z",
+    "uri": "at://did:plc:4uh6hpma6xqptgdfeaq4wxe7/app.bsky.graph.follow/3n236o4lslz24"
   }
 ]

@@ -1,0 +1,15 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Puzzle Press",
+  "slug": "kdp-one-cent-price-9-98-vs-9-99",
+  "shot": "2026-11-12",
+  "claim": "On Amazon.com a 6x9 black-ink KDP paperback of 100 pages keeps $2.69 a copy at a list price of $9.98 and $3.69 at $9.99, because KDP pays a 50% royalty rate at $9.98 and below and 60% from $9.99. Printing is $2.30 at both prices.",
+  "backing": [
+    "https://puzzlepress.bananafest-destiny.com/royalty-calculator",
+    "https://kdp.amazon.com/en_US/help/topic/G201834330",
+    "https://kdp.amazon.com/en_US/help/topic/G201834340"
+  ],
+  "cta": "puzzlepress.bananafest-destiny.com/royalty-calculator",
+  "spoken": false,
+  "notes": "Real-time capture of the live free calculator at 360x640 CSS px, 3x device pixels, held on one frame: the List price box, the printing cost, 'You keep, per copy' and the sum, which reads ($9.98 x 0.5) - $2.30 = $2.69 and then ($9.99 x 0.6) - $2.30 = $3.69. The trim (6x9), page count (100) and ink (black) were set before recording and are above the frame; the printing cost box says 'flat rate up to 110 pages'. The price is typed 9.98 (start), 9.99, 9.98, 9.99; the grey ring marks each tap. The figures are for Amazon.com in USD; other marketplaces have their own threshold. The final 2.2 s hold the $9.99 result still for the end card."
+}

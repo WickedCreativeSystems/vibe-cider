@@ -1,0 +1,14 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Puzzle Press",
+  "slug": "kdp-large-trim-costs-a-dollar",
+  "shot": "2026-11-12",
+  "claim": "On Amazon.com a 200-page black-ink KDP paperback at $9.99 costs $3.40 to print and keeps $2.59 a copy at 6x9; at 7x10 or 8.5x11 it costs $4.40 to print and keeps $1.59, because KDP charges $0.017 a page for large trim (wider than 6.12 in or taller than 9 in) against $0.012 for regular trim.",
+  "backing": [
+    "https://puzzlepress.bananafest-destiny.com/royalty-calculator",
+    "https://kdp.amazon.com/en_US/help/topic/G201834340"
+  ],
+  "cta": "puzzlepress.bananafest-destiny.com/royalty-calculator",
+  "spoken": false,
+  "notes": "Real-time capture of the live free calculator at 360x640 CSS px, 3x device pixels, held on one frame so the Trim size menu, page count (200), ink (black), list price (9.99), printing cost and 'You keep, per copy' are all on screen together. Order: 6x9 ($3.40, keeps $2.59), 7x10 ($4.40, keeps $1.59), 8.5x11 ($4.40, keeps $1.59), back to 6x9. The grey ring marks each tap on the menu; the menu's own list is not shown, the value changes in place. KDP's help page: black ink, 110-828 pages, 1.00 USD + 0.012 USD per page regular trim, 1.00 USD + 0.017 USD per page large trim; 60% royalty at $9.99. The dollar is exact at 200 pages (200 x $0.005); the gap grows with page count. The final 2.2 s hold the 6x9 result still for the end card."
+}
