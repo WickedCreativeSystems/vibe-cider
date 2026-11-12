@@ -100,7 +100,10 @@ function update() {
       : freePages === 0 && cost.flatMax
         ? ` — this is the last page at the flat rate.`
         : cost.perPage
-          ? ` — past the flat band, each extra page costs ${(cost.perPage * 100).toFixed(1)}¢.`
+          // Two decimals, trimmed: standard colour is 2.55¢ a page and groundwood
+          // 1.14¢, and one decimal printed them as 2.5¢ and 1.1¢. Standard colour
+          // has no flat rate, so it has no "flat band" to be past.
+          ? ` — ${cost.flatMax ? "past the flat band, each" : "each"} extra page costs ${+(cost.perPage * 100).toFixed(2)}¢.`
           : "");
   el.sum.textContent = `(${money(list)} × ${r.rate}) − ${money(r.printing)} = ${money(r.royalty)}`;
   el.per100.textContent = r.royalty > 0 ? `${money(r.royalty * 100)} if you sell a hundred copies.` : "";

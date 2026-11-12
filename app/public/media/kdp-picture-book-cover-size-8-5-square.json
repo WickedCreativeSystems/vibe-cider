@@ -1,0 +1,14 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Puzzle Press",
+  "slug": "kdp-picture-book-cover-size-8-5-square",
+  "shot": "2026-11-12",
+  "claim": "The full cover file for an 8.5 x 8.5 in KDP paperback picture book on premium colour paper is 17.306 x 8.750 in at 24 pages (spine 0.056 in) and 17.325 x 8.750 in at 32 pages (spine 0.075 in). Eight more pages widen the cover by 0.019 in, and both spines are far too thin for text: KDP allows spine text only from 79 pages.",
+  "backing": [
+    "https://puzzlepress.bananafest-destiny.com/spine-calculator",
+    "https://kdp.amazon.com/en_US/help/topic/G201953020"
+  ],
+  "cta": "puzzlepress.bananafest-destiny.com/spine-calculator",
+  "spoken": false,
+  "notes": "Real-time capture of the live free spine calculator at 360x640 CSS px, 3x device pixels, held on one frame for the whole clip: Trim size (Custom size), Width x height (8.5 x 8.5), Page count, Paper (Premium colour, 0.002347 in a page), then the two answers, 'Spine width' and 'Full cover PDF size' with its millimetre line. The first label, 'Trim size', sits 90 px down in the 1080x1920 video, clear of a 78 px top bar. Order: 24 pages (0.056 in / 1.4 mm; 17.306 x 8.750 in / 439.6 x 222.3 mm), then 32 typed into Page count (0.075 in / 1.9 mm; 17.325 x 8.750 in / 440.1 x 222.3 mm), then 24 typed again. The grey ring marks each tap on the Page count box; only the numbers move. KDP's cover page: premium colour paper is 0.002347 in a page, bleed is 0.125 in on each outside edge, cover width = bleed + back + spine + front + bleed, and 'To include spine text, your book must have at least 79 pages'. KDP's own cover calculator, asked on 2026-11-12 for 8.5 x 8.5 in premium colour, returns the same figures: spine 0.056 and full cover 17.306 x 8.75 at 24 pages, spine 0.075 and 17.325 x 8.75 at 32, spine safe area 0 at both. Caveats: these are paperback figures (KDP's print options page lists hardcover from 75 pages, so a 24- or 32-page picture book is a paperback); the clip uses the calculator's Custom size, which is in the calculator only (Puzzle Press itself makes puzzle books, in six other trims); the pixel size at 300 dpi (5192 x 2625 at 24 pages) is on the page below the frame and is not shown. No tint or mark added. The final 2.2 s hold the 24-page result still for the end card."
+}

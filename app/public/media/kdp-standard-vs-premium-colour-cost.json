@@ -1,0 +1,14 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Puzzle Press",
+  "slug": "kdp-standard-vs-premium-colour-cost",
+  "shot": "2026-11-12",
+  "claim": "On Amazon.com a 100-page 6x9 KDP paperback priced at $12.99 costs $3.55 to print in standard colour and keeps $4.24 a copy; in premium colour it costs $7.50 to print and keeps $0.29. Same book, same price: the ink choice alone moves $3.95 a copy, because KDP charges $0.0255 a page for standard colour and $0.065 a page for premium.",
+  "backing": [
+    "https://puzzlepress.bananafest-destiny.com/royalty-calculator",
+    "https://kdp.amazon.com/en_US/help/topic/G201834340"
+  ],
+  "cta": "puzzlepress.bananafest-destiny.com/royalty-calculator",
+  "spoken": false,
+  "notes": "Real-time capture of the live free royalty calculator at 360x640 CSS px, 3x device pixels, held on one frame for the whole clip: Page count (100), Ink, List price (12.99), 'Printing cost' with its sum, and 'You keep, per copy' with the per-hundred line. The Trim size menu (6 x 9 in) is set before recording and sits just above the frame; the first label on screen, 'Page count', is 90 px down in the 1080x1920 video, clear of a 78 px top bar. Order: Standard colour ($3.55 = 1.00 + 100 x 0.0255; keeps $4.24, $424.00 per hundred copies), Premium colour ($7.50 = 1.00 + 100 x 0.065; keeps $0.29, $29.00 per hundred), back to Standard colour. The grey ring marks each tap on the Ink menu; the menu's own list is not shown, the value changes in place. The 'You keep' box sits a little lower on the premium beat because its cost line runs to three lines. KDP's printing cost page, read 2026-11-12, Amazon.com, regular trim: standard colour ink, 72-600 pages, 1.00 USD + 0.0255 USD per page; premium colour ink, 42-828 pages, 1.00 USD + 0.065 USD per page (24-40 pages is a flat 3.60 USD); 60% royalty at $9.99 and above. Caveats: the $3.95 gap is exact at 100 pages and grows by $0.0395 with every page; standard colour only prints from 72 to 600 pages, so a 24- to 40-page picture book cannot use it and pays the premium flat rate; KDP's print options page lists standard colour on lighter white paper (50-61 lb against 60-71 lb for premium), a difference in the printed book that the clip does not show; figures are Amazon.com in USD, other marketplaces have their own tables. No tint or mark added. The final 2.2 s hold the standard colour result still for the end card."
+}
