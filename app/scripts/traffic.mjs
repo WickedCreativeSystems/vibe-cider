@@ -173,7 +173,7 @@ const nowIps = [...new Set((await Promise.all([traceIp("-4"), traceIp("-6")])).f
 // day or so, and Cloudflare recorded this morning's requests under an address
 // this machine no longer has. On 2026-09-14 the report read 172 real browsers
 // and 69 books made by strangers. Every one of those 69 was this machine,
-// under the retired address 2600:1702:6328:b810:f21e:a44c:8a9c:3539.
+// under an address it had held that morning and since retired.
 //
 // What does not rotate is the /64 network prefix. So: find every address that
 // appeared in the window, keep the ones sharing my prefix, and treat the whole

@@ -11,6 +11,7 @@
 //
 // Usage: node scripts/compare-hourly.mjs [hours, max 23.5]
 import { readFileSync } from "node:fs";
+import { execFile } from "node:child_process";
 
 const hours = Math.min(Number(process.argv[2] || 23.5), 23.5);
 const creds = readFileSync(new URL("../../.git-credentials", import.meta.url), "utf8");
@@ -30,8 +31,15 @@ const d = await r.json();
 if (d.errors) throw new Error(d.errors.map((e) => e.message).join("; "));
 const rows = d.data.viewer.zones[0].httpRequestsAdaptiveGroups;
 
-// This machine: the IPv4 address and the IPv6 /64 the tests run from.
-const mine = (ip) => ip === "162.194.147.225" || ip.startsWith("2600:1702:6328:b810:");
+// This machine: asked at run time, never written down here. The IPv4 address
+// as it is now, and for IPv6 the /64, because the last 64 bits rotate daily.
+const traceIp = (flag) =>
+  new Promise((res) =>
+    execFile("curl", ["-s", flag, "--max-time", "10", "https://puzzlepress.bananafest-destiny.com/cdn-cgi/trace"],
+      (err, out) => res(err ? null : (String(out).match(/^ip=(.*)$/m) || [])[1]?.trim() || null)));
+const nowIps = (await Promise.all([traceIp("-4"), traceIp("-6")])).filter(Boolean);
+const myPrefixes = nowIps.filter((ip) => ip.includes(":")).map((ip) => ip.split(":").slice(0, 4).join(":") + ":");
+const mine = (ip) => nowIps.includes(ip) || myPrefixes.some((p) => ip.startsWith(p));
 const namesItself = (ua) => /bot|crawl|spider|slurp|preview|facebookexternalhit|curl|python|node|go-http|headless/i.test(ua);
 const NETWORK = /google|microsoft|amazon|aws|cloudflare|tencent|alibaba|huawei|hwcsnet|oracle|digitalocean|linode|akamai|ovh|hetzner|proofpoint|mimecast|barracuda|yahoo|apple/i;
 
