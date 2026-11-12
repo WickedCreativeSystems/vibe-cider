@@ -1,0 +1,14 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Puzzle Press",
+  "slug": "kdp-picture-book-printing-cost-flat-to-40-pages",
+  "shot": "2026-11-12",
+  "claim": "On Amazon.com an 8.5 x 11 in KDP paperback in premium colour costs the same $4.20 to print at 24, 32 and 40 pages: KDP charges one flat rate for large-trim premium colour from 24 to 40 pages. At 42 pages the rate changes to $1.00 plus $0.08 a page, so the book costs $4.36. Priced at $12.99, the author keeps $3.59 a copy at any length up to 40 pages and $3.43 at 42.",
+  "backing": [
+    "https://puzzlepress.bananafest-destiny.com/royalty-calculator",
+    "https://kdp.amazon.com/en_US/help/topic/G201834340"
+  ],
+  "cta": "puzzlepress.bananafest-destiny.com/royalty-calculator",
+  "spoken": false,
+  "notes": "Real-time capture of the live free royalty calculator at 360x640 CSS px, 3x device pixels, held on one frame for the whole clip: Page count, Ink (Premium colour), List price (12.99), 'Printing cost' with its line of small print, and 'You keep, per copy' with the per-hundred line. The Trim size menu (8.5 x 11 in) is set before recording and sits just above the frame; the words 'Large trim' in the small print under the cost say which table is in use. The first label on screen, 'Page count', is 90 px down in the 1080x1920 video, clear of a 78 px top bar. Order: 24 pages ($4.20, 'flat rate up to 40 pages - 16 more pages would cost you nothing to print', keeps $3.59, $359.00 per hundred copies), 32 typed ($4.20, '8 more pages would cost you nothing', $3.59), 40 typed ($4.20, 'this is the last page at the flat rate', $3.59), 42 typed ($4.36 = 1.00 + 42 x 0.08, 'past the flat band, each extra page costs 8c', keeps $3.43, $343.00 per hundred). Only the page count and the figures move. KDP's printing cost page, read 2026-11-12, Amazon.com, premium colour ink: large trim 24-40 pages a flat 4.20 USD, 42-828 pages 1.00 USD + 0.08 USD per page; regular trim 24-40 pages a flat 3.60 USD, 42-828 pages 1.00 USD + 0.065 USD per page. Large trim is 'More than 6.12 inches (155.5 mm) in width or more than 9 inches (228.6 mm) in height', so 8.5 x 8.5 in, the common square picture-book size, is large trim too and prints at the same $4.20. Royalty is 60% of list at $9.99 and above, less printing: 12.99 x 0.6 = 7.79, less 4.20 = 3.59. Caveats: $4.20 is the large-trim figure, a 6 x 9 in or smaller book pays the regular-trim flat $3.60; KDP's table steps from 24-40 straight to 42, so 42 is the first length that costs more; standard colour is no way round it, since it only prints from 72 to 600 pages; the $3.59 and $3.43 belong to a $12.99 list price sold on Amazon.com, not expanded distribution; figures are Amazon.com in USD, other marketplaces have their own tables. No tint or mark added. The 42-page result holds still for about 4 s at the end for the end card."
+}

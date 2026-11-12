@@ -1,0 +1,14 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Puzzle Press",
+  "slug": "kdp-novel-cover-size-300-pages-cream",
+  "shot": "2026-11-12",
+  "claim": "A 300-page KDP paperback on cream paper has a 0.750 in (19.0 mm) spine at either common novel size. The full cover file is 12.000 x 8.750 in at 5.5 x 8.5 in trim and 11.000 x 8.250 in at 5 x 8 in trim. The trim size changes the cover file by an inch each way and does not change the spine at all: spine width depends only on page count and paper.",
+  "backing": [
+    "https://puzzlepress.bananafest-destiny.com/spine-calculator",
+    "https://kdp.amazon.com/en_US/help/topic/G201953020"
+  ],
+  "cta": "puzzlepress.bananafest-destiny.com/spine-calculator",
+  "spoken": false,
+  "notes": "Real-time capture of the live free spine calculator at 360x640 CSS px, 3x device pixels, held on one frame for the whole clip: Trim size, Page count (300), Paper (Black & white on cream paper), then the two answers, 'Spine width' with its millimetre line and 'Full cover PDF size' with its millimetre line; the top of the 'Design canvas at 300 dpi' box shows at the bottom edge. The first label, 'Trim size', sits 90 px down in the 1080x1920 video, clear of a 78 px top bar. Order: 5.5 x 8.5 in (spine 0.750 in / 19.0 mm; cover 12.000 x 8.750 in / 304.8 x 222.3 mm), then the Trim size menu changed to 5 x 8 in (spine still 0.750 in; cover 11.000 x 8.250 in / 279.4 x 209.5 mm), then back to 5.5 x 8.5 in. The grey ring marks each tap on the Trim size menu; the menu's own list is not shown, the value changes in place. KDP's cover page: cream paper is 0.0025 in a page (300 x 0.0025 = 0.75), bleed is 0.125 in on each outside edge, cover width = bleed + back + spine + front + bleed (0.125 + 5.5 + 0.75 + 5.5 + 0.125 = 12), cover height = trim height + 0.25. KDP's own cover calculator, asked on 2026-11-12 for 300 pages, black and white, cream paper, returns the same figures: 5.5 x 8.5 in gives full cover 12 x 8.75 and spine 0.75; 5 x 8 in gives full cover 11 x 8.25 and spine 0.75; spine safe area 0.625 in wide at both. Caveats: these are paperback figures on cream paper; the same 300 pages on white paper (0.002252 in a page) make a thinner spine, 0.676 in, and a cover 0.074 in narrower; spine text has to stay inside the 0.625 in safe area, not the full 0.75; cream paper is black and white ink only; the pixel size at 300 dpi (3600 x 2625 and 3300 x 2475) is partly cut off at the bottom of the frame and is not part of the claim; Puzzle Press itself makes puzzle books, not novels, the calculator is free and works for any paperback. No tint or mark added. The 5.5 x 8.5 in result holds still for about 4 s at the end for the end card."
+}
