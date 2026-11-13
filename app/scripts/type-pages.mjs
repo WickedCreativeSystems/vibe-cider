@@ -239,7 +239,7 @@ pages["criss-cross-book-generator"] = {
 
 pages["crossword-book-generator"] = {
   title: "Crossword Puzzle Book Generator for KDP — Themed, Clued, Print-Ready",
-  description: `Free crossword book generator for KDP: ${themeNames.length} themes with ${Object.keys(CLUES).length.toLocaleString()} hand-written clues, or your own words and clues. Easy to expert, with solutions.`,
+  description: `Free crossword book generator for KDP: ${themeNames.length} themes with ${Object.keys(CLUES).length.toLocaleString()} ready-made clues, or your own words and clues. Easy to expert, with solutions.`,
   h1: "Crossword book generator for Amazon KDP",
   lede: "Themed crosswords with clues — the sparse, friendly grids that fill KDP's crossword books — as a complete paperback: graded easy to expert, numbered grids, Across and Down clue lists, solutions at the back, plus the matching cover. Free to use; free books have unmarked pages and a cover marked PREVIEW.",
   kind: "crossword",
@@ -251,7 +251,7 @@ pages["crossword-book-generator"] = {
   <section class="prose">
     <h2>What kind of crossword this makes</h2>
     <p>Not the dense newspaper kind, where every square is checked and the setter needs a dictionary of obscurities to make it close. These are <strong>themed crosswords</strong> — ${CRISSCROSS_DIFFICULTY.easy.words} to ${CRISSCROSS_DIFFICULTY.expert.words} answers on one subject, laid out in the open, interlocking shape that KDP crossword books actually use, with a plain-language clue for each. A solver who knows the theme can finish one; a solver who does not learns the theme. That is the whole appeal of the category, and why they sell to the same readers as word search books.</p>
-    <p>Every one of the ${Object.keys(CLUES).length.toLocaleString()} built-in clues was written by hand for this tool, definition-style — "Reef-building sea creature", "Tradesman who cuts keys" — with no clue containing its own answer and no trivia a general reader could not reasonably know. The clue list is checked by the test suite for both of those, every build. Paste your own list as <code>word — clue</code> lines and your clues are used instead; a pasted word without a clue is reported by name and left out rather than given an invented one.</p>
+    <p>Every one of the ${Object.keys(CLUES).length.toLocaleString()} built-in clues was written by an AI for this tool, definition-style — "Reef-building sea creature", "Tradesman who cuts keys" — with no clue containing its own answer and no trivia a general reader could not reasonably know. The clue list is checked by the test suite for both of those, every build. Paste your own list as <code>word — clue</code> lines and your clues are used instead; a pasted word without a clue is reported by name and left out rather than given an invented one.</p>
   </section>
 
   <section class="prose">

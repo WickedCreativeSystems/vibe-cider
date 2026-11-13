@@ -222,7 +222,7 @@ const themePage = (id, t) => {
   const description = describe(shown);
   const body = `
   <h1>${esc(t.title)} word search word list</h1>
-  <p class="lede">${n} words, hand-picked to fit a ${puzzle.size}×${puzzle.size} grid. Free to use in any puzzle you make, including ones you sell.${nested.length ? ` One thing to know if you build grids by hand: ${nested.map((d) => `${d.word} sits inside ${d.host}`).join(", ")} — never put both in the same puzzle, or the shorter one is found twice. The generator keeps them apart automatically.` : ""}</p>
+  <p class="lede">${n} words, picked to fit a ${puzzle.size}×${puzzle.size} grid. Free to use in any puzzle you make, including ones you sell. An AI wrote the list, which matters for <a href="/how-to-make-a-puzzle-book#ai-question">one question KDP asks</a>.${nested.length ? ` One thing to know if you build grids by hand: ${nested.map((d) => `${d.word} sits inside ${d.host}`).join(", ")} — never put both in the same puzzle, or the shorter one is found twice. The generator keeps them apart automatically.` : ""}</p>
   <div class="actions">
     <a class="btn" href="/?theme=${id}#tool">Make ${an(t.title)} ${esc(t.title)} word search book</a>
     <a href="/?kind=crisscross&amp;theme=${id}#tool">…or a fill-in book</a>
