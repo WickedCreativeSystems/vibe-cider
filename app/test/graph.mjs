@@ -41,14 +41,18 @@ const fileFor = (p) => {
   return null;
 };
 
-const outLinks = (file) => {
+// 2026-11-13. A relative href is a link too. The home page points at the
+// fourteen whole-book PDFs as "free/....pdf", and this function used to keep
+// only hrefs that began with "/", so it reported all fourteen as having no page
+// linking to them. A crawler resolves "free/x.pdf" against the page it is on;
+// so does this now.
+const outLinks = (file, from = "/") => {
   if (!file || !file.endsWith(".html")) return [];
   const html = fs.readFileSync(file, "utf8");
   return [...html.matchAll(/href="([^"#?]+)[^"]*"/g)]
     .map((m) => m[1])
-    .filter((h) => !/^(https?:|mailto:|tel:|data:|javascript:)/i.test(h) || h.startsWith(SITE))
-    .map((h) => (h.startsWith(SITE) ? h.slice(SITE.length) || "/" : h))
-    .filter((h) => h.startsWith("/"))
+    .filter((h) => !/^(https?:|mailto:|tel:|data:|javascript:|\/\/)/i.test(h) || h.startsWith(SITE))
+    .map((h) => new URL(h, SITE + from).pathname)
     .map((h) => (h.length > 1 && h.endsWith("/") && h !== "/word-lists/" ? h.slice(0, -1) : h));
 };
 
@@ -57,7 +61,7 @@ const depth = new Map([["/", 0]]);
 const queue = ["/"];
 while (queue.length) {
   const cur = queue.shift();
-  for (const next of outLinks(fileFor(cur))) {
+  for (const next of outLinks(fileFor(cur), cur)) {
     if (depth.has(next)) continue;
     depth.set(next, depth.get(cur) + 1);
     queue.push(next);
@@ -79,6 +83,7 @@ const GROUPS = [
   ["the 2 articles", (p) => p === "/how-to-make-a-puzzle-book" || p === "/compare"],
   ["the word lists", (p) => p.startsWith("/word-lists/")],
   ["the sample PDFs", (p) => p.startsWith("/samples/")],
+  ["the whole-book PDFs", (p) => p.startsWith("/free/")],
   ["llms.txt", (p) => p === "/llms.txt"],
 ];
 
@@ -118,7 +123,7 @@ ok(deep.length === 0, "nothing sits deeper than 4 clicks from the home page",
 // links out but that nothing links back to is invisible to a crawler that did
 // not start there.
 const inbound = new Map(declared.map((u) => [u, new Set()]));
-for (const u of declared) for (const t of outLinks(fileFor(u))) if (inbound.has(t) && t !== u) inbound.get(t).add(u);
+for (const u of declared) for (const t of outLinks(fileFor(u), u)) if (inbound.has(t) && t !== u) inbound.get(t).add(u);
 const noInbound = declared.filter((u) => u !== "/" && !inbound.get(u).size && !LINK_EXEMPT.has(u));
 ok(noInbound.length === 0, "every page has at least one page linking to it",
   noInbound.length ? `${noInbound.length} with none: ${noInbound.slice(0, 6).join(" ")}` : `all linked (${[...LINK_EXEMPT].join(" ")} exempt, see the note in this file)`);
@@ -176,7 +181,7 @@ for (const [name, match] of GROUPS) {
   if (urls.length < 2 || urls.length > 10) continue;
   const missing = [];
   for (const u of urls) {
-    const out = new Set(outLinks(fileFor(u)));
+    const out = new Set(outLinks(fileFor(u), u));
     for (const v of urls) if (v !== u && !out.has(v)) missing.push(`${u} -/-> ${v}`);
   }
   ok(missing.length === 0, `${name}: every page links to all ${urls.length - 1} of its siblings`,
