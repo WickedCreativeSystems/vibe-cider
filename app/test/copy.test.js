@@ -360,3 +360,27 @@ test("the flat-print-price puzzle ranges on the pages are the ones the layout gi
   assert.ok(howto.includes(`top falls to ${four[1]} or ${two[1]}`), `how-to: ${four[1]} / ${two[1]}`);
   assert.ok(howto.includes(`${six[0]} puzzles is the fewest that reach ${MIN_PAGES} pages`));
 });
+
+// Who wrote the built-in words is a fact a publisher acts on: KDP asks whether
+// a book has AI-generated text. Until 2026-11-13 the crossword page called its
+// clues "hand-written" and all 90 word list pages called their lists
+// "hand-picked". An AI wrote both. The guide says so; no page may say the
+// opposite again.
+test("no published page says the built-in words were written or picked by hand", () => {
+  const files = [];
+  const walk = (dir) => {
+    for (const name of readdirSync(dir, { withFileTypes: true })) {
+      const p = join(dir, name.name);
+      if (name.isDirectory()) walk(p);
+      else if (/\.(html|txt|json)$/.test(name.name)) files.push(p);
+    }
+  };
+  walk(join(ROOT, "public"));
+  files.push(join(ROOT, "README.md"), join(ROOT, "scripts/bluesky-queue.json"), join(ROOT, "scripts/type-pages.mjs"), join(ROOT, "scripts/word-list-pages.mjs"));
+  assert.ok(files.length > 100, `only ${files.length} files found`);
+  const bad = files.filter((f) => existsSync(f) && /hand-?written clue|hand-?picked|written by hand|clues written by a person/i.test(readFileSync(f, "utf8")));
+  assert.deepEqual(bad, []);
+  const guide = readFileSync(join(ROOT, "public/how-to-make-a-puzzle-book.html"), "utf8");
+  assert.ok(guide.includes('id="ai-question"') && guide.includes("were written by an AI"), "the guide says who wrote the built-in words");
+  assert.ok(readFileSync(join(ROOT, "public/word-lists/garden.html"), "utf8").includes("An AI wrote the list"), "a word list page says who wrote it");
+});
