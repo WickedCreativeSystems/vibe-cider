@@ -1,5 +1,5 @@
 app: Trace Press
-status: live — free printable tracing worksheets, flash cards and a matching game children play on screen; $19 one-time licence, no sales yet. Six free sheets on Gumroad; posting daily on Bluesky (@bananapressdestiny.bsky.social) since 11-09, 3 followers so far (two of them people)
+status: live — free printable tracing worksheets, flash cards and a matching game children play on screen; $19 one-time licence, no sales yet. Six free sheets on Gumroad; posting daily on Bluesky (@bananapressdestiny.bsky.social) since 11-09, 3 followers so far (two of them people); the first visitor from a Bluesky post came 11-13, to the Thanksgiving worksheets
 url: https://tracepress.bananafest-destiny.com
 blurb: Printable handwriting and early-reading sheets made in the browser: name, letter and number tracing, cursive, sight word flash cards and a matching game, plus an A–Z tracing workbook licensed to sell on Amazon KDP.
 since: 2026-09-29
