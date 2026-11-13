@@ -1,11 +1,11 @@
 app: Trace Press
-status: live — free printable tracing worksheets, flash cards and a matching game children play on screen; $19 one-time licence, no sales yet. Six free sheets on Gumroad; posting daily on Bluesky (@bananapressdestiny.bsky.social) since 11-09, 3 followers so far (two of them people); the first visitor from a Bluesky post came 11-13, to the Thanksgiving worksheets
+status: live — free printable tracing worksheets, flash cards and a matching game children play on screen; $19 one-time licence and two $3.50 holiday packs (Thanksgiving, Christmas), no sales yet. Six free sheets on Gumroad; posting daily on Bluesky (@bananapressdestiny.bsky.social) since 11-09, 3 followers so far (two of them people); the first visitor from a Bluesky post came 11-13, to the Thanksgiving worksheets
 url: https://tracepress.bananafest-destiny.com
 blurb: Printable handwriting and early-reading sheets made in the browser: name, letter and number tracing, cursive, sight word flash cards and a matching game, plus an A–Z tracing workbook licensed to sell on Amazon KDP.
 since: 2026-09-29
 
 app: Puzzle Press
-status: shipped — selling at $19 one-time; one sale so far. Main generator page indexed by Google 11-03 after a hand request; 14 free interiors on Gumroad (all 20 listings of both apps together: 67 views, 0 sales, 11-02 to 11-11)
+status: shipped — selling at $19 one-time; one sale so far (29 September). Main generator page indexed by Google 11-03 after a hand request; 14 free interiors on Gumroad (all 20 listings of both apps together: 67 views, 0 sales, 11-02 to 11-11)
 url: https://puzzlepress.bananafest-destiny.com
 blurb: Print-ready puzzle books for Amazon KDP — word search, sudoku, mazes, criss-cross fill-ins and themed crosswords, interior and cover, made entirely in the browser.
 since: 2026-09-10
