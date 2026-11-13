@@ -66,6 +66,18 @@ test("a book priced below its minimum earns a negative royalty, and says so", ()
   assert.ok(r.minList > 4.99);
 });
 
+// One cent under the minimum the shortfall is half a cent, which rounds to
+// 0.00. So "royalty < 0" alone misses it: the pages compare list with minList.
+test("one cent under the minimum rounds to a zero royalty, and is still under the minimum", () => {
+  const r = royalty({ list: 8.39, trim: "8.5x11", pages: 24, ink: "premiumColor" });
+  assert.equal(r.printing, 4.2);
+  assert.equal(r.minList, 8.4);
+  assert.equal(Math.abs(r.royalty), 0, "rounds to zero");
+  assert.ok(8.39 < r.minList);
+  const ok = royalty({ list: 8.4, trim: "8.5x11", pages: 24, ink: "premiumColor" });
+  assert.ok(!(8.4 < ok.minList), "the minimum itself is allowed");
+});
+
 // KDP's Paperback Printing Cost page (checked 2026-09-24) prints premium colour
 // on large trim from 24 pages, flat 4.20 USD to 40 pages. This table had it
 // starting at 42 with no flat band, so a 24-40 page 8.5x11 colour book came

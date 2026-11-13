@@ -108,8 +108,15 @@ function update() {
   el.sum.textContent = `(${money(list)} × ${r.rate}) − ${money(r.printing)} = ${money(r.royalty)}`;
   el.per100.textContent = r.royalty > 0 ? `${money(r.royalty * 100)} if you sell a hundred copies.` : "";
 
-  if (r.royalty < 0) {
-    el.warn.textContent = `At ${money(list)} this book loses ${money(Math.abs(r.royalty))} a copy. KDP will not let you publish below ${money(r.minList)}.`;
+  // Under the minimum, not "a negative royalty": one cent below the minimum the
+  // shortfall can be half a cent, which rounds to $0.00. An 8.5x11 premium
+  // colour book of 24 pages at $8.39 showed "You keep $0.00" and no warning,
+  // and KDP refuses $8.39 (its floor is $4.20 / 0.5 = $8.40).
+  if (r.royalty < 0 || list < r.minList) {
+    el.warn.textContent = (r.royalty < 0
+      ? `At ${money(list)} this book loses ${money(Math.abs(r.royalty))} a copy.`
+      : `At ${money(list)} this book falls a fraction of a cent short of its printing cost.`)
+      + ` KDP will not let you publish below ${money(r.minList)}.`;
     el.warn.hidden = false;
   } else {
     el.warn.hidden = true;

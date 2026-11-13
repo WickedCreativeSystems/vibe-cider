@@ -1,0 +1,15 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Puzzle Press",
+  "slug": "kdp-lowest-list-price-picture-book",
+  "shot": "2026-11-13",
+  "claim": "On Amazon.com the lowest list price KDP accepts for an 8.5 x 11 in premium colour paperback of 24 pages is $8.40. The book costs $4.20 to print and a list price under $9.99 earns a 50% royalty, so the price has to be at least twice the printing cost. At $6.00 the author would lose $1.20 a copy, at $7.00 lose $0.70, at $8.00 lose $0.20; at $8.40 the royalty is $0.00.",
+  "backing": [
+    "https://puzzlepress.bananafest-destiny.com/royalty-calculator",
+    "https://kdp.amazon.com/en_US/help/topic/G201834340",
+    "https://kdp.amazon.com/en_US/help/topic/G201834330"
+  ],
+  "cta": "puzzlepress.bananafest-destiny.com/royalty-calculator",
+  "spoken": false,
+  "notes": "Real-time capture of the live free royalty calculator at 360x640 CSS px, 3x device pixels, held on one frame for the whole clip: the Page count box (24) at the very top, Ink (Premium colour), List price, 'Printing cost' ($4.20, 'Large trim - flat rate up to 40 pages') and 'You keep, per copy' with the sum line under it. The Trim size menu (8.5 x 11 in) is set before recording and sits above the frame; 'Large trim' in the small print says which table is in use. The 'Page count' label is under a 78 px top bar; the first label clear of it is 'Ink'. The frame ends just above the page's next button, so nothing is cut in half at the bottom. Order: $6.00 (You keep -$1.20, sum line '($6.00 x 0.5) - $4.20 = -$1.20'), 7.00 typed (-$0.70), 8.00 typed (-$0.20), 8.40 typed ($0.00, '($8.40 x 0.5) - $4.20 = $0.00'). Only the list price and the two figures under it move. The page's own line 'KDP will not let you publish below $8.40' is further down the page and is not in the frame; the clip shows the arithmetic, the rule is KDP's. KDP's pages, read 2026-11-13: royalty page, 'KDP uses a minimum list price to ensure the royalties you earn are always enough to cover the cost to print your book', 50% royalty rate for list prices at or below 9.98 USD on Amazon.com and 60% at or above 9.99 USD; printing cost page, 'KDP will not allow you to enter a list price lower than the minimum list price' and 'Your book's list price is in the 50% royalty range: Printing cost / (50 / 100) royalty rate = minimum list price'; premium colour, 24-40 pages, a flat 4.20 USD at large trim and 3.60 USD at regular trim. So 4.20 / 0.5 = 8.40. Caveats: $8.40 is the large-trim figure, which covers 8.5 x 8.5 in square picture books too; a 6 x 9 in or smaller book prints for $3.60 and its floor is $7.20; the floor is the same from 24 to 40 pages because the printing cost is flat there, and rises from 42 pages; at $8.40 the author earns nothing, the floor is not a suggested price (at $9.99, where the rate becomes 60%, the same book keeps $1.79); figures are Amazon.com in USD, other marketplaces have their own tables and expanded distribution has a higher minimum. No tint or mark added. The $8.40 result holds still for about 4 s at the end for the end card."
+}

@@ -37,6 +37,21 @@ await p.waitForTimeout(200);
 if (await p.isHidden("#warn")) throw new Error("a book priced below cost should warn");
 console.log("below-cost warning:", (await p.textContent("#warn")).slice(0, 80));
 
+// One cent under the minimum: the shortfall is half a cent and shows as $0.00,
+// and it must still warn. KDP's floor for this book is $4.20 / 0.5 = $8.40.
+await p.selectOption("#trim", "8.5x11");
+await p.selectOption("#ink", "premiumColor");
+await p.fill("#pages", "24");
+await p.fill("#list", "8.39");
+await p.waitForTimeout(200);
+if (await p.isHidden("#warn")) throw new Error("$8.39 is under the $8.40 minimum and should warn");
+const cent = await p.textContent("#warn");
+if (!cent.includes("$8.40") || cent.includes("loses $0.00")) throw new Error(`one-cent warning reads wrong: ${cent}`);
+console.log("one-cent-under warning:", cent);
+await p.fill("#list", "8.40");
+await p.waitForTimeout(200);
+if (!(await p.isHidden("#warn"))) throw new Error("$8.40 is the minimum and should not warn");
+
 // A combination KDP will not print.
 await p.selectOption("#ink", "standardColor");
 await p.fill("#pages", "50");

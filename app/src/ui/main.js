@@ -382,9 +382,11 @@ function showMeta(s) {
   const m = royalty({ list: s.list, trim: s.trim, pages, ink: s.ink });
   if (m.printing === null) {
     el.moneyNote.textContent = m.note ?? "";
-  } else if (m.royalty < 0) {
+  } else if (m.royalty < 0 || s.list < m.minList) {
+    // list < minList also catches a half-cent shortfall that rounds to $0.00.
     el.moneyNote.textContent =
-      `Prints for $${m.printing.toFixed(2)} on Amazon.com — at $${s.list.toFixed(2)} that loses $${Math.abs(m.royalty).toFixed(2)} a copy. ` +
+      `Prints for $${m.printing.toFixed(2)} on Amazon.com — at $${s.list.toFixed(2)} that ` +
+      (m.royalty < 0 ? `loses $${Math.abs(m.royalty).toFixed(2)} a copy. ` : `falls a fraction of a cent short of the printing cost. `) +
       `Lowest workable price: $${m.minList.toFixed(2)}.`;
   } else {
     el.moneyNote.textContent =
