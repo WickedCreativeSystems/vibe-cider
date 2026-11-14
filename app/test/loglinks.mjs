@@ -57,8 +57,10 @@ const SITES = [
 const published = new Set(SITES.flatMap(({ sitemap }) =>
   [...readFileSync(new URL(sitemap, import.meta.url).pathname, "utf8").matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].replace(/\/$/, ""))));
 const unpublished = (urls) =>
-  // Fragment first, then the slash: "/#pricing" must reduce to the homepage.
-  urls.filter((u) => !published.has(u.replace(/#.*$/, "").replace(/\/$/, "")));
+  // Query string and fragment first, then the slash: "/#pricing" must reduce to
+  // the homepage, and "/sight-word-matching-game?set=thanksgiving" is the game
+  // page (the sitemap lists pages, never their query strings).
+  urls.filter((u) => !published.has(u.replace(/[?#].*$/, "").replace(/\/$/, "")));
 const URL_RE = /(\]\()?(https:\/\/(?:puzzlepress|tracepress)\.bananafest-destiny\.com[a-zA-Z0-9/_.#?=-]*)/g;
 const path = (u) => u.replace(/^https:\/\/[^/]+/, "").replace(/^\//, "");
 
