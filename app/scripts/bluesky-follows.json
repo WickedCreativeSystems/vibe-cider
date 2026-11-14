@@ -46,5 +46,23 @@
     "did": "did:plc:g3e5escnmxrnyt4nukroezzd",
     "at": "2026-11-12T03:09:54.293Z",
     "uri": "at://did:plc:4uh6hpma6xqptgdfeaq4wxe7/app.bsky.graph.follow/3n23imoqnxq2w"
+  },
+  {
+    "handle": "iteach5th.bsky.social",
+    "did": "did:plc:6ogqxq2gvrueutnlko2aflwc",
+    "at": "2026-11-14T03:14:55.308Z",
+    "uri": "at://did:plc:4uh6hpma6xqptgdfeaq4wxe7/app.bsky.graph.follow/3n2ajtiqvph2g"
+  },
+  {
+    "handle": "niffer1482.bsky.social",
+    "did": "did:plc:6x3rubqor2rhvlkqilnminrq",
+    "at": "2026-11-14T03:14:56.227Z",
+    "uri": "at://did:plc:4uh6hpma6xqptgdfeaq4wxe7/app.bsky.graph.follow/3n2ajtjn3jm2w"
+  },
+  {
+    "handle": "elizabetheverett.bsky.social",
+    "did": "did:plc:vqnizfme2krlhds2m2a3muvy",
+    "at": "2026-11-14T03:14:57.111Z",
+    "uri": "at://did:plc:4uh6hpma6xqptgdfeaq4wxe7/app.bsky.graph.follow/3n2ajtkhxfg2g"
   }
 ]
