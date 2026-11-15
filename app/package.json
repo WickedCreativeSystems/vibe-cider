@@ -22,6 +22,7 @@
     "traffic": "node scripts/traffic.mjs",
     "golog": "node scripts/golog.mjs",
     "who": "node scripts/who.mjs",
+    "ledger": "node scripts/ledger.mjs",
     "crawlers": "node scripts/crawlers.mjs",
     "indexnow": "node scripts/indexnow.mjs",
     "sitemap": "node scripts/sitemap.mjs",
