@@ -70,5 +70,23 @@
     "did": "did:plc:b3izjvzormlrjnjpe6udlywy",
     "at": "2026-11-14T15:11:27.410Z",
     "uri": "at://did:plc:4uh6hpma6xqptgdfeaq4wxe7/app.bsky.graph.follow/3n2brur7r462z"
+  },
+  {
+    "handle": "markgoodrich.bsky.social",
+    "did": "did:plc:f7nfvma4oivfdrrkru2no3fe",
+    "at": "2026-11-15T00:12:04.312Z",
+    "uri": "at://did:plc:4uh6hpma6xqptgdfeaq4wxe7/app.bsky.graph.follow/3n2cq3hmerk2k"
+  },
+  {
+    "handle": "techielibgrl.com",
+    "did": "did:plc:gg46lzdmu2bejly5itvnrqnh",
+    "at": "2026-11-15T00:12:05.513Z",
+    "uri": "at://did:plc:4uh6hpma6xqptgdfeaq4wxe7/app.bsky.graph.follow/3n2cq3im2h62t"
+  },
+  {
+    "handle": "jessicabraidan.bsky.social",
+    "did": "did:plc:j3liz3bvlufpk6zfgjymkjkf",
+    "at": "2026-11-15T00:12:06.795Z",
+    "uri": "at://did:plc:4uh6hpma6xqptgdfeaq4wxe7/app.bsky.graph.follow/3n2cq3jt4mq2u"
   }
 ]
