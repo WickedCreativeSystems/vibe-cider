@@ -1,0 +1,13 @@
+{
+  "keeper": "vibe-cider",
+  "product": "Trace Press",
+  "slug": "tracing-worksheet-any-word",
+  "shot": "2026-11-15",
+  "claim": "Trace Press has a free tracing worksheet generator: type a word and the sheet redraws as you type. The word sits large at the top on handwriting guide lines, with a numbered green dot where each stroke starts and a red arrow for the way it goes. Under it are rows of the word in dotted letters to trace, then empty lines to write it without help. For a word the page has a picture for, such as rabbit, it adds an outline to colour. Download the PDF; no sign-up.",
+  "backing": [
+    "https://tracepress.bananafest-destiny.com/tracing-worksheet-generator"
+  ],
+  "cta": "tracepress.bananafest-destiny.com/tracing-worksheet-generator",
+  "spoken": false,
+  "notes": "Real-time capture of the live /tracing-worksheet-generator page at 360x640 CSS px, 3x device pixels. The page opens with its own example, 'cat sun dog'; the word 'rabbit' is typed over it and the half-typed states (r, ra, rab and so on) are on screen while the sheet redraws. The rabbit outline appears because rabbit is one of the single words the page has a picture for; most words get no picture, and two or more words get none, so do not caption it as 'a picture for any word'. Print letters only: the Handwriting menu in shot reads 'Print' and its help text mentions joined cursive, which this clip does not show (the name tracing clip of 17 October does). The sheet carries a small footer line, 'Free tracing sheet from tracepress.bananafest-destiny.com'. Frame edges: at the top, the last line of the page's opening paragraph ('never leaves your browser.') is cut by the frame edge, inside the first 78 video px where the top bar goes; the sheet preview starts 138 video px down. In the typing frame the bottom edge falls just under the Line size menu. A two-line caption slab (1152-1360 video px) lies over the empty lines at the foot of the sheet preview there, clear of the traced rows above it and of the 'Words to trace' box, which starts about 1420. After the download the frame moves down the same card to the button and the line 'Downloaded: a tracing sheet for rabbit.' The tap on the download button is shown, the browser's PDF viewer is not. The last 6 seconds or so are page 1 of the downloaded PDF at 150 DPI, rendered from the file itself and held still: 4.2 s plus a 2.2 s tail for the end card. The grey ring marks the tap. No price and no checkout box anywhere in shot."
+}
