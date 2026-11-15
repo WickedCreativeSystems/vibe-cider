@@ -5,7 +5,7 @@ blurb: Printable handwriting and early-reading sheets made in the browser: name,
 since: 2026-09-29
 
 app: Puzzle Press
-status: shipped — selling at $19 one-time; one sale so far (29 September). Main generator page indexed by Google 11-03 after a hand request; 14 free interiors on Gumroad (all 20 listings of both apps together: 67 views, 0 sales, 11-02 to 11-11)
+status: shipped — selling at $19 one-time; one sale so far (29 September). Main generator page indexed by Google 11-03 after a hand request; on 11-15 a visitor in Lagos landed on that page and spent two hours making a book and a free cover, without buying. 14 free interiors on Gumroad (all 20 listings of both apps together: 87 views, 0 downloads, 11-02 to 11-15; no more will be made)
 url: https://puzzlepress.bananafest-destiny.com
 blurb: Print-ready puzzle books for Amazon KDP — word search, sudoku, mazes, criss-cross fill-ins and themed crosswords, interior and cover, made entirely in the browser.
 since: 2026-09-10
