@@ -58,11 +58,20 @@ export const SIGNALS = {
 // the tracing worksheet generator with ?ref=trace. So whoever asks for it read
 // it on a clip, or is a robot guessing. The `ref` row the same minute from the
 // same address, which only a browser running the page sends, tells them apart.
+// Puzzle Press has three, one for each calculator the clips are shot on
+// (public/_redirects there, ?ref=clip).
+const spellings = (name) => [`/${name}`, `/${name}/`, `/${name[0].toUpperCase()}${name.slice(1)}`, `/${name.toUpperCase()}`];
+const routesFor = (...names) => Object.fromEntries(names.flatMap((n) => spellings(n).map((p) => [p, n])));
 export const ROUTES = {
-  pp: {},
-  tp: { "/trace": "trace", "/trace/": "trace", "/Trace": "trace", "/TRACE": "trace" },
+  pp: routesFor("spine", "royalty", "margin"),
+  tp: routesFor("trace"),
 };
-export const ROUTE_SIGNALS = { trace: "asked for /trace, the short address a clip shows" };
+export const ROUTE_SIGNALS = {
+  trace: "asked for /trace, the short address a clip shows",
+  spine: "asked for /spine, the short address a clip shows",
+  royalty: "asked for /royalty, the short address a clip shows",
+  margin: "asked for /margin, the short address a clip shows",
+};
 export const pathsOf = (site) => [...Object.keys(SIGNALS[site]).map((s) => `/px/${s}.gif`), ...Object.keys(ROUTES[site])];
 export const signalOf = (site, path) => ROUTES[site][path] ?? path.replace(/^\/px\//, "").replace(/\.gif$/, "");
 export const meaningOf = (site, signal) => SIGNALS[site]?.[signal] ?? ROUTE_SIGNALS[signal] ?? "";

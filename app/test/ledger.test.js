@@ -130,7 +130,9 @@ test("every signal the ledger fetches is one a page really fires", async () => {
 test("the ledger asks the zone for the short clip address as well as the beacons", () => {
   const paths = pathsOf("tp");
   for (const p of ["/trace", "/trace/", "/Trace", "/px/ref.gif", "/px/made.gif"]) assert.ok(paths.includes(p), p);
-  assert.ok(!pathsOf("pp").some((p) => !p.startsWith("/px/")), "Puzzle Press has no short address");
+  for (const p of ["/spine", "/royalty/", "/Margin", "/SPINE", "/px/coverpay.gif"]) assert.ok(pathsOf("pp").includes(p), p);
+  assert.equal(signalOf("pp", "/Royalty"), "royalty");
+  assert.equal(signalOf("pp", "/margin/"), "margin");
   assert.equal(signalOf("tp", "/trace"), "trace");
   assert.equal(signalOf("tp", "/Trace"), "trace");
   assert.equal(signalOf("tp", "/px/coverpay.gif"), "coverpay");
@@ -149,15 +151,19 @@ test("a request for the short address prints with what it means, and is never a 
 });
 
 test("every short address the ledger watches is one the site really redirects", async () => {
-  // Derived from the redirect file, so a rule that is renamed or removed there
-  // cannot leave the ledger watching a path that answers 404 for ever.
+  // Derived from each site's redirect file, so a rule that is renamed or
+  // removed there cannot leave the ledger watching a path that answers 404
+  // for ever, and a rule added there cannot go unwatched.
   const { readFileSync, existsSync } = await import("node:fs");
-  const file = new URL("../../tracepress/public/_redirects", import.meta.url);
-  if (!existsSync(file)) return; // the public copy of this folder ships without Trace Press
-  const rules = readFileSync(file, "utf8").split("\n").map((l) => l.trim()).filter((l) => l && !l.startsWith("#")).map((l) => l.split(/\s+/));
-  for (const path of Object.keys(ROUTES.tp)) assert.ok(rules.some((r) => r[0] === path && r[2] === "301"), `${path} is not a 301 in _redirects`);
-  for (const [from, to] of rules) {
-    assert.ok(ROUTES.tp[from], `_redirects sends ${from} on, and the ledger does not watch it`);
-    assert.match(to, /[?&]ref=/, `${from} carries no ?ref=, so a person cannot be told from a fetch`);
+  const files = { pp: "../public/_redirects", tp: "../../tracepress/public/_redirects" };
+  for (const [site, rel] of Object.entries(files)) {
+    const file = new URL(rel, import.meta.url);
+    if (!existsSync(file)) { assert.equal(site, "tp", "Puzzle Press has lost its _redirects"); continue; } // the public copy ships without Trace Press
+    const rules = readFileSync(file, "utf8").split("\n").map((l) => l.trim()).filter((l) => l && !l.startsWith("#")).map((l) => l.split(/\s+/));
+    for (const path of Object.keys(ROUTES[site])) assert.ok(rules.some((r) => r[0] === path && r[2] === "301"), `${site}: ${path} is not a 301 in _redirects`);
+    for (const [from, to] of rules) {
+      assert.ok(ROUTES[site][from], `${site}: _redirects sends ${from} on, and the ledger does not watch it`);
+      assert.match(to, /[?&]ref=/, `${site}: ${from} carries no ?ref=, so a person cannot be told from a fetch`);
+    }
   }
 });

@@ -1,0 +1,17 @@
+# Short addresses that fit on a video clip and are quick to type. Each sends
+# the viewer to the real page. Never linked from a page, a nav or the sitemap:
+# the long path stays the canonical one. ?ref=clip makes the page fire its ref
+# beacon, so a person who arrives this way is counted (a robot that only
+# fetches the short address gets the 301 and is not).
+/spine /spine-calculator?ref=clip 301
+/spine/ /spine-calculator?ref=clip 301
+/Spine /spine-calculator?ref=clip 301
+/SPINE /spine-calculator?ref=clip 301
+/royalty /royalty-calculator?ref=clip 301
+/royalty/ /royalty-calculator?ref=clip 301
+/Royalty /royalty-calculator?ref=clip 301
+/ROYALTY /royalty-calculator?ref=clip 301
+/margin /margin-calculator?ref=clip 301
+/margin/ /margin-calculator?ref=clip 301
+/Margin /margin-calculator?ref=clip 301
+/MARGIN /margin-calculator?ref=clip 301
