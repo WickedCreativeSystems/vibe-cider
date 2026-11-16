@@ -2,7 +2,7 @@
 // bookkeeping is where a silent double-count or a silent hole would come from.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parseLedger, formatLedger, merge, daysToFetch, mineTest, summarize, robotOf, describe, SIGNALS, PRICE } from "../scripts/ledger.mjs";
+import { parseLedger, formatLedger, merge, daysToFetch, mineTest, summarize, robotOf, describe, SIGNALS, PRICE, ROUTES, ROUTE_SIGNALS, pathsOf, signalOf } from "../scripts/ledger.mjs";
 
 const row = (o = {}) => ({ day: "2026-11-05", time: "11:08", site: "pp", signal: "coverpay", ip: "192.0.2.7", country: "ZA", count: 1, si: 1, mine: "0", ua: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/154.0.0.0 Safari/537.36", ...o });
 
@@ -122,5 +122,42 @@ test("every signal the ledger fetches is one a page really fires", async () => {
   for (const site of Object.keys(SIGNALS)) for (const sig of Object.keys(SIGNALS[site])) {
     if (src[site] === null) continue;
     assert.ok(src[site].includes(`"${sig}"`), `${site}: no page source mentions "${sig}"`);
+  }
+});
+
+// /trace, 2026-11-16: the address a clip shows. It is a request, not a beacon,
+// so it is asked for by its own path and must come back as its own signal.
+test("the ledger asks the zone for the short clip address as well as the beacons", () => {
+  const paths = pathsOf("tp");
+  for (const p of ["/trace", "/trace/", "/Trace", "/px/ref.gif", "/px/made.gif"]) assert.ok(paths.includes(p), p);
+  assert.ok(!pathsOf("pp").some((p) => !p.startsWith("/px/")), "Puzzle Press has no short address");
+  assert.equal(signalOf("tp", "/trace"), "trace");
+  assert.equal(signalOf("tp", "/Trace"), "trace");
+  assert.equal(signalOf("tp", "/px/coverpay.gif"), "coverpay");
+  assert.equal(signalOf("pp", "/px/made.gif"), "made");
+});
+
+test("a request for the short address prints with what it means, and is never a price", () => {
+  const lines = describe([row({ site: "tp", signal: "trace" }), row({ site: "tp", signal: "ref", time: "12:01" })]);
+  assert.ok(lines.some((l) => l.includes("the short address a clip shows")));
+  assert.ok(lines.some((l) => l.includes("arrived by a ?ref= link")));
+  for (const site of Object.keys(ROUTES)) for (const sig of Object.values(ROUTES[site])) {
+    assert.ok(ROUTE_SIGNALS[sig], sig);
+    assert.ok(!SIGNALS[site][sig], `${sig} is also a beacon name on ${site}`);
+    assert.ok(!PRICE[site].includes(sig));
+  }
+});
+
+test("every short address the ledger watches is one the site really redirects", async () => {
+  // Derived from the redirect file, so a rule that is renamed or removed there
+  // cannot leave the ledger watching a path that answers 404 for ever.
+  const { readFileSync, existsSync } = await import("node:fs");
+  const file = new URL("../../tracepress/public/_redirects", import.meta.url);
+  if (!existsSync(file)) return; // the public copy of this folder ships without Trace Press
+  const rules = readFileSync(file, "utf8").split("\n").map((l) => l.trim()).filter((l) => l && !l.startsWith("#")).map((l) => l.split(/\s+/));
+  for (const path of Object.keys(ROUTES.tp)) assert.ok(rules.some((r) => r[0] === path && r[2] === "301"), `${path} is not a 301 in _redirects`);
+  for (const [from, to] of rules) {
+    assert.ok(ROUTES.tp[from], `_redirects sends ${from} on, and the ledger does not watch it`);
+    assert.match(to, /[?&]ref=/, `${from} carries no ?ref=, so a person cannot be told from a fetch`);
   }
 });

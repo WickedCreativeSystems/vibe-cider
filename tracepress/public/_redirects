@@ -1,0 +1,8 @@
+# Short addresses that fit on a video clip. A viewer types one; it sends them
+# to the real page. Never linked from a page, a nav or the sitemap: the long
+# path stays the canonical one. ?ref=trace makes the page fire its ref beacon,
+# so a person who arrives this way is counted (a robot that only fetches is not).
+/trace /tracing-worksheet-generator?ref=trace 301
+/trace/ /tracing-worksheet-generator?ref=trace 301
+/Trace /tracing-worksheet-generator?ref=trace 301
+/TRACE /tracing-worksheet-generator?ref=trace 301

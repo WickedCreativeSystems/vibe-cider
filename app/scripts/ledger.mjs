@@ -18,7 +18,8 @@
 //
 // What it keeps is narrow on purpose, the same rule as who.mjs: only the
 // signals a page fires when someone ran the app (made a file, was shown a
-// price, pressed pay, arrived by a ?ref= link). Never page loads, never a dump
+// price, pressed pay, arrived by a ?ref= link), and requests for the one short
+// address that only a video clip shows. Never page loads, never a dump
 // of everyone who touched the site. The ledger holds addresses, because a
 // return visit is only visible by address; it lives in .search/, which git
 // does not track. Nothing printed here belongs in plan/ or actual/ with the
@@ -51,6 +52,21 @@ export const SIGNALS = {
     pack: "opened a holiday pack page ($3.50)", packbuy: "pressed Buy on a pack", packgot: "downloaded a paid pack", ref: "arrived by a ?ref= link",
   },
 };
+// Plain addresses worth a line: a request, not a beacon. /trace (2026-11-16)
+// is in no page, nav or sitemap; it exists so a video clip can show an address
+// short enough to type, and public/_redirects on Trace Press sends it on to
+// the tracing worksheet generator with ?ref=trace. So whoever asks for it read
+// it on a clip, or is a robot guessing. The `ref` row the same minute from the
+// same address, which only a browser running the page sends, tells them apart.
+export const ROUTES = {
+  pp: {},
+  tp: { "/trace": "trace", "/trace/": "trace", "/Trace": "trace", "/TRACE": "trace" },
+};
+export const ROUTE_SIGNALS = { trace: "asked for /trace, the short address a clip shows" };
+export const pathsOf = (site) => [...Object.keys(SIGNALS[site]).map((s) => `/px/${s}.gif`), ...Object.keys(ROUTES[site])];
+export const signalOf = (site, path) => ROUTES[site][path] ?? path.replace(/^\/px\//, "").replace(/\.gif$/, "");
+export const meaningOf = (site, signal) => SIGNALS[site]?.[signal] ?? ROUTE_SIGNALS[signal] ?? "";
+
 export const PRICE = {
   // Puzzle Press fires nothing when a purchase email is accepted; a sale there
   // is read from Stripe, never from here.
@@ -155,7 +171,7 @@ export const describe = (rows) => {
   const lines = [];
   for (const [ip, rs] of by) {
     lines.push(`${ip}  ${rs[0].country}  ${shortUa(rs[0].ua)}${rs[0].mine === "1" ? "  [MINE]" : ""}`);
-    for (const r of rs) lines.push(`    ${r.day} ${r.time}Z  ${r.site}  ${r.signal.padEnd(10)} ${SIGNALS[r.site]?.[r.signal] ?? ""}${r.count > 1 && !(r.si > 1) ? `  x${r.count}` : ""}${r.si > 1 ? `  (one-in-${Math.round(r.si)} sample)` : ""}`);
+    for (const r of rs) lines.push(`    ${r.day} ${r.time}Z  ${r.site}  ${r.signal.padEnd(10)} ${meaningOf(r.site, r.signal)}${r.count > 1 && !(r.si > 1) ? `  x${r.count}` : ""}${r.si > 1 ? `  (one-in-${Math.round(r.si)} sample)` : ""}`);
   }
   return lines;
 };
@@ -191,7 +207,7 @@ const main = async () => {
   const fetched = [];
   for (const day of daysToFetch(covered, now)) {
     for (const [site, host] of Object.entries(HOSTS)) {
-      const paths = Object.keys(SIGNALS[site]).map((s) => `"/px/${s}.gif"`).join(",");
+      const paths = pathsOf(site).map((p) => `"${p}"`).join(",");
       const query = `{viewer{zones(filter:{zoneTag:"${ZONE}"}){httpRequestsAdaptiveGroups(limit:2000,orderBy:[datetimeMinute_ASC],filter:{datetime_geq:"${day}T00:00:00Z",datetime_leq:"${day}T23:59:59Z",clientRequestHTTPHost:"${host}",clientRequestPath_in:[${paths}]}){count avg{sampleInterval} dimensions{datetimeMinute clientIP clientRequestPath clientCountryName userAgent}}}}}`;
       const r = await fetch("https://api.cloudflare.com/client/v4/graphql", {
         method: "POST",
@@ -208,7 +224,7 @@ const main = async () => {
         const x = g.dimensions;
         fetched.push({
           day, time: x.datetimeMinute.slice(11, 16), site,
-          signal: x.clientRequestPath.replace(/^\/px\//, "").replace(/\.gif$/, ""),
+          signal: signalOf(site, x.clientRequestPath),
           ip: x.clientIP, country: x.clientCountryName, count: g.count, si: Math.round(g.avg.sampleInterval * 100) / 100,
           mine: isMine(x.clientIP) ? "1" : "0", ua: x.userAgent.slice(0, 240),
         });
