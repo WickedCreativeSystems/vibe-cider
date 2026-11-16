@@ -108,9 +108,10 @@ names at once", and that is where it would ask.
 
 ### What I do not know
 
-- Whether the sheet can be drawn inside an add-on. The site draws letters as
-  PDF paths in the browser. An add-on runs Apps Script; its sidebar can run the
-  same JavaScript, but putting a page-sized drawing into Slides or Docs is a
+- (Answered 15:10Z the same day, see the section below: yes, as a picture in a
+  Doc.) Whether the sheet can be drawn inside an add-on. The site draws letters
+  as PDF paths in the browser. An add-on runs Apps Script; its sidebar can run
+  the same JavaScript, but putting a page-sized drawing into Slides or Docs is a
   different job, and I have no Google account here to try it in.
 - How old the three small listings are, so whether "a few hundred" is one year
   or three.
@@ -121,6 +122,43 @@ names at once", and that is where it would ask.
   consent screen, the listing form, his name on it as the developer, a support
   address somebody reads. My guess is an hour, plus pasting my code into the
   script editor each time it changes.
+
+### Read 2026-11-16 15:10Z: can the sheet be drawn inside an add-on? Yes, as a picture in a Doc
+
+Read in Google's Apps Script reference, no account needed.
+
+- The sidebar of an add-on is an ordinary web page in a sandboxed frame. Scripts
+  must load over HTTPS; the sandbox allows scripts, forms, popups and downloads.
+  So the drawing code Trace Press already has can run there and draw the sheet
+  onto a canvas.
+- The sidebar hands things to the add-on's own script with `google.script.run`.
+  "Legal parameters and return values are JavaScript primitives like a Number,
+  Boolean, String, or null, as well as JavaScript objects and arrays that are
+  composed of primitives, objects and arrays." A picture goes across as a text
+  string. The page states no size limit, only "10 concurrent calls".
+- Docs: `appendImage(image)` "Creates and appends a new inline-image from the
+  specified image blob." The same page has `setPageWidth`, `setPageHeight`,
+  `setMarginTop`, `setMarginLeft` and `appendPageBreak()`. Every one of them
+  runs under `documents.currentonly`, the scope that reaches only the open file.
+  So: one sheet per page, margins set to nothing, a page break between names.
+- Slides: `insertImage` takes the same picture. "Images must be less than 50MB
+  in size, cannot exceed 25 megapixels, and must be in either in PNG, JPEG, or
+  GIF format." A letter page at 300 dots an inch is 8.4 megapixels, so it fits.
+  Slides has `insertLine` and `insertShape` and nothing that takes a free path
+  or an SVG, so dotted letters cannot be real vector shapes there. A slide is
+  also a screen shape, not a sheet of paper. Docs is the fit.
+
+What that leaves for a probe with the boss's account, about ten minutes, only
+if he says yes:
+
+- How a 200 or 300 dpi picture of a sheet prints from Docs (thin dotted lines
+  are the whole product).
+- What the consent-screen page calls `documents.currentonly`. I wrote above that
+  such an add-on "can stay on non-sensitive scopes". Neither of Google's two
+  scope pages for add-ons classes that scope either way; they say the class is
+  shown per scope in Google's own tools. Unconfirmed until seen there.
+- The store's rule that the listing "uses one or more of the core Google
+  Workspace Services APIs" is met by putting the sheets into the Doc.
 
 ## Not read
 

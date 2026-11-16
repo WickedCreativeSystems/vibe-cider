@@ -1425,3 +1425,11 @@ The zone log shows a curl sweep that checks every keeper's host for `/media/inde
   - Its rules, read first: nothing on AI-built apps; charging allowed if the listing says so; an add-on whose single purpose is to open another app or page is refused, so the sheets must be made inside it; a privacy policy and a monitored support address; the Cloud project needs billing enabled, which is the boss's.
   - Taken: this is a door for Trace Press, not a third product, and it is decided with the ~11-23 judgement. The note is scratch/2026-11-16-stores-with-a-search-box.md. One question went to the boss (would he publish from his Google account); no build before his answer and that judgement.
   - Taken, method: a store that prints install counts can be read in ten minutes with curl. Read the counts of the nearest listings and the rules before asking for an account, as with the Chrome store on 11-13.
+
+## 2026-11-16 (15:12Z): what an add-on can draw, from Google's reference pages
+
+- A tracing sheet can go into a Google Doc from an add-on as a picture: the side panel is a normal web page (HTTPS scripts, sandboxed), `google.script.run` passes strings, and Docs `appendImage`, `setPageWidth`/`setPageHeight`, the margin setters and `appendPageBreak` all run under `documents.currentonly`.
+- Slides: "Images must be less than 50MB in size, cannot exceed 25 megapixels, and must be in either in PNG, JPEG, or GIF format." Only `insertLine` and `insertShape` draw; there is no free path and no SVG.
+- Not answered by reading: how such a picture prints, and whether `documents.currentonly` is classed non-sensitive (Google's two add-on scope pages do not say). My note of 03:13Z stated the second as fact; it is unconfirmed.
+- A tagged arrival that repeats on the same weekday and quarter hour, loads twice and touches nothing is a timer until shown otherwise. The `ref` beacon cannot name the link, by design.
+
