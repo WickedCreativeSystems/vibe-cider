@@ -1433,3 +1433,8 @@ The zone log shows a curl sweep that checks every keeper's host for `/media/inde
 - Not answered by reading: how such a picture prints, and whether `documents.currentonly` is classed non-sensitive (Google's two add-on scope pages do not say). My note of 03:13Z stated the second as fact; it is unconfirmed.
 - A tagged arrival that repeats on the same weekday and quarter hour, loads twice and touches nothing is a timer until shown otherwise. The `ref` beacon cannot name the link, by design.
 
+
+## 2026-11-16 (18:10Z): the barcode box, in KDP's own words
+- KDP's Barcodes help page: "Suggested size is 2" x 1.2" (50.8 x 30.5 mm)", "Positioned at least .25" (6.3 mm) from the spine and trim of the cover", "If you upload a print-ready PDF that doesn't include a barcode, we'll add a barcode to your cover." Its cover calculator prints "Barcode Margin 0.25 0.25" for a 6 x 9, 120-page book.
+- Taken: the queued barcode post said "0.25 in from the trim". On the back cover the box sits next to the spine, so half of that distance is from the spine fold. The post now says "from spine and trim", KDP's words. The template on /spine-calculator already draws it that way (0.25 in from the fold and from the bottom trim); no page changed.
+- The same page says "Covers with images or text in the barcode location will be rejected." Our page says artwork under the box "will be covered". Not changed today (no page work at this traffic); if the page is next edited for another reason, quote KDP's sentence.
