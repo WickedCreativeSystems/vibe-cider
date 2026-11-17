@@ -3,8 +3,13 @@
 // A custom feed is a list somebody else built: it collects every post that
 // carries a tag or a word, and people pin it like a channel. For an account
 // with a handful of followers it is the only place a post is seen at all.
-// This reads each feed below (newest 400 posts), counts what is in it, and
-// says where ours sit. Read-only.
+// This reads each feed below (six pages, up to 600 posts), counts what is in
+// it, and says where ours sit. Read-only.
+//
+// Indie Authors is not in time order (read 2026-11-17: week-old posts sit
+// between posts a few minutes old, and a post of ours that was 15th from the
+// top three minutes after it went out was nowhere in the feed three hours
+// later). "From the top" there is a place in a mix, not an age.
 //
 //   node app/scripts/bluesky-feeds.mjs
 //
@@ -22,7 +27,7 @@ const FEEDS = [
   { name: 'EduLib (24 likes)', rule: '#EduSky #UKEd #TeacherSky and librarian tags', uri: 'at://did:plc:5amsebbtpuqieuxuqadmmvcv/app.bsky.feed.generator/edulib' },
   { name: 'Writing Community (authors, 2,202 likes)', rule: '#writingcommunity #writerscommunity #writer #writers', uri: 'at://did:plc:abv47bjgzjgoh3yrygwoi36x/app.bsky.feed.generator/aaai4f7awwzkc' },
   { name: 'Authors & Writing (286 likes)', rule: 'words: authors, indie, self pub, published, cover reveal, #publishing, #author', uri: 'at://did:plc:k3opcqfbnpsly7bz754tfnmq/app.bsky.feed.generator/aaaml37qfteu4' },
-  { name: 'Indie Authors (205 likes)', rule: 'words: self publish, indie, writing', uri: 'at://did:plc:lyrmsmhhg7vzz4ghj44y5xzq/app.bsky.feed.generator/430f904df091' },
+  { name: 'Indie Authors (205 likes)', rule: 'words: self publish, indie, writing (not in time order)', uri: 'at://did:plc:lyrmsmhhg7vzz4ghj44y5xzq/app.bsky.feed.generator/430f904df091' },
 ];
 
 const s = await fetch(`${PDS}/com.atproto.server.createSession`, {
@@ -36,7 +41,7 @@ const { accessJwt, did } = await s.json();
 for (const f of FEEDS) {
   const posts = [];
   let cursor = '', err = '';
-  for (let page = 0; page < 4; page++) {
+  for (let page = 0; page < 6; page++) {
     const q = new URLSearchParams({ feed: f.uri, limit: '100' });
     if (cursor) q.set('cursor', cursor);
     const r = await fetch(`${PDS}/app.bsky.feed.getFeed?${q}`, { headers: { authorization: `Bearer ${accessJwt}` } });
