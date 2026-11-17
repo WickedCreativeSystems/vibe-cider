@@ -20,6 +20,10 @@ const fonts = {
 for (const [kind, make] of [
   ["word search", () => generateBook({ pools: [THEMES.garden, THEMES.birds], count: 12, wordsPerPuzzle: 14, difficulty: "easy", trim: "8.5x11", seed: "lp" })],
   ["sudoku", () => generateSudokuBook({ count: 12, difficulty: "graded", seed: "lp" })],
+  // 72 puzzles is 152 pages, the first length with KDP's wider inside margin.
+  // An Easy puzzle from a list of long words is 21 squares across, and until
+  // 2026-11-17 its letters came out at 15.8pt there.
+  ["long word search from a list of long words", () => generateBook({ pools: [THEMES.kansas, THEMES.delaware], count: 72, wordsPerPuzzle: 14, difficulty: "easy", trim: "8.5x11", seed: "book" })],
 ]) test(`a large-print ${kind} book prints nothing a reader must read below 16pt`, async () => {
   const draws = [];
   const pages = new Map();
@@ -37,7 +41,7 @@ for (const [kind, make] of [
     assert.deepEqual([...new Set(small.map((d) => `${d.size}pt "${d.text.slice(0, 20)}"`))], []);
     // One answer grid a page, and the page count everything else quotes agrees.
     const doc = await PDFDocument.load(bytes);
-    assert.equal(doc.getPageCount(), planPages(12, solutionsThatFit(pageGeometry({ trim: "8.5x11" }), true)).total);
+    assert.equal(doc.getPageCount(), planPages(book.puzzles.length, solutionsThatFit(pageGeometry({ trim: "8.5x11" }), true)).total);
   } finally {
     PDFPage.prototype.drawText = orig;
   }

@@ -1015,13 +1015,15 @@ const debounced = () => {
 // Large print is the biggest sub-niche in puzzle books. It was always possible
 // (big trim, fewer words) but nobody found it, so make it one checkbox.
 // Grid size is left automatic on purpose: pinning it to 15 made any pasted
-// word over 15 letters vanish from the book. Re-measured 2026-09-27 over 270
-// puzzles, three from each of the 90 themes: fourteen words on an 8.5×11 page
-// give 13–19 cells (median 16) and 18–27pt letters (median 22), against a
-// median 13pt at 6×9. (The 09-14 figures, from eight lists, said 14–19 and
-// 18–25; a wider sample found both ends.) The spread is the word list, so do not quote a single
-// number in public copy — see marketing/answers.md in the build-log repo,
-// which has had to correct this twice off the round numbers here.
+// word over 15 letters vanish from the book. Measured 2026-11-17 with
+// scripts/largeprint-sizes.mjs over 2,700 puzzles, ten from each of the 90
+// themes at each grade: fourteen words on an 8.5×11 page give 13–21 cells and
+// 16–26pt letters; at Medium the median is 17 cells and 20pt, against a median
+// 13pt at 6×9. (The 09-27 figures, 18–27pt and median 22, were the page width
+// divided by the grid: they left out the grid's 9pt inset and were 0.7pt
+// high.) The spread is the word list and the grade, so do not quote a single
+// number in public copy, and run the script again before quoting any: this
+// figure has now been corrected three times.
 const LARGE_PRINT = { trim: "8.5x11", size: "", wpp: "14" };
 el.largePrint.addEventListener("change", () => {
   refreshKind();

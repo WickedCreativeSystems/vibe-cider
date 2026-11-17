@@ -102,8 +102,8 @@ Every figure in pins 08–10 was computed from `src/pdf/kdp-cost.js` and
   book that still fits inside the flat band.
 - **$2.84 instead of $2.30** — the `large.black` flat rate. 8.5×11 is large
   trim because it is over 6.12" wide.
-- **Around 22pt against about 14pt** — measured, not read off a comment. See
-  below.
+- **Around 20pt against about 13pt** (pin 10 re-rendered 2026-11-17; it said
+  22 and 14 until then) — measured, not read off a comment. See below.
 
 If that rate table is ever updated to a new KDP rate card, **pins 08, 09 and 10
 are stale** and must be re-rendered before they are pinned again.
@@ -121,6 +121,12 @@ large print gives **13–19 cells (median 16)** and **18–27pt letters (median 
 four in five between 20 and 24. A standard 6×9 page is **median 13pt**. So the useful, true
 thing to say is "around 22pt, against about 14 at 6×9" — a comparison, not a
 specification.
+
+**And a fourth time, 2026-11-17.** Those 09-27 figures were the page width
+divided by the grid, not sizes read from a PDF: about 0.7pt high. Read as the
+renderer draws them (`app/scripts/largeprint-sizes.mjs`, 2,700 puzzles, three
+grades): **13–21 cells, 16–26pt; at Medium, median 17 cells and 20pt**; 6×9
+median 13pt. Pin 10 now says "around 20pt, against about 13pt".
 
 All four files now say that, both comments now carry the measurement, and
 `test/copy.test.js` grows a guard for the related claim (`N×N is typical`).

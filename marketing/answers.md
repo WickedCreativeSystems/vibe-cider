@@ -233,16 +233,27 @@ count, not as "several people asked for more types".
 
 > Large print is a checkbox — it sets the trim and the word count together
 > (8.5×11, fourteen words a page) and lets the grid size itself from there,
-> which lands around 16 cells and puts the letters at about 22pt, against
-> about 14pt on a standard 6×9 page. It is the biggest sub-category in puzzle
+> which lands around 17 cells and puts the letters at about 20pt, against
+> about 13pt on a standard 6×9 page. No grid letter is under 16pt. It is the biggest sub-category in puzzle
 > books and the most common thing to get half-right.
 
-*Those are medians, and the honest way to say them is "around 22pt" with the
-6×9 comparison attached.* Re-measured on 2026-09-27 across all 90 themes, 270
-puzzles: grids come out **13–19 cells, median 16**, and letters **18–27pt,
-median 22**, with four in five between 20 and 24 (82%). The 09-14 figures,
-from eight lists, said 14–19 and 18–25. The spread is the word list —
-a book of long state names sizes up, a book of bird names sizes down.
+*Those are medians at Medium, and the honest way to say them is "around 20pt"
+with the 6×9 comparison attached.* Measured on 2026-11-17 with
+`app/scripts/largeprint-sizes.mjs`, ten puzzles from each of the 90 themes at
+each of the three grades, 2,700 puzzles: grids come out **13–21 cells** and
+letters **16–26pt**, nine in ten between 17.8 and 24.1; at Medium the median is
+**17 cells and 20pt** (Easy 18 cells and 19pt, Hard 15 cells and 23pt). The
+spread is the word list and the grade: a book of long state names sizes up, a
+book of bird names sizes down. Since 11-17 a large-print grid letter is never
+set under 16pt while its square has room, which every built-in theme has.
+
+**Wrong a third time, found 2026-11-17.** The 09-27 figures (13–19 cells median
+16, 18–27pt median 22, 82% between 20 and 24) were the page width divided by
+the grid. They left out the 9pt the grid is inset on each side and the pages
+where a long word bank shortens the grid, so they were about 0.7pt high at
+every size; the generator has also moved the middle grid from 16 cells to 17
+since then. A real PDF from the site, read back, set its letters at 18.75,
+19.86 and 21.10pt. Run the script before quoting a size; do not work one out.
 
 **How this was got wrong twice.** The first version of this answer said "around
 23pt" because a comment in `src/pdf/render.js` says 23. The correction said

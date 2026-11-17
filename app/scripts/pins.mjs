@@ -61,7 +61,7 @@ const xwPdf = await pdf("xw", xw, "Garden Crosswords", "50 themed crosswords, ea
 const tgPdf = await pdf("tg", tg, "Thanksgiving Word Search", "50 puzzles, easy to hard");
 const xmPdf = await pdf("xm", xm, "Sudoku by the Fire", "50 puzzles, easy to expert");
 const lpPdf = join(tmp, "lp.pdf");
-writeFileSync(lpPdf, await renderBook(lp, { title: "Large Print Birds", subtitle: "50 word searches in large print", author: "", trim: "8.5x11", licensed: true, fonts }));
+writeFileSync(lpPdf, await renderBook(lp, { title: "Large Print Birds", subtitle: "50 word searches in large print", author: "", trim: "8.5x11", licensed: true, largePrint: true, fonts }));
 
 const wsCover = await cover("ws", ws, "Halloween Word Search", "50 spooky puzzles, easy to hard");
 const suCover = await cover("su", su, "Sudoku for Sunday", "50 puzzles, easy to expert");
@@ -69,8 +69,10 @@ const suCover = await cover("su", su, "Sudoku for Sunday", "50 puzzles, easy to 
 const png = (file, page, dpi = 150) => {
   const prefix = join(tmp, `p${Math.random().toString(36).slice(2, 7)}`);
   execFileSync("pdftoppm", ["-r", String(dpi), "-f", String(page), "-l", String(page), "-png", file, prefix]);
-  const pad = String(page).padStart(2, "0");
-  for (const f of [`${prefix}-${pad}.png`, `${prefix}-${page}.png`]) {
+  // pdftoppm pads the page number to the width of the book's last page: a
+  // large-print book, one answer grid to a page, runs past 99.
+  const names = [3, 2, 1].map((w) => `${prefix}-${String(page).padStart(w, "0")}.png`);
+  for (const f of names) {
     try { return `data:image/png;base64,${readFileSync(f).toString("base64")}`; } catch {}
   }
   throw new Error("no page image");
@@ -205,7 +207,7 @@ await pin("09-flat-rate.png", {
 await pin("10-large-print.png", {
   kicker: "Large print puzzle books",
   title: "Large print is one checkbox, and 54¢ a copy.",
-  body: "8.5×11 counts as large trim, so printing goes from $2.30 to $2.84 under 110 pages. Fourteen words a page puts the grid letters at around 22pt, against about 14pt on a standard 6×9.",
+  body: "8.5×11 counts as large trim, so printing goes from $2.30 to $2.84 under 110 pages. Fourteen words a page puts the grid letters at around 20pt, against about 13pt on a standard 6×9.",
   img: png(lpPdf, 4),
   foot: "Make a large-print book free →",
 });

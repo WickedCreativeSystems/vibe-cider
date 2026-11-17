@@ -38,7 +38,16 @@ const MIN_LINE = 0.75;
 // at 0.85 of the cell even a row of Ws keeps a gap — and only a grid too big
 // for its page drops under 7pt, as little as that cell allows.
 const MIN_TYPE = 7;
-const gridLetter = (cell, share) => Math.min(Math.max(MIN_TYPE, cell * share), cell * 0.85);
+// KDP, beside its Large Print checkbox: "Large-print books usually have a font
+// size of 16 points or higher." A large-print word search letter is 0.62 of
+// its square, which stays at 16pt or more while the grid is 21 squares or
+// fewer in a book of up to 150 pages. Past 150 pages the inside margin widens
+// and the same 21-square grid (an Easy puzzle from a list of long words, such
+// as a state's) came out at 15.5 to 15.8pt, measured 2026-11-17 with
+// scripts/largeprint-sizes.mjs. So a large-print grid letter takes 16pt
+// whenever its square has room, the same way every grid letter takes 7pt.
+const LARGE_PRINT_TYPE = 16;
+const gridLetter = (cell, share, floor = MIN_TYPE) => Math.min(Math.max(floor, cell * share), cell * 0.85);
 const GREY = rgb(0.45, 0.45, 0.45);
 const SHADE = rgb(0.82, 0.82, 0.82);
 
@@ -282,8 +291,8 @@ function drawPuzzlePage(ctx, puzzle) {
   // Word bank size decides how much height the grid can have.
   const words = puzzle.words;
   // The word bank has to be readable by whoever the grid is readable to — on a
-  // large-print book, a 13pt bank under ~22pt grid letters looks like fine
-  // print. (That 22 is a measured median, not a fixed size: letterSize below is
+  // large-print book, a 13pt bank under ~20pt grid letters looks like fine
+  // print. (That 20 is a measured median, not a fixed size: letterSize below is
   // derived from the grid side, so it moves with the word list. Anything quoting
   // it in public copy has to say so — see the note in src/ui/main.js.)
   const bankSize = Math.max(10, Math.min(17, Math.round(box.w / 34)));
@@ -302,7 +311,7 @@ function drawPuzzlePage(ctx, puzzle) {
   const gridSide = Math.min(box.w - 2 * GRID_SAFE, gridAvailH);
   const gridX = box.x + (box.w - gridSide) / 2;
   const gridTop = topY;
-  drawGrid(page, F, puzzle, { x: gridX, top: gridTop, side: gridSide, solution: false });
+  drawGrid(page, F, puzzle, { x: gridX, top: gridTop, side: gridSide, solution: false, floor: ctx.largePrint ? LARGE_PRINT_TYPE : MIN_TYPE });
 
   // Word bank
   const bankTop = gridTop - gridSide - 20;
@@ -321,10 +330,10 @@ function bankColumns(font, words, width, size) {
   return Math.max(1, Math.min(4, Math.floor(width / longest)));
 }
 
-function drawGrid(page, F, puzzle, { x, top, side, solution }) {
+function drawGrid(page, F, puzzle, { x, top, side, solution, floor = MIN_TYPE }) {
   const n = puzzle.size;
   const cell = side / n;
-  const letterSize = gridLetter(cell, 0.62);
+  const letterSize = gridLetter(cell, 0.62, floor);
   const shaded = new Set();
   if (solution) {
     for (const p of puzzle.placements) {
@@ -669,7 +678,7 @@ function drawSolutionsPage(ctx, puzzles, perPage) {
     } else if (p.kind === "crisscross" || p.kind === "crossword") {
       drawCrissCrossGrid(page, F, p, { x, top: top - label - 6, side, solution: true });
     } else {
-      drawGrid(page, F, p, { x, top: top - label - 6, side, solution: true });
+      drawGrid(page, F, p, { x, top: top - label - 6, side, solution: true, floor: ctx.largePrint ? LARGE_PRINT_TYPE : MIN_TYPE });
     }
   });
   footer(ctx, page, box);

@@ -39,7 +39,7 @@ Recurring winning patterns across every article:
    buying a gift. **Corrected 2026-09-16: we already have this.** `main.js`
    ships a one-click "Large print" checkbox (`el.largePrint`, added
    2026-09-14, commit `485ac7f`) that presets 8.5×11 trim, automatic grid
-   size, and 14 words/puzzle — measured at 18–27pt letters. It's referenced
+   size, and 14 words/puzzle — measured at 16–26pt letters (11-17; it said 18–27 before). It's referenced
    throughout the guide, royalty calculator, and index copy already. I first
    wrote this section claiming it didn't exist; that was a bad grep (I
    searched for `fontSize`/`cellSize` variable names and it's implemented as
